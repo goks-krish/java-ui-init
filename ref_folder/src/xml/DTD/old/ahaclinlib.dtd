@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Kate Atkins (Silverchair Science + Communicat) -->
+<!--DTD for AHA Clincal Library Topic Content, typically invoked by
+      <!DOCTYPE  topic SYSTEM "ahaclinlib.dtd">
+-->
+<!--Created 07.24.2002 by Kate Atkins (katkins@silverchair.com-->
+<!ELEMENT author (name)+>
+<!ATTLIST author
+	id CDATA #IMPLIED
+	xmlnsxlink CDATA "http://www.w3.org/1999/xlink"
+	xlinktype CDATA "simple"
+	xlinkhref CDATA #IMPLIED
+	xlinkrole CDATA #IMPLIED
+	xlinktitle CDATA #IMPLIED
+>
+<!ELEMENT author-ref (#PCDATA)>
+<!ELEMENT bibliography (title | list | figure | table-wrapper | image | para | journal-ref | equation)*>
+<!ATTLIST bibliography
+	list-type (bullet | numbered | unnumbered | outline) "numbered"
+>
+<!ELEMENT citation (#PCDATA | emphasis | inline-image | subscript | superscript)*>
+<!ATTLIST citation
+	pointer CDATA #REQUIRED
+>
+<!ELEMENT cross-reference (#PCDATA | emphasis | inline-image | subscript | superscript)*>
+<!ATTLIST cross-reference
+	pointer CDATA #REQUIRED
+	type (intrachapter | interchapter | interbook) "intrachapter"
+>
+<!ELEMENT denominator (#PCDATA | emphasis | fraction | inline-image | subscript | superscript)*>
+<!ELEMENT drug-ref (#PCDATA | emphasis | fraction | inline-image | subscript | superscript)*>
+<!ATTLIST drug-ref
+	pointer CDATA #REQUIRED
+>
+
+<!ELEMENT drug-class (#PCDATA | emphasis)*>
+
+<!ELEMENT emphasis (#PCDATA | emphasis | inline-image | subscript | superscript | drug-ref)*>
+<!ATTLIST emphasis
+	emph-type (bold | italic | smallcaps | underline | subscript | superscript | symbol) #REQUIRED
+	toggle (toggle | notoggle) "toggle"
+>
+<!ELEMENT entry (#PCDATA | para | cross-reference | citation | emphasis | inline-image | table-ref | figure-ref | subscript | superscript | drug-ref | supplement-ref | uri | equation)*>
+<!ATTLIST entry
+	nowrap (nowrap) #IMPLIED
+	rowspan CDATA #IMPLIED
+	colspan CDATA #IMPLIED
+	align (left | right | center | justify | char) #IMPLIED
+	valign (top | middle | bottom) #IMPLIED
+	width CDATA #IMPLIED
+	height CDATA #IMPLIED
+	level (l1 | l2 | l3 | l4 | l5) "l1"
+>
+
+<!ELEMENT equation	(#PCDATA | emphasis | fraction | inline-image | subscript | superscript)*>
+<!ATTLIST equation   
+	id        CDATA     #REQUIRED
+>
+
+<!ELEMENT figure ((table-wrapper | list | image | para | equation)+, title?, legend?)>
+<!ATTLIST figure
+	id CDATA #REQUIRED
+	figure-type (box | chart | figure) "figure"
+	special-use CDATA #IMPLIED
+	color (color | nocolor) #IMPLIED
+	cols-wide (1 | 2 | 3 | 4) #IMPLIED
+	height CDATA #IMPLIED
+	width CDATA #IMPLIED
+	units (pica | proportional | pixel) #IMPLIED
+	rotate (90 | 180) #IMPLIED
+	anchor (fixed | float) "float"
+	number (numbered | notnumbered) "numbered"
+	topic1 CDATA #IMPLIED
+	topic2 CDATA #IMPLIED
+	topic3 CDATA #IMPLIED
+	topic4 CDATA #IMPLIED
+	topic5 CDATA #IMPLIED
+	topic6 CDATA #IMPLIED
+	topic7 CDATA #IMPLIED
+	topic8 CDATA #IMPLIED
+	all (all | no-all) #IMPLIED
+	anatomy (anatomy | no-anatomy) #IMPLIED
+	comorb (comorb | no-comorb) #IMPLIED
+	complications (complications | no-complications) #IMPLIED
+	course (course | no-course) #IMPLIED
+	econ (econ | no-econ) #IMPLIED
+	diagnosis (diagnosis | no-diagnosis) #IMPLIED
+	diff-diag (diff-diag | no-diff-diag) #IMPLIED
+	imaging (imaging | no-imaging) #IMPLIED
+	lab-studies (lab-studies | no-lab-studies) #IMPLIED
+	examination (examination | no-examination) #IMPLIED
+	epidemiology (epidemiology | no-epidemiology) #IMPLIED
+	etiology (etiology | no-etiology) #IMPLIED
+	genetics (genetics | no-genetics) #IMPLIED
+	diabetic (diabetic | no-diabetic) #IMPLIED
+	elderly (elderly | no-elderly) #IMPLIED
+	patient-ed (patient-ed | no-patient-ed) #IMPLIED
+	pathology (pathology | no-pathology) #IMPLIED
+	risk (risk | no-risk) #IMPLIED
+	signs (signs | no-signs) #IMPLIED
+	therapy (therapy | no-therapy) #IMPLIED
+	medical (medical | no-medical) #IMPLIED
+	percutaneous (percutaneous | no-percutaneous) #IMPLIED
+	surgical (surgical | no-surgical) #IMPLIED
+	
+	admission       (admission|no-admission)  #IMPLIED
+	management       (management|no-management)  #IMPLIED
+	pharm       (pharm|no-pharm)  #IMPLIED
+	non-pharm       (non-pharm|no-non-pharm)  #IMPLIED
+	followup       (followup|no-followup)  #IMPLIED
+	strategy       (strategy|no-strategy)  #IMPLIED
+	screening       (screening|no-screening)  #IMPLIED	
+>
+
+<!ELEMENT figure-ref (#PCDATA | emphasis | inline-image | subscript | superscript)*>
+<!ATTLIST figure-ref
+	pointer CDATA #REQUIRED
+	type (intrabook | interbook) "intrabook"
+>
+
+<!ELEMENT fraction (numerator, denominator)>
+
+
+<!ELEMENT	footnote	(list | equation | image | para)+ >
+<!ATTLIST footnote   id	CDATA	#IMPLIED
+                     xmlnsxlink	CDATA	"http://www.w3.org/1999/xlink"
+                     xlinktype  CDATA	"simple"
+                     xlinkhref  CDATA	#IMPLIED
+                     xlinkrole  CDATA	#IMPLIED
+                     xlinktitle  CDATA	#IMPLIED 
+>
+
+<!ELEMENT footnote-ref	(#PCDATA | emphasis | fraction | inline-image | subscript | superscript)*>
+<!ATTLIST footnote-ref 
+	pointer CDATA	#REQUIRED 
+>
+
+
+
+<!ELEMENT front-matter (topic)+>
+
+<!ELEMENT image EMPTY>
+<!ATTLIST image
+	id CDATA #IMPLIED
+	image-name CDATA #REQUIRED
+	copyright CDATA #IMPLIED
+	image-text CDATA #IMPLIED
+	color (color | nocolor) #IMPLIED
+	cols-wide (1 | 2 | 3 | 4) #IMPLIED
+	height CDATA #IMPLIED
+	width CDATA #IMPLIED
+	units (pica | proportional | pixel) #IMPLIED
+	rotate (90 | 180) #IMPLIED
+	entity CDATA #IMPLIED
+	file CDATA #IMPLIED
+	dpi CDATA #IMPLIED
+	impsize CDATA #IMPLIED
+	impby (ref | copy) #IMPLIED
+	sideways CDATA #IMPLIED
+	impang CDATA #IMPLIED
+	xoffset CDATA #IMPLIED
+	yoffset CDATA #IMPLIED
+	position CDATA #IMPLIED
+	align CDATA #IMPLIED
+	cropped CDATA #IMPLIED
+	float CDATA #IMPLIED
+	angle CDATA #IMPLIED
+	bloffset CDATA #IMPLIED
+	nsoffset CDATA #IMPLIED
+>
+<!ELEMENT inline-definition (#PCDATA | inline-definition | emphasis | inline-image | subscript | superscript | citation | figure-ref | table-ref | cross-reference)*>
+<!ATTLIST inline-definition
+	id CDATA #IMPLIED
+	pointer CDATA #REQUIRED
+>
+<!ELEMENT inline-image EMPTY>
+<!ATTLIST inline-image
+	image-name CDATA #REQUIRED
+	copyright CDATA #IMPLIED
+	image-text CDATA #IMPLIED
+	entity CDATA #IMPLIED
+	file CDATA #IMPLIED
+	dpi CDATA #IMPLIED
+	impsize CDATA #IMPLIED
+	impby (ref | copy) #IMPLIED
+	sideways CDATA #IMPLIED
+	impang CDATA #IMPLIED
+	xoffset CDATA #IMPLIED
+	yoffset CDATA #IMPLIED
+	position CDATA #IMPLIED
+	align CDATA #IMPLIED
+	cropped CDATA #IMPLIED
+	float CDATA #IMPLIED
+	width CDATA #IMPLIED
+	height CDATA #IMPLIED
+	angle CDATA #IMPLIED
+	bloffset CDATA #IMPLIED
+	nsoffset CDATA #IMPLIED
+>
+
+<!ELEMENT item (para+)*>
+
+<!ELEMENT journal-ref (#PCDATA | journal-title-ref | author-ref | emphasis | inline-image | subscript | superscript | drug-ref | uri )*>
+<!ATTLIST journal-ref
+	id CDATA #IMPLIED
+	xmlnsxlink CDATA "http://www.w3.org/1999/xlink"
+	xlinktype CDATA "simple"
+	xlinkhref CDATA #IMPLIED
+	xlinkrole CDATA #IMPLIED
+	xlinktitle CDATA #IMPLIED
+	href CDATA #IMPLIED
+	Ipsref CDATA #IMPLIED
+	fullTextURL CDATA #IMPLIED
+>
+
+<!ELEMENT journal-title-ref (#PCDATA | emphasis | inline-image | subscript | superscript | drug-ref)*>
+<!ATTLIST journal-title-ref
+	href CDATA #IMPLIED
+	Ipsref CDATA #IMPLIED
+>
+<!ELEMENT legend (#PCDATA | list | citation | emphasis | inline-image | subscript | superscript | table-ref | figure-ref | cross-reference | drug-ref | supplement-ref | equation)*>
+
+<!ELEMENT list (title?, (item | list)+)>
+<!ATTLIST list
+	list-type (bullet | numbered | unnumbered | outline) #IMPLIED
+	fold (1 | 2 | 3 | 4) "1"
+	enum-type (arabicnum | loweralpha | upperalpha | lowerroman | upperroman) #IMPLIED
+	group (group | nogroup) "group"
+>
+
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name
+	namestyle (western | eastern | islensk) "western"
+	id CDATA #IMPLIED
+	xmlnsxlink CDATA "http://www.w3.org/1999/xlink"
+	xlinktype CDATA "simple"
+	xlinkhref CDATA #IMPLIED
+	xlinkrole CDATA #IMPLIED
+	xlinktitle CDATA #IMPLIED
+>
+<!ELEMENT numerator (#PCDATA | emphasis | fraction | inline-image | subscript | superscript)*>
+
+<!ELEMENT para (#PCDATA | figure | table-wrapper | journal-ref | inline-definition | emphasis | inline-image | subscript | superscript | image | list | citation | figure-ref | table-ref | cross-reference | drug-ref | supplement-ref | uri | equation | footnote-ref | tradename)*>
+<!ATTLIST para
+	lookup	CDATA #IMPLIED
+	topic1 CDATA #IMPLIED
+	topic2 CDATA #IMPLIED
+	topic3 CDATA #IMPLIED
+	topic4 CDATA #IMPLIED
+	topic5 CDATA #IMPLIED
+	topic6 CDATA #IMPLIED
+	topic7 CDATA #IMPLIED
+	topic8 CDATA #IMPLIED
+	all (all | no-all) #IMPLIED
+	anatomy (anatomy | no-anatomy) #IMPLIED
+	comorb (comorb | no-comorb) #IMPLIED
+	complications (complications | no-complications) #IMPLIED
+	course (course | no-course) #IMPLIED
+	econ (econ | no-econ) #IMPLIED
+	diagnosis (diagnosis | no-diagnosis) #IMPLIED
+	diff-diag (diff-diag | no-diff-diag) #IMPLIED
+	id CDATA #IMPLIED
+	imaging (imaging | no-imaging) #IMPLIED
+	lab-studies (lab-studies | no-lab-studies) #IMPLIED
+	examination (examination | no-examination) #IMPLIED
+	epidemiology (epidemiology | no-epidemiology) #IMPLIED
+	etiology (etiology | no-etiology) #IMPLIED
+	genetics (genetics | no-genetics) #IMPLIED
+	diabetic (diabetic | no-diabetic) #IMPLIED
+	elderly (elderly | no-elderly) #IMPLIED
+	patient-ed (patient-ed | no-patient-ed) #IMPLIED
+	pathology (pathology | no-pathology) #IMPLIED
+	risk (risk | no-risk) #IMPLIED
+	signs (signs | no-signs) #IMPLIED
+	therapy (therapy | no-therapy) #IMPLIED
+	medical (medical | no-medical) #IMPLIED
+	percutaneous (percutaneous | no-percutaneous) #IMPLIED
+	surgical (surgical | no-surgical) #IMPLIED
+	admission       (admission|no-admission)  #IMPLIED
+	management       (management|no-management)  #IMPLIED
+	pharm       (pharm|no-pharm)  #IMPLIED
+	non-pharm       (non-pharm|no-non-pharm)  #IMPLIED
+	followup       (followup|no-followup)  #IMPLIED
+	strategy       (strategy|no-strategy)  #IMPLIED
+	screening       (screening|no-screening)  #IMPLIED
+>
+
+<!ELEMENT pronunciation (#PCDATA)>
+
+<!ELEMENT row (entry+)>
+<!ATTLIST row
+	align (left | center | right) #IMPLIED
+	valign (top | middle | bottom) #IMPLIED
+>
+<!ELEMENT subscript (#PCDATA | emphasis | inline-image | subscript | superscript)*>
+
+<!ELEMENT subtitle (#PCDATA | emphasis | inline-image | subscript | superscript | citation | figure-ref | table-ref | cross-reference | drug-ref | uri)*>
+
+<!ELEMENT superscript (#PCDATA | emphasis | inline-image | subscript | superscript)*>
+
+
+<!-- Silverchair Science + Communications Multimedia Extension-->
+<!ELEMENT supplement	(image | legend)* >
+<!ATTLIST	supplement
+	id	CDATA	#REQUIRED
+	type	CDATA	#IMPLIED
+	category	CDATA	#REQUIRED
+	topic1 CDATA #IMPLIED
+	topic2 CDATA #IMPLIED
+	topic3 CDATA #IMPLIED
+	topic4 CDATA #IMPLIED
+	topic5 CDATA #IMPLIED
+	topic6 CDATA #IMPLIED
+	topic7 CDATA #IMPLIED
+	topic8 CDATA #IMPLIED
+	all (all | no-all) #IMPLIED
+	anatomy (anatomy | no-anatomy) #IMPLIED
+	comorb (comorb | no-comorb) #IMPLIED
+	complications (complications | no-complications) #IMPLIED
+	course (course | no-course) #IMPLIED
+	econ (econ | no-econ) #IMPLIED
+	diagnosis (diagnosis | no-diagnosis) #IMPLIED
+	diff-diag (diff-diag | no-diff-diag) #IMPLIED
+	imaging (imaging | no-imaging) #IMPLIED
+	lab-studies (lab-studies | no-lab-studies) #IMPLIED
+	examination (examination | no-examination) #IMPLIED
+	epidemiology (epidemiology | no-epidemiology) #IMPLIED
+	etiology (etiology | no-etiology) #IMPLIED
+	genetics (genetics | no-genetics) #IMPLIED
+	diabetic (diabetic | no-diabetic) #IMPLIED
+	elderly (elderly | no-elderly) #IMPLIED
+	patient-ed (patient-ed | no-patient-ed) #IMPLIED
+	pathology (pathology | no-pathology) #IMPLIED
+	risk (risk | no-risk) #IMPLIED
+	signs (signs | no-signs) #IMPLIED
+	therapy (therapy | no-therapy) #IMPLIED
+	medical (medical | no-medical) #IMPLIED
+	percutaneous (percutaneous | no-percutaneous) #IMPLIED
+	surgical (surgical | no-surgical) #IMPLIED
+
+	admission       (admission|no-admission)  #IMPLIED
+	management       (management|no-management)  #IMPLIED
+	pharm       (pharm|no-pharm)  #IMPLIED
+	non-pharm       (non-pharm|no-non-pharm)  #IMPLIED
+	followup       (followup|no-followup)  #IMPLIED
+	strategy       (strategy|no-strategy)  #IMPLIED
+	screening       (screening|no-screening)  #IMPLIED
+
+>
+
+<!-- Silverchair Science + Communications Multimedia Extension-->
+<!ELEMENT supplement-ref EMPTY>
+<!ATTLIST supplement-ref
+	pointer CDATA #REQUIRED
+>
+
+<!ELEMENT table (title?, tgroup+)>
+<!ELEMENT table-ref (#PCDATA | emphasis | inline-image | subscript | superscript)*>
+<!ATTLIST table-ref
+	pointer CDATA #REQUIRED
+	type (intrabook | interbook) "intrabook"
+>
+
+<!ELEMENT table-wrapper (title?, subtitle?, (list | image | para | table | equation)*, (legend)*)>
+<!ATTLIST table-wrapper
+	id CDATA #REQUIRED
+	summary (summary | notsummary) "notsummary"
+	color (color | nocolor) #IMPLIED
+	cols-wide (1 | 2 | 3 | 4) #IMPLIED
+	height CDATA #IMPLIED
+	width CDATA #IMPLIED
+	units (pica | proportional | pixel) #IMPLIED
+	rotate (90 | 180) #IMPLIED
+	anchor (fixed | float) "float"
+	number (numbered | notnumbered) "numbered"
+	topic1 CDATA #IMPLIED
+	topic2 CDATA #IMPLIED
+	topic3 CDATA #IMPLIED
+	topic4 CDATA #IMPLIED
+	topic5 CDATA #IMPLIED
+	topic6 CDATA #IMPLIED
+	topic7 CDATA #IMPLIED
+	topic8 CDATA #IMPLIED
+	all (all | no-all) #IMPLIED
+	anatomy (anatomy | no-anatomy) #IMPLIED
+	comorb (comorb | no-comorb) #IMPLIED
+	complications (complications | no-complications) #IMPLIED
+	course (course | no-course) #IMPLIED
+	econ (econ | no-econ) #IMPLIED
+	diagnosis (diagnosis | no-diagnosis) #IMPLIED
+	diff-diag (diff-diag | no-diff-diag) #IMPLIED
+	imaging (imaging | no-imaging) #IMPLIED
+	lab-studies (lab-studies | no-lab-studies) #IMPLIED
+	examination (examination | no-examination) #IMPLIED
+	epidemiology (epidemiology | no-epidemiology) #IMPLIED
+	etiology (etiology | no-etiology) #IMPLIED
+	genetics (genetics | no-genetics) #IMPLIED
+	diabetic (diabetic | no-diabetic) #IMPLIED
+	elderly (elderly | no-elderly) #IMPLIED
+	patient-ed (patient-ed | no-patient-ed) #IMPLIED
+	pathology (pathology | no-pathology) #IMPLIED
+	risk (risk | no-risk) #IMPLIED
+	signs (signs | no-signs) #IMPLIED
+	therapy (therapy | no-therapy) #IMPLIED
+	medical (medical | no-medical) #IMPLIED
+	percutaneous (percutaneous | no-percutaneous) #IMPLIED
+	surgical (surgical | no-surgical) #IMPLIED
+
+	admission       (admission|no-admission)  #IMPLIED
+	management       (management|no-management)  #IMPLIED
+	pharm       (pharm|no-pharm)  #IMPLIED
+	non-pharm       (non-pharm|no-non-pharm)  #IMPLIED
+	followup       (followup|no-followup)  #IMPLIED
+	strategy       (strategy|no-strategy)  #IMPLIED
+	screening       (screening|no-screening)  #IMPLIED
+
+>
+
+<!ELEMENT tbody (row+)>
+<!ATTLIST tbody
+	valign (top | middle | bottom) #IMPLIED
+>
+
+<!ELEMENT tgroup (thead*, tbody)>
+<!ATTLIST tgroup
+	align (left | right | center | justify | char) #IMPLIED
+	cols CDATA #REQUIRED
+>
+
+<!ELEMENT thead (row+)>
+<!ATTLIST thead
+	nowrap (nowrap) #IMPLIED
+	rowspan CDATA "1"
+	colspan CDATA "1"
+	align (left | center | right) #IMPLIED
+	valign (top | middle | bottom) #IMPLIED
+	width CDATA #IMPLIED
+	height CDATA #IMPLIED
+>
+
+<!ELEMENT title (#PCDATA | emphasis | inline-image | subscript | superscript | citation | figure-ref | table-ref | cross-reference | drug-ref | uri)*>
+
+<!ELEMENT topic (topic-info | list | figure | table-wrapper | image | para | topic | bibliography | supplement | equation | footnote | tradename)*>
+<!ATTLIST topic
+	lookup	CDATA #IMPLIED
+	topic-content-type (editors-note | objectives | overview | summary) #IMPLIED
+	extra-topic-level (extra-level | skip-level | regular) "regular"
+	heading-level (1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10) #IMPLIED
+	id CDATA #REQUIRED
+	doi CDATA #IMPLIED
+	topic-struct-level (appendix | chapter | part | section | topic | unit) #IMPLIED
+	clinical-category CDATA #IMPLIED
+	dev-stage CDATA #IMPLIED
+	topic-info-type (body-system | discipline | disease | drug | evaluation | treatment-therapy) #IMPLIED
+	gender (female | male | both) "both"
+	species (avian | canine | feline | equine | homosapien | other) "homosapien"
+	version CDATA #IMPLIED
+	last-update CDATA #IMPLIED
+	topic1 CDATA #IMPLIED
+	topic2 CDATA #IMPLIED
+	topic3 CDATA #IMPLIED
+	topic4 CDATA #IMPLIED
+	topic5 CDATA #IMPLIED
+	topic6 CDATA #IMPLIED
+	topic7 CDATA #IMPLIED
+	topic8 CDATA #IMPLIED
+	all (all | no-all) #IMPLIED
+	anatomy (anatomy | no-anatomy) #IMPLIED
+	comorb (comorb | no-comorb) #IMPLIED
+	complications (complications | no-complications) #IMPLIED
+	course (course | no-course) #IMPLIED
+	econ (econ | no-econ) #IMPLIED
+	diagnosis (diagnosis | no-diagnosis) #IMPLIED
+	diff-diag (diff-diag | no-diff-diag) #IMPLIED
+	imaging (imaging | no-imaging) #IMPLIED
+	lab-studies (lab-studies | no-lab-studies) #IMPLIED
+	examination (examination | no-examination) #IMPLIED
+	epidemiology (epidemiology | no-epidemiology) #IMPLIED
+	etiology (etiology | no-etiology) #IMPLIED
+	genetics (genetics | no-genetics) #IMPLIED
+	diabetic (diabetic | no-diabetic) #IMPLIED
+	elderly (elderly | no-elderly) #IMPLIED
+	patient-ed (patient-ed | no-patient-ed) #IMPLIED
+	pathology (pathology | no-pathology) #IMPLIED
+	risk (risk | no-risk) #IMPLIED
+	signs (signs | no-signs) #IMPLIED
+	therapy (therapy | no-therapy) #IMPLIED
+	medical (medical | no-medical) #IMPLIED
+	percutaneous (percutaneous | no-percutaneous) #IMPLIED
+	surgical (surgical | no-surgical) #IMPLIED
+
+	admission       (admission|no-admission)  #IMPLIED
+	management       (management|no-management)  #IMPLIED
+	pharm       (pharm|no-pharm)  #IMPLIED
+	non-pharm       (non-pharm|no-non-pharm)  #IMPLIED
+	followup       (followup|no-followup)  #IMPLIED
+	strategy       (strategy|no-strategy)  #IMPLIED
+	screening       (screening|no-screening)  #IMPLIED
+>
+
+<!ELEMENT topic-info (title, subtitle*, author*, pronunciation*, drug-class*)>
+
+<!ELEMENT tradename (#PCDATA | emphasis |inline-image)*>
+
+<!ELEMENT update (title | author | list | figure | table-wrapper | image | para | topic | bibliography)*>
+<!ATTLIST update
+	id CDATA #REQUIRED
+	date CDATA #REQUIRED
+	topic1 CDATA #IMPLIED
+	topic2 CDATA #IMPLIED
+	topic3 CDATA #IMPLIED
+	topic4 CDATA #IMPLIED
+	topic5 CDATA #IMPLIED
+	topic6 CDATA #IMPLIED
+	topic7 CDATA #IMPLIED
+	topic8 CDATA #IMPLIED
+	all (all | no-all) #IMPLIED
+	anatomy (anatomy | no-anatomy) #IMPLIED
+	comorb (comorb | no-comorb) #IMPLIED
+	complications (complications | no-complications) #IMPLIED
+	course (course | no-course) #IMPLIED
+	econ (econ | no-econ) #IMPLIED
+	diagnosis (diagnosis | no-diagnosis) #IMPLIED
+	diff-diag (diff-diag | no-diff-diag) #IMPLIED
+	imaging (imaging | no-imaging) #IMPLIED
+	lab-studies (lab-studies | no-lab-studies) #IMPLIED
+	examination (examination | no-examination) #IMPLIED
+	epidemiology (epidemiology | no-epidemiology) #IMPLIED
+	etiology (etiology | no-etiology) #IMPLIED
+	genetics (genetics | no-genetics) #IMPLIED
+	diabetic (diabetic | no-diabetic) #IMPLIED
+	elderly (elderly | no-elderly) #IMPLIED
+	patient-ed (patient-ed | no-patient-ed) #IMPLIED
+	pathology (pathology | no-pathology) #IMPLIED
+	risk (risk | no-risk) #IMPLIED
+	signs (signs | no-signs) #IMPLIED
+	therapy (therapy | no-therapy) #IMPLIED
+	medical (medical | no-medical) #IMPLIED
+	percutaneous (percutaneous | no-percutaneous) #IMPLIED
+	surgical (surgical | no-surgical) #IMPLIED
+
+	admission       (admission|no-admission)  #IMPLIED
+	management       (management|no-management)  #IMPLIED
+	pharm       (pharm|no-pharm)  #IMPLIED
+	non-pharm       (non-pharm|no-non-pharm)  #IMPLIED
+	followup       (followup|no-followup)  #IMPLIED
+	strategy       (strategy|no-strategy)  #IMPLIED
+	screening       (screening|no-screening)  #IMPLIED
+>
+
+<!ELEMENT uri	(#PCDATA | emphasis | fraction | inline-image | subscript | superscript)* >
+<!ATTLIST uri	xmlnsxlink  CDATA     "http://www.w3.org/1999/xlink"
+	xlinktype  CDATA     "simple"
+	xlinkhref  CDATA     #IMPLIED
+	xlinkrole  CDATA     #IMPLIED
+	xlinktitle  CDATA     #IMPLIED >
+
+
+
+<!-- ENTITIES-->
+<!ENTITY frac12 "&lt;small&gt;1/2&lt;/small&gt;">
+<!ENTITY frac14 "&lt;small&gt;1/4&lt;/small&gt;">
+<!ENTITY frac34 "&lt;small&gt;3/4&lt;/small&gt;">
+<!ENTITY macr "&amp;#175;">
+<!ENTITY bull "&amp;#149;">
+<!ENTITY aacute "&amp;#225;">
+<!ENTITY Aacute "&amp;#193;">
+<!ENTITY acirc "&amp;#226;">
+<!ENTITY Acirc "&amp;#194;">
+<!ENTITY agrave "&amp;#224;">
+<!ENTITY Agrave "&amp;#192;">
+<!ENTITY aring "&amp;#229;">
+<!ENTITY Aring "&amp;#197;">
+<!ENTITY atilde "&amp;#227;">
+<!ENTITY Atilde "&amp;#195;">
+<!ENTITY auml "&amp;#228;">
+<!ENTITY Auml "&amp;#196;">
+<!ENTITY aelig "&amp;#230;">
+<!ENTITY Aelig "&amp;#198;">
+<!ENTITY AElig "&amp;#198;">
+<!ENTITY ccedil "&amp;#231;">
+<!ENTITY Ccedil "&amp;#199;">
+<!ENTITY eth "&lt;script&gt;specialChar('eth')&lt;/script&gt;">
+<!ENTITY ETH "&lt;script&gt;specialChar('ETH')&lt;/script&gt;">
+<!ENTITY eacute "&amp;#233;">
+<!ENTITY Eacute "&amp;#201;">
+<!ENTITY ecirc "&amp;#234;">
+<!ENTITY Ecirc "&amp;#202;">
+<!ENTITY egrave "&amp;#232;">
+<!ENTITY Egrave "&amp;#200;">
+<!ENTITY euml "&amp;#235;">
+<!ENTITY Euml "&amp;#203;">
+<!ENTITY iacute "&amp;#237;">
+<!ENTITY Iacute "&amp;#205;">
+<!ENTITY icirc "&amp;#238;">
+<!ENTITY Icirc "&amp;#206;">
+<!ENTITY igrave "&amp;#236;">
+<!ENTITY Igrave "&amp;#204;">
+<!ENTITY iuml "&amp;#239;">
+<!ENTITY Iuml "&amp;#207;">
+<!ENTITY ntilde "&amp;#241;">
+<!ENTITY Ntilde "&amp;#209;">
+<!ENTITY oacute "&amp;#243;">
+<!ENTITY Oacute "&amp;#211;">
+<!ENTITY ocirc "&amp;#244;">
+<!ENTITY Ocirc "&amp;#212;">
+<!ENTITY ograve "&amp;#242;">
+<!ENTITY Ograve "&amp;#210;">
+<!ENTITY oelig "&amp;#339;">
+<!ENTITY OElig "&amp;#338;">
+<!ENTITY oslash "&amp;#248;">
+<!ENTITY Oslash "&amp;#216;">
+<!ENTITY otilde "&amp;#245;">
+<!ENTITY Otilde "&amp;#213;">
+<!ENTITY ouml "&amp;#246;">
+<!ENTITY Ouml "&amp;#214;">
+<!ENTITY szlig "&amp;#223;">
+<!ENTITY thorn "&lt;script&gt;specialChar('thorn')&lt;/script&gt;">
+<!ENTITY thoRN "&lt;script&gt;specialChar('thoRN')&lt;/script&gt;">
+<!ENTITY THORN "&lt;script&gt;specialChar('THORN')&lt;/script&gt;">
+<!ENTITY uacute "&amp;#250;">
+<!ENTITY Uacute "&amp;#218;">
+<!ENTITY ucirc "&amp;#251;">
+<!ENTITY Ucirc "&amp;#219;">
+<!ENTITY ugrave "&amp;#249;">
+<!ENTITY Ugrave "&amp;#217;">
+<!ENTITY uuml "&amp;#252;">
+<!ENTITY Uuml "&amp;#220;">
+<!ENTITY yacute "&lt;script&gt;specialChar('yacute')&lt;/script&gt;">
+<!ENTITY Yacute "&lt;script&gt;specialChar('Yacute')&lt;/script&gt;">
+<!ENTITY yuml "&amp;#255;">
+<!ENTITY half "&lt;small&gt;1/2&lt;small&gt;">
+<!ENTITY plus "&amp;#43;">
+<!ENTITY gt "&amp;#62;">
+<!ENTITY lt "&amp;#60;">
+<!ENTITY num "&amp;#35;">
+<!ENTITY percnt "&amp;#37;">
+<!ENTITY amp "&amp;#38;">
+<!ENTITY ast "&amp;#42;">
+<!ENTITY commat "&amp;#64;">
+<!ENTITY lsqb "&amp;#91;">
+<!ENTITY bsol "/">
+<!ENTITY rsqb "&amp;#93;">
+<!ENTITY lcub "&amp;#123;">
+<!ENTITY verbar "&amp;#124;">
+<!ENTITY rcub "&amp;#125;">
+<!ENTITY ohm "&amp;#8486; ">
+<!ENTITY divide "&amp;#247;">
+<!ENTITY times "&lt;small&gt;x&lt;/small&gt;">
+<!ENTITY curren "&lt;script&gt;specialChar('curren')&lt;/script&gt;">
+<!ENTITY dollar "&amp;#36;">
+<!ENTITY pound "&amp;#163;">
+<!ENTITY cent "&amp;#162;">
+<!ENTITY yen "&lt;small&gt;x&lt;/small&gt;">
+<!ENTITY micro "&amp;#181;">
+<!ENTITY deg "&amp;#176;">
+<!ENTITY fnof "&amp;#402;">
+<!ENTITY ge "&lt;img src=/images/special/greaterorequal.gif&gt;">
+<!ENTITY le "&lt;img src=/images/special/lesserorequal.gif&gt;">
+<!ENTITY ne "&lt;img src=/images/special/notequal.gif&gt;">
+<!ENTITY plusmn "&amp;#177;">
+<!ENTITY larr "&lt;img src=/images/special/leftarrow.gif&gt;">
+<!ENTITY uarr "&lt;img src=/images/special/uparrow.gif&gt;">
+<!ENTITY rarr "&lt;img src=/images/special/rightarrow.gif&gt;">
+<!ENTITY darr "&lt;img src=/images/special/downarrow.gif&gt;">
+<!ENTITY lrarr "&lt;img src=/images/special/doublearrow.gif&gt;">
+<!ENTITY duarr "&lt;img src=/images/special/doubleVarrow.gif&gt;">
+<!ENTITY ordm "&amp;#186;">
+<!ENTITY ordf "&amp;#170;">
+<!ENTITY sect "&amp;#167;">
+<!ENTITY para "&amp;#182;">
+<!ENTITY middot "&amp;#183;">
+<!ENTITY copy "&amp;#169;">
+<!ENTITY reg "&amp;#174;">
+<!ENTITY trade "&amp;#8482;">
+<!ENTITY brvbar "&amp;#166;">
+<!ENTITY not "&amp;#172;">
+<!ENTITY excl "!">
+<!ENTITY apos "&amp;#39;">
+<!ENTITY lpar "(">
+<!ENTITY rpar ")">
+<!ENTITY comma ",">
+<!ENTITY hyphen "-">
+<!ENTITY period ".">
+<!ENTITY sol "/">
+<!ENTITY colon ":">
+<!ENTITY semi ";">
+<!ENTITY quest "?">
+<!ENTITY equals "=">
+<!ENTITY iquest "&amp;#191;">
+<!ENTITY nbsp "&amp;nbsp;">
+<!ENTITY shy "&amp;#173;">
+<!ENTITY iexcl "&amp;#161;">
+<!ENTITY quot "&amp;#8217;">
+<!ENTITY prime "&amp;#8217;">
+<!ENTITY iquest "&amp;#191;">
+<!ENTITY laquo "&amp;#171;">
+<!ENTITY raquo "&amp;#187;">
+<!ENTITY lsquo "&amp;#8216;">
+<!ENTITY rsquo "&amp;#8217;">
+<!ENTITY ldquo "&amp;#8220;">
+<!ENTITY rdquo "&amp;#8221;">
+<!ENTITY emsp "&nbsp;">
+<!ENTITY ensp "&nbsp;">
+<!ENTITY ndash "&amp;#8211;">
+<!ENTITY mdash "&amp;#8212;">
+
+
+
+<!ENTITY alpha "&lt;script&gt;specialChar('alpha')&lt;/script&gt;">
+<!ENTITY beta "&lt;script&gt;specialChar('beta')&lt;/script&gt;">
+<!ENTITY gamma "&lt;script&gt;specialChar('gamma')&lt;/script&gt;">
+<!ENTITY delta "&lt;script&gt;specialChar('delta')&lt;/script&gt;">
+<!ENTITY epsilon "&lt;script&gt;specialChar('epsilon')&lt;/script&gt;">
+<!ENTITY zeta "&lt;script&gt;specialChar('zeta')&lt;/script&gt;">
+<!ENTITY eta "&lt;script&gt;specialChar('eta')&lt;/script&gt;">
+<!ENTITY theta "&lt;script&gt;specialChar('theta')&lt;/script&gt;">
+<!ENTITY iota "&lt;script&gt;specialChar('iota')&lt;/script&gt;">
+<!ENTITY kappa "&lt;script&gt;specialChar('kappa')&lt;/script&gt;">
+<!ENTITY lambda "&lt;script&gt;specialChar('lambda')&lt;/script&gt;">
+<!ENTITY mu "&lt;script&gt;specialChar('mu')&lt;/script&gt;">
+<!ENTITY nu "&lt;script&gt;specialChar('nu')&lt;/script&gt;">
+<!ENTITY xi "&lt;script&gt;specialChar('xi')&lt;/script&gt;">
+<!ENTITY omicron "&lt;script&gt;specialChar('omicron')&lt;/script&gt;">
+<!ENTITY pi "&lt;script&gt;specialChar('pi')&lt;/script&gt;">
+<!ENTITY rho "&lt;script&gt;specialChar('rho')&lt;/script&gt;">
+<!ENTITY sigma "&lt;script&gt;specialChar('sigma')&lt;/script&gt;">
+<!ENTITY tau "&lt;script&gt;specialChar('tau')&lt;/script&gt;">
+<!ENTITY upsilon "&lt;script&gt;specialChar('upsilon')&lt;/script&gt;">
+<!ENTITY phi "&lt;script&gt;specialChar('phi')&lt;/script&gt;">
+<!ENTITY chi "&lt;script&gt;specialChar('chi')&lt;/script&gt;">
+<!ENTITY psi "&lt;script&gt;specialChar('psi')&lt;/script&gt;">
+<!ENTITY omega "&lt;script&gt;specialChar('omega')&lt;/script&gt;">
+<!ENTITY Alpha "&lt;script&gt;specialChar('Alpha')&lt;/script&gt;">
+<!ENTITY Beta "&lt;script&gt;specialChar('Beta')&lt;/script&gt;">
+<!ENTITY Gamma "&lt;script&gt;specialChar('Gamma')&lt;/script&gt;">
+<!ENTITY Delta "&lt;script&gt;specialChar('Delta')&lt;/script&gt;">
+<!ENTITY Epsilon "&lt;script&gt;specialChar('Epsilon')&lt;/script&gt;">
+<!ENTITY Zeta "&lt;script&gt;specialChar('Zeta')&lt;/script&gt;">
+<!ENTITY Eta "&lt;script&gt;specialChar('Eta')&lt;/script&gt;">
+<!ENTITY Theta "&lt;script&gt;specialChar('Theta')&lt;/script&gt;">
+<!ENTITY Iota "&lt;script&gt;specialChar('Iota')&lt;/script&gt;">
+<!ENTITY Kappa "&lt;script&gt;specialChar('Kappa')&lt;/script&gt;">
+<!ENTITY Lambda "&lt;script&gt;specialChar('Lambda')&lt;/script&gt;">
+<!ENTITY Mu "&lt;script&gt;specialChar('Mu')&lt;/script&gt;">
+<!ENTITY Nu "&lt;script&gt;specialChar('Nu')&lt;/script&gt;">
+<!ENTITY Xi "&lt;script&gt;specialChar('Xi')&lt;/script&gt;">
+<!ENTITY Omicron "&lt;script&gt;specialChar('Omicron')&lt;/script&gt;">
+<!ENTITY Pi "&lt;script&gt;specialChar('Pi')&lt;/script&gt;">
+<!ENTITY Rho "&lt;script&gt;specialChar('Rho')&lt;/script&gt;">
+<!ENTITY Sigma "&lt;script&gt;specialChar('Sigma')&lt;/script&gt;">
+<!ENTITY Tau "&lt;script&gt;specialChar('Tau')&lt;/script&gt;">
+<!ENTITY Upsilon "&lt;script&gt;specialChar('Upsilon')&lt;/script&gt;">
+<!ENTITY Phi "&lt;script&gt;specialChar('Phi')&lt;/script&gt;">
+<!ENTITY Chi "&lt;script&gt;specialChar('Chi')&lt;/script&gt;">
+<!ENTITY Psi "&lt;script&gt;specialChar('Psi')&lt;/script&gt;">
+<!ENTITY Omega "&lt;script&gt;specialChar('Omega')&lt;/script&gt;">
+<!ENTITY mgr "&lt;script&gt;specialChar('mu')&lt;/script&gt;">
+

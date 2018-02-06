@@ -1,0 +1,525 @@
+<!-- ci-online definitions added 10/6 by ES - copied from file sent by Joe Butrim) -->
+<!--============================================================================== -->
+<!-- Formal Public Identifier "-//MGH//ENTITIES c-model.txt 1998 v1.1//EN" -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Parameter entities for content models. -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- SH: 11.7.96: added enumerator to %c-basic. -->
+<!-- Techbooks: 21/03/2001. A new element <url> has been allowed in the entity declaration %c-basic.
+ -->
+<!-- KA SSC adding img and small to enable entity parsing out to images and smalltext for sp. chars web display-->
+<!-- KA SSC adding ci-online to enable pubmed link validity in almost any location in Access Medicine. 1/9/2006-->
+<!ENTITY % c-basic "em |enumerator |fo |in |ww |url | img | small | ci-online">
+<!ELEMENT img EMPTY>
+<!ATTLIST img
+	src CDATA #IMPLIED
+	border CDATA #IMPLIED
+>
+<!ELEMENT small (#PCDATA)>
+<!ENTITY % c-apparatus "nb |nf |nt |xc |xr |xd| dx | gx">
+<!-- SH: 9/14/98. Added %c-ci-digital-references, for elements that may appear 
+     in a citation. -->
+<!-- Techbooks: 16/01/2001. Added element "omim" in %c-ci-digital-references.  -->
+<!ENTITY % c-ci-digital-references "medline |pubmed |omim">
+<!-- JB: 10.29.96 Added |sc -->
+<!ENTITY % c-domain "ab |ac |gn |sc |mx |sb |sp |tf |td |tr |ty">
+<!-- SH: 9/14/98. Added audio and video to %c-bridge. Unlike figure,
+     audio and video can appear in mixed content (anywhere in a 
+     paragraph, eg). However, audio and video are defined with
+     figure in s-model.txt. -->
+<!-- KA SSC added fd, concurrent with qa-model inclusion-->
+<!ENTITY % c-bridge "cq |eq |topic |video | audio | fd">
+<!ENTITY % c-text "%c-apparatus; |%c-basic; |%c-bridge; |%c-domain;">
+<!-- KA SSC moved PCDATA in c-text to occur everywhere %c-text; occurs to create valid XML browsing in IE-->
+<!ELEMENT fd (fl)*>
+<!ELEMENT fl (#PCDATA | %c-basic;)*>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Cross references. -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- JB: 12.5.96 Added xr after c-domain, changed c-apparatus to nb,nf,nt,xc,xd, in other words I had to allow an xr within xr -->
+<!--KA SSC removed exclusions -(nb|nf|nt|xc|xd|%c-bridge;)
+Changed HyTime NAME to CDATA
+Chagned linkends to CDATA for working with chunked XML files
+Changed reftype from #FIXED "linkend xr linkend xr-amodel" to IMPLIED-->
+<!ELEMENT xr (#PCDATA | %c-basic; | %c-domain; | xr)*>
+<!ATTLIST xr
+	%a-all-atts; 
+	HyTime CDATA #FIXED "ilink"
+	anchroles CDATA #FIXED "text target #AGG"
+	reftype (diag | figure | website | casetab) #IMPLIED
+	linkends CDATA #REQUIRED
+>
+<!--KA SSC 6.23.04 added dx as drug link element. Found in Harrison's data.-->
+<!ELEMENT dx (#PCDATA | %c-basic; | %c-domain;)*>
+<!ATTLIST dx
+	%a-all-atts; 
+	reftype CDATA #IMPLIED
+	type CDATA #IMPLIED
+>
+<!ELEMENT gx (#PCDATA | %c-basic; | %c-domain;)*>
+<!ATTLIST gx
+	%a-all-atts; 
+	reftype CDATA #IMPLIED
+>
+<!-- SH: 9/14/98. Added audio and video to xr-amodel. -->
+<!-- KA SSC added *-->
+<!ELEMENT xr-amodel (atlas | audio | chapter | cq | eq | figure | part | section | table-entity | video)*>
+<!-- Techbooks: 24/05/2001. The content model of the element <xd> has been changed
+     and is same as the element <xr>.
+-->
+<!--
+<!ELEMENT xd  (#PCDATA|%c-basic;|%c-domain|xr)* -(%c-apparatus|%c-bridge)>
+<!ATTLIST xd
+          %a-all-atts;
+          HyTime NAME #FIXED 'ilink'
+          anchroles CDATA #FIXED "text target #AGG"
+          reftype CDATA #FIXED "linkend xd linkend xd-amodel"
+          linkend IDREFS #REQUIRED
+          >
+-->
+<!-- Techbooks: 17/07/2001. The attribute "linkends" has been changed to "linkend".
+ -->
+<!-- KA SSC removed exclusions -(nb|nf|nt|xr|xc|%c-bridge;)
+Changed HyTime NAME to CDATA
+linkend IDREFS to CDATA-->
+<!ELEMENT xd (#PCDATA | %c-basic; | %c-domain; | xd)*>
+<!ATTLIST xd
+	%a-all-atts; 
+	HyTime CDATA #FIXED "ilink"
+	anchroles CDATA #FIXED "text target #AGG"
+	reftype CDATA #FIXED "linkend xd linkend xd-amodel"
+	linkend CDATA #REQUIRED
+>
+<!ELEMENT xd-amodel (chapter | part | section)>
+<!-- Techbooks: 24/05/2001. The content model of the element <xc> has been changed
+     and is same as the element <xr>.
+-->
+<!--
+<!ELEMENT xc EMPTY>
+<!ATTLIST xc
+          %a-all-atts;
+          HyTime NAME #FIXED 'ilink'
+          anchroles CDATA #FIXED "text target #AGG"
+          reftype CDATA #FIXED "linkend xc linkend xc-amodel"
+          linkend IDREFS #REQUIRED
+          >
+-->
+<!-- Techbooks: 17/07/2001. The attribute "linkends" has been changed to "linkend".
+ -->
+<!-- KA SSC removed exclusions -(nb|nf|nt|xr|xd|%c-bridge)
+Changed HyTime NAME to CDATA
+linkend IDREFS to CDATA-->
+<!ELEMENT xc (#PCDATA | %c-basic; | %c-domain; | xc)*>
+<!ATTLIST xc
+	%a-all-atts; 
+	HyTime CDATA #FIXED "ilink"
+	anchroles CDATA #FIXED "text target #AGG"
+	reftype CDATA #FIXED "linkend xc linkend xc-amodel"
+	linkend CDATA #REQUIRED
+>
+<!-- SH: 9/14/98. Added audio and video to xc-amodel. -->
+<!ELEMENT xc-amodel (atlas | callout | figure | panel)>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Basic element declarations. -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- KA SSC removed exclusion -(em)-->
+<!ELEMENT em (#PCDATA | %c-text; | email)*>
+<!ATTLIST em
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- KA SSC removed exclusion -(fo)-->
+<!ELEMENT fo (#PCDATA | %c-text;)*>
+<!ATTLIST fo
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- KA SSC removed exclusion -(in)-->
+<!ELEMENT in (#PCDATA | %c-text;)*>
+<!ATTLIST in
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- KA SSC removed exclusion -(ww)-->
+<!ELEMENT ww (#PCDATA | %c-text;)*>
+<!ATTLIST ww
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- TechBooks: 21/03/2001. A new element <url> has been created.
+ -->
+<!ELEMENT url (#PCDATA)>
+<!ATTLIST url
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Bridge element declarations. -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- KA SSC deleted           notation %n-cq-notations; %f-cq-notation;-->
+<!ELEMENT cq EMPTY>
+<!ATTLIST cq
+	%a-all-atts; 
+	%a-all-content; 
+	position (inline | display) #IMPLIED
+	cq-resource ENTITY #REQUIRED
+>
+<!-- KA SSC deleted               notation %n-eq-notations; %f-eq-notation;
+Changed eq-resource from ENTITY to CDATA
+Changed from EMPTY to mixed content due to Goodman & Gilman-->
+<!ELEMENT eq (#PCDATA | %c-text;)*>
+<!ATTLIST eq
+	%a-all-atts; 
+	%a-all-content; 
+	position (inline | display) #IMPLIED
+	eq-resource CDATA #REQUIRED
+>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Domain element declarations. -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- KA SSC removed exclusion  -(ab)
+IDREF to CDATA-->
+<!ELEMENT ab (#PCDATA | %c-text;)*>
+<!ATTLIST ab
+	%a-all-atts; 
+	%a-all-content; 
+	fm CDATA #IMPLIED
+>
+<!-- SH: 10.16. Removed exclusion exception, " -(ac)" 
+IDREF to CDATA-->
+<!ELEMENT ac (#PCDATA | %c-text;)*>
+<!ATTLIST ac
+	%a-all-atts; 
+	%a-all-content; 
+	fm CDATA #IMPLIED
+>
+<!-- KA SSC removed exclusion  -(%c-apparatus|%c-bridge|gn)
+IDREF to CDATA-->
+<!ELEMENT gn (#PCDATA | sc | %c-basic; | %c-apparatus;)*>
+<!ATTLIST gn
+	%a-all-atts; 
+	%a-all-content; 
+	fm CDATA #IMPLIED
+>
+<!-- KA SSC removed exclusion   -(mx)-->
+<!ELEMENT mx (#PCDATA | %c-text;)*>
+<!ATTLIST mx
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- KA SSC removed exclusion   -(%c-apparatus|%c-bridge)
+IDREF to CDATA-->
+<!ELEMENT sc (#PCDATA | ssc | %c-basic;)*>
+<!ATTLIST sc
+	%a-all-atts; 
+	%a-all-content; 
+	fm CDATA #IMPLIED
+>
+<!-- KA SSC removed exclusion   -(%c-apparatus|%c-bridge)-->
+<!ELEMENT ssc (#PCDATA | %c-basic;)*>
+<!ATTLIST ssc
+	%a-all-atts; 
+	%a-all-content; 
+	fm CDATA #IMPLIED
+>
+<!-- KA SSC removed exclusion   -(%c-apparatus|%c-bridge|ac|gn|mx|tf|td|tr|ty)-->
+<!ELEMENT sb (#PCDATA | %c-basic; | %c-apparatus; | sb | sp)*>
+<!ATTLIST sb
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- KA SSC removed exclusion  -(%c-apparatus|%c-bridge|ac|gn|mx|tf|td|tr|ty)-->
+<!ELEMENT sp (#PCDATA | %c-basic; | %c-apparatus; | sb | sp)*>
+<!ATTLIST sp
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- KA SSC removed exclusion  -(td)
+Changed HyTime and CApH NAME to CDATA
+Deleted           HyTime CDATA #FIXED 'ilink'
+-->
+<!ELEMENT td (#PCDATA | %c-text;)*>
+<!ATTLIST td
+	CApH CDATA #FIXED "CApH.semanticAssignment"
+	%a-all-atts; 
+	%a-all-one-to-many; 
+	anchrole CDATA #FIXED "Assignment 
+                                 AssignedSemanticSet #AGG 
+                                 OccurrenceSet"
+	reftype CDATA #FIXED "tr 
+                                nomenclature 
+                                entry"
+>
+<!-- KA SSC removed exclusion -(tr|td|tf)-->
+<!ELEMENT tf (#PCDATA | %c-text;)*>
+<!ATTLIST tf
+	%a-all-atts; 
+	%a-all-content; 
+	expansion ENTITY #IMPLIED
+>
+<!-- KA SSC removed exclusion  -(tr|td|tf)-->
+<!ELEMENT tr (#PCDATA | %c-text;)*>
+<!ATTLIST tr
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- JB: 10.29.96 Added sb, sp, and * -->
+<!ELEMENT ty (#PCDATA | sb | sp)*>
+<!ATTLIST ty
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Notes -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- na: Note adapted
+     nb: Note Bibliographical (IDREF to bibliography)
+     nc: Note Courtesy. 
+     nf: Note Full (complete bibliographical data embedded in text)
+     nt: Note Text (footnote, so-called)
+     -->
+<!-- SH: 11.7 added enumerator to exclusion (no notes within notes). -->
+<!--KA SSC removed exclusion -(%c-apparatus|%c-bridge|%c-domain|enumerator)-->
+<!ELEMENT na (#PCDATA | %c-basic; | bk | ci)*>
+<!ATTLIST na
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- SH: 11.7 added enumerator to exclusion (no notes within notes). -->
+<!--KA SSC removed exclusion -(%c-apparatus|%c-bridge|%c-domain|enumerator)
+Changed HyTime NAME to CDATA
+IDREF to CDATA
+-->
+<!-- KA SSC, sp and sp added, Lichtman data -->
+<!ELEMENT nb (#PCDATA | bk | ci | %c-basic; | sb | sp)*>
+<!ATTLIST nb
+	%a-all-atts; 
+	HyTime CDATA #FIXED "clink"
+	linkend CDATA #REQUIRED
+	reftype CDATA #FIXED "nb-amodel"
+>
+<!ELEMENT nb-amodel (bk | bk-group | ci | ci-group)>
+<!-- SH: 11.7 added enumerator to exclusion (no notes within notes). -->
+<!--KA SSC removed exclusion -(%c-apparatus|%c-bridge|%c-domain|enumerator)-->
+<!ELEMENT nc (#PCDATA | %c-basic; | bk | ci)*>
+<!ATTLIST nc
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- SH: 11.7 added enumerator to exclusion (no notes within notes). -->
+<!--KA SSC removed exclusion  -(enumerator)-->
+<!ELEMENT nf (#PCDATA | %c-basic; | bk | ci | %c-domain;)*>
+<!ATTLIST nf
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- SH: 11.7, new enumerator element. -->
+<!--KA SSC changed HyTime NAME to CDATA
+linkends IDREFS to CDATA-->
+<!ELEMENT enumerator EMPTY>
+<!ATTLIST enumerator
+	%a-all-atts; 
+	HyTime CDATA #FIXED "ilink"
+	anchroles CDATA #FIXED "refmark refsub"
+	linkends CDATA #REQUIRED
+	reftype CDATA #FIXED "refmark-amodel refsub-amodel"
+>
+<!-- SH: 11.7, new refmark- refsub-amodel element. -->
+<!ELEMENT refmark-amodel (enumerator | callout)>
+<!-- SH: 11.7, <nt> for Harrison's text notes, <note> for AT tables. -->
+<!ELEMENT refsub-amodel (nt | note)>
+<!-- SH: 11.7 added enumerator to exclusion (no notes within notes). -->
+<!--KA SSC removed exclusion -(nt|enumerator)-->
+<!ELEMENT nt (#PCDATA | %c-text;)*>
+<!ATTLIST nt
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!--ELEMENT NOTE HAS BEEN SHIFTED HERE FROM ATITABLE.DTD on 1st Sept.'2K by NK -->
+<!ELEMENT note (#PCDATA | %c-basic; | %c-domain;)*>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Head element. -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!ELEMENT head (#PCDATA | %c-apparatus; | %c-basic; | %c-domain;)*>
+<!ATTLIST head
+	type CDATA #IMPLIED
+	%a-all-atts; 
+	%a-all-content; 
+	head-level CDATA #IMPLIED
+>
+<!-- KA SSC removed f-declared-head-levels from head-level ATTLIST to enable error-free transforms-->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Bibliographic elements -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- SH: 9/13/98. Redesigned <ci>. Revised <ci-online>, which may appear 
+anywhere in <ci>'s mixed content <ci>. It contains an optional 
+#PCDATA, <medline>, <pubmed>, and <omim> elements.-->
+<!-- ........................................................................................ -->
+<!-- Techbooks: 16/01/2001. The element "<a>" has been removed from here. -->
+<!-- ........................................................................................ -->
+<!-- SH: 9/14/98. Each of the following two elements contains data in the
+     form of a unique identifier for an online medical database:
+     * Medline
+     * pubmed.
+
+Here is sample markup for them:
+
+    <medline>9802356789</medline>
+    <pubmed>0123456</pubmed>
+   
+These digital link elements are organized as follows:
+
+    (1) The database name is the generic identifier
+    (2) The database "key" is listed in the declaration after 
+        %a-key-data-is-in- . It is:
+                The string "#CONTENT", in the content of the element
+                as in <medline>, <pubmed>, and <omim>
+    (3) The data format of the database "key" is listed in the 
+        declaration after %a-key-data-uses-notation-, as in 
+        "medline.pmid". 
+        
+        The data format is a NOTATION that documents the format. 
+        
+        The NOTATION name is in the form: [database].[key field].
+-->
+<!-- SH: 9/14/98. The medline and pubmed key data is content, 
+     rather than attribute value, because:
+     * The user can enter data directly instead of through a dialog;
+     * The key is not a complete path to the data (as an URL). If
+       necessary in the future, the complete path can be added as 
+       an attribute, parallel to the href attribute in <a>.-->
+<!-- ........................................................................................ -->
+<!-- SH: 9/14/98.
+"6.3.37 UNIQUE IDENTIFIER (UI)
+The Unique Identifier (UI) is a sequential accession number assigned to
+each citation entered into the database. It is an eight-digit number.
+Prior to 1996 the first two digits represented the year of entry. In
+1996 the assignment of Unique Identifiers was changed to accomodate
+electronic submission of data. Therefore the first two digits no longer
+necessarily represent the year of entry." 
+                                - NLM "Online Services Reference Manual"
+                                  www.nlm.nih.gov/pubs/osrm_nlm.html
+
+(Note that the year is the government fiscal year, not the calendar
+year.)
+
+-->
+<!ELEMENT medline (#PCDATA)>
+<!-- The "%a-key-" attribute values mean that medline's #PCDATA
+     is to be interpreted as a medline UI (that is, that they
+     conform to a notation of that name. -->
+<!-- KA SSC deleting 
+          %a-key-data-is-in-;          'linkend #CONTENT'
+          %a-key-notation-is-;         '#CONTENT QUERYLOC medline.ui'
+          -->
+<!ATTLIST medline
+	%a-all-atts; 
+>
+<!-- SH: 9/14/98. The pubmid identifier, or PMID, is an integer increases
+by 1 each time a new record is added to the database. That is, the first 
+PMID is "1". There is no limit to the number of digits.
+
+(Note that this means that at some point in the near future, the medline
+UIs and the Pubmed PMIDs will collide.)
+
+-->
+<!ELEMENT pubmed (#PCDATA)>
+<!-- The "%a-key-" attribute values mean that pubmed's #PCDATA
+     is to be interpreted as a pubmed PMID (that is, that they
+     conform to a notation of that name. -->
+<!-- KA SSC deleting 
+          %a-key-data-is-in-;   'linkend #CONTENT'
+          %a-key-notation-is-;  '#CONTENT QUERYLOC pubmed.pmid'
+-->
+<!ATTLIST pubmed
+	%a-all-atts; 
+>
+<!-- Techbooks: 16/01/2001. The element "<omim>" has been added in the DTD
+     identical to "<medline>" and "<pubmed>" -->
+<!ELEMENT omim (#PCDATA)>
+<!-- The "%a-key-" attribute values mean that omim's #PCDATA
+     is to be interpreted as a pubmed PMID (that is, that they
+     conform to a notation of that name. -->
+<!-- KA SSC deleting
+          %a-key-data-is-in-;   'linkend #CONTENT'
+          %a-key-notation-is-;  '#CONTENT QUERYLOC omim.ui'
+-->
+<!ATTLIST omim
+	%a-all-atts; 
+>
+<!-- Techbooks: 16/01/2001. Added %c-ci-digital-references in <ci-online>.
+     For online addressing, this permits <medline>, <pubmed>, and
+     <omim> to appear in the text of the <ci-online>.
+
+Here is sample markup for the <ci> element:
+
+<ci id="ch16nb1" number="8">
+<au>
+	<nm>Ruiz <gv-nm>CE</gv-nm></nm>, 
+	<nm>Mullins <gv-nm>CE</gv-nm></nm>, 
+	<nm>Rochini <gv-nm>AP</gv-nm></nm>, 
+	<nm>Radtke <gv-nm>WAK</gv-nm></nm>, 
+        <nm>Hijazi <gv-nm>ZM</gv-nm></nm>, 
+	<nm>O'Laughlin <gv-nm>MP</gv-nm></nm>, et al</au>.
+        Core curriculum for the training of pediatric invasive
+        interventional cardiologists. <em>Cathet Cardiovasc Diagn</em>
+        1996;37:409.
+	<ci-online>
+        <medline>96282218</medline>
+	</ci-online>
+.</ci>
+
+-->
+<!-- Techbooks: 16/01/2001. %c-ci-digital-references; has been removed from here
+     and allowed in the "<ci-online>" element. -->
+<!-- KA SSC moved ci-online to %c-basic; to allow pubmed linking from basically anywhere within Access Medicine web site. 1/9/2006-->
+<!ELEMENT ci (#PCDATA | au | ti | %c-basic; | %c-domain; | email)*>
+<!ATTLIST ci
+	%a-all-atts; 
+>
+<!ELEMENT ci-group (ci, yr)+>
+<!ATTLIST ci-group
+	%a-all-atts; 
+>
+<!-- Techbooks: 16/01/2001. The grouping %c-ci-digital-references; have been
+     moved here from "<ci>" -->
+<!-- Techbooks: 02/02/2001. The element "abstract-yes" has been removed from the
+     content model of the element ci-online -->
+<!ELEMENT ci-online (#PCDATA | %c-ci-digital-references;)*>
+<!ATTLIST ci-online
+	%a-all-atts; 
+>
+<!-- SH: 9.20.98: added abstract yes. pubmed2.gif is declared
+     in f-decs.txt. -->
+<!-- Techbooks: 02/02/2001. The element declaration of "abstract-yes" has been
+     deleted from here -->
+<!-- ........................................................................................ -->
+<!-- KA SSC removed exclusions -(%c-apparatus|%c-bridge)-->
+<!ELEMENT ti (#PCDATA | %c-basic; | %c-domain;)*>
+<!-- KA SSC integrated inclusion x-->
+<!-- KA SSC changed to mixed content to allow PCDATA (as seen in goodman/gillman)-->
+<!ELEMENT bk (#PCDATA | au | ti-group | pl | pu | yr | x | %c-basic; | %c-domain;)*>
+<!ATTLIST bk
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- KA SSC added element email for access medicine authoring tool development-->
+<!ELEMENT au (#PCDATA | nm | email)*>
+<!ELEMENT ti-group (be | sr | ch)>
+<!ELEMENT pl (#PCDATA)>
+<!ELEMENT pu (#PCDATA)>
+<!ELEMENT yr (#PCDATA)>
+<!-- KA SSC removed exclusion -(x)-->
+<!ELEMENT x (#PCDATA)>
+<!ELEMENT be (x, ed)>
+<!ELEMENT ch (ct, x, bt, x)>
+<!ELEMENT sr (bt, x, vt)>
+<!ELEMENT ed (#PCDATA)>
+<!ELEMENT bt (x)>
+<!ELEMENT ct (x)>
+<!ELEMENT vt (x)>
+<!ELEMENT bk-group (bk, yr)+>
+<!ATTLIST bk-group
+	%a-all-atts; 
+	%a-all-content; 
+>

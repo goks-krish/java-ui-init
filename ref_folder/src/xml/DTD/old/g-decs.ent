@@ -1,0 +1,82 @@
+<!-- ============================================================================== -->
+<!-- (0) File: g-decs.txt 
+     Status:    Draft   Complete                
+                [ ]     [x]
+     Type:      DTD     DTD external entity
+                [ ]     [x]
+     Date:      9.6.96     
+     Version:   1.0
+     Client:    McGraw-Hill
+                [MGH]     
+     Author:    Martin Hensel Corp.                
+                sgmlsh@world.std.com
+     .............................................................................
+     README
+     ......
+     System Administator
+     ...................
+     Formal Public Identifier: see (1.0). 
+     Implementor
+     ...........
+	 This file contains the general entities references by the DTDs in the
+	 files listed above.
+     File Name            Prefixing Convention*
+     =========            ====================
+     g-decs.txt           [G]eneral Entities
+     
+    .............................................................................. -->
+<!-- ============================================================================== -->
+
+<!-- Formal Public Identifier "-//MGH//ENTITIES g-decs.txt 1996 v1.0//EN" -->
+
+<!-- SH: 3.1.96: Used those ISO entities as declared in Arbortext's Report DTD.
+     in doctypes directory in Arbortext tree.
+ 
+     For discussion of installation of further entities, see ArborText manual, 
+     "Building a Customized Authoring Environment", p. 51. -->
+
+<!-- ISO Character References -->
+
+<!ENTITY % ISOpub SYSTEM 
+ "ISOpub.ent">
+%ISOpub;
+<!ENTITY % ISOnum SYSTEM 
+ "ISOnum.ent">
+%ISOnum;
+<!ENTITY % ISOtech SYSTEM 
+ "ISOtech.ent">
+%ISOtech;
+<!ENTITY % ISOdia SYSTEM 
+ "ISOdia.ent">
+%ISOdia;
+<!ENTITY % ISOlat1 SYSTEM 
+ "ISOlat1.ent">
+%ISOlat1;
+<!ENTITY % ISOlat2 SYSTEM 
+ "ISOlat2.ent">
+%ISOlat2;
+<!ENTITY % ISOamso SYSTEM 
+ "ISOamso.ent">
+%ISOamso;
+<!ENTITY % ISOgrk1 SYSTEM 
+ "ISOgrk1.ent">
+%ISOgrk1;
+<!ENTITY % ISOgrk3 SYSTEM 
+ "ISOgrk3.ent">
+%ISOgrk3;
+<!ENTITY % ISOamsa SYSTEM
+ "ISOamsa.ent">
+%ISOamsa;
+<!ENTITY % ISOamsb SYSTEM
+ "ISOamsb.ent">
+%ISOamsb;
+<!ENTITY % ISOamsr SYSTEM
+ "ISOamsr.ent">
+%ISOamsr;
+<!-- TechBooks: 06/04/01. Added an additional special character entity set holchar.ent for half-filled circle. -->
+<!ENTITY % holchar SYSTEM "holchar.ent" >
+%holchar;
+
+<!--KA SSC comment out
+<!ENTITY #DEFAULT "">
+-->

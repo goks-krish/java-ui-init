@@ -1,0 +1,59 @@
+<!--======================================== -->
+<!-- McGraw Hill QA module for Access Medicine -->
+<!-- Adapted from the 'Pretest' MGH DTD -->
+<!-- KA Created 9.9.2004 -->
+<!-- KL/SSC modified 8.11.2008 to meet USMLEasy requirements -->
+<!--======================================== -->
+<!ELEMENT question ((author*, discipline*, organsystem*, subspecialty*, setting*), statement+, (options | options.table)+, answer+, semantics*, bibliography*)>
+<!-- For USMLEasy requirements: added author element; this is book author/s -->
+<!-- For USMLEasy requirements: added discipline element; had to do as element so more than one could be used; used for steps 1, 2, and 3 -->
+<!-- For USMLEasy requirements: added organsystem element; had to do as element so more than one could be used; used for steps 1 and 3 -->
+<!-- For USMLEasy requirements: added subspecialty element; had to do as element so more than one could be used; for step 2 -->
+<!-- For USMLEasy requirements: added setting element; had to do as element so more than one could be used; for step 3; ed is emergency dept, if is inpatient facilities, oh is office/health center -->
+<!-- For USMLEasy requirements: datestamp attribute will be used for Edit History requirement, already existed in DTD; will be numeric value like 08/01/2008 -->
+<!-- For USMLEasy requirements: added source attr; will be book title -->
+<!-- For USMLEasy requirements: added difficulty attr; will be a numeric value; added later -->
+<!-- For USMLEasy requirements: added creationdate attr; will be date value like 08/01/2008 -->
+<!-- For USMLEasy requirements: added retirementdate attr; will be date value like 08/01/2008-->
+<!-- For USMLEasy requirements: added  multimedia attr; specified whether question contains figure, table, video, etc.-->
+<!-- For USMLEasy requirements: added qid attr; question identifier that will be unique and visible to users for communicating with McGraw-->
+<!ATTLIST question
+	id CDATA #REQUIRED
+	aid CDATA #REQUIRED
+	type (single | multiple) #REQUIRED
+	datestamp CDATA #IMPLIED
+	source CDATA #IMPLIED
+	difficulty CDATA #IMPLIED
+	creationdate CDATA #IMPLIED
+	retirementdate CDATA #IMPLIED
+	multimedia (yes | no) #IMPLIED
+	qid CDATA #IMPLIED
+>
+<!ELEMENT statement (%s-structure;)*>
+<!ELEMENT options (option)*>
+<!ELEMENT options.table (ati-table)*>
+<!ELEMENT option (#PCDATA | %c-text;)*>
+<!ATTLIST option
+	label CDATA #REQUIRED
+	correct (no | yes) #IMPLIED
+>
+<!ELEMENT answer (correct.opt | citerefs | %s-structure;)*>
+<!ELEMENT correct.opt (#PCDATA | %c-basic;)*>
+<!ELEMENT discipline EMPTY>
+<!ATTLIST discipline
+	step1type (anat | beh | bio | stat | cell | emb | gen | hist | imm | mic | mol | ns | path | pphy | pharm | phys) #IMPLIED
+	step3type (emerg | int | obs | pat | ped | pre | psy | sur | inf | tox | normdev | ethics | biostat) #IMPLIED
+>
+<!ELEMENT organsystem EMPTY>
+<!ATTLIST organsystem
+	type (card | endo | gi | hem | gyn | immun | beh | musc | nerv | neph | repro | resp | skin) #REQUIRED
+>
+<!ELEMENT subspecialty EMPTY>
+<!ATTLIST subspecialty
+	type (card | derm | endo | gi | hem | imm | inf | opth | orth | ent | pulm | neph) #REQUIRED
+>
+<!ELEMENT setting EMPTY>
+<!ATTLIST setting
+	type (ed | if | oh) #REQUIRED
+>
+<!ELEMENT citerefs (%s-structure;)*>

@@ -1,0 +1,23 @@
+<!-- iso-dia.ent (initially distributed with DocBook XML DTD V4.1.1beta1) -->
+
+<!-- Derived from the corresponding ISO 8879 standard entity set
+     and the Unicode character mappings provided by Sebastian Rahtz -->
+
+<!ENTITY acute	"&#x00B4;"> <!-- ACUTE ACCENT -->
+<!ENTITY breve	"&#x02D8;"> <!-- BREVE -->
+<!ENTITY caron	"&#x02C7;"> <!-- CARON -->
+<!ENTITY cedil	"&#x00B8;"> <!-- CEDILLA -->
+<!ENTITY circ	"&#x005E;"> <!-- RING OPERATOR -->
+<!ENTITY dblac	"&#x02DD;"> <!-- DOUBLE ACUTE ACCENT -->
+<!ENTITY die	"&#x00A8;"> <!--  -->
+<!ENTITY dot	"&#x02D9;"> <!-- DOT ABOVE -->
+<!ENTITY grave	"&#x0060;"> <!-- GRAVE ACCENT -->
+<!ENTITY macr	"&#x00AF;"> <!-- MACRON -->
+<!ENTITY ogon	"&#x02DB;"> <!-- OGONEK -->
+<!ENTITY ring	"&#x02DA;"> <!-- RING ABOVE -->
+<!ENTITY tilde	"~"> <!-- TILDE -->
+<!ENTITY uml	"&#x00A8;"> <!--  -->
+
+<!ENTITY Vmacr	"&lt;img src='images/special/vdash.gif' border='0'/&gt;"> <!-- RING ABOVE -->
+<!ENTITY Qring	"&lt;img src='images/special/qring.gif' border='0'/&gt;"> <!-- RING ABOVE -->
+<!ENTITY Vring	"&lt;img src='images/special/vring.gif' border='0'/&gt;"> <!-- RING ABOVE -->

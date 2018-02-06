@@ -1,0 +1,129 @@
+<!-- iso-tech.ent (initially distributed with DocBook XML DTD V4.1.1beta1) -->
+<!-- Derived from the corresponding ISO 8879 standard entity set
+     and the Unicode character mappings provided by Sebastian Rahtz.
+     With additional derivations from
+     ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MISC/SGML.TXT -->
+<!ENTITY aleph "&#x2135;">
+<!-- ALEF SYMBOL -->
+<!ENTITY and "&#x2227;">
+<!--  -->
+<!ENTITY ang90 "&#x221F;">
+<!-- RIGHT ANGLE -->
+<!ENTITY angsph "&#x2222;">
+<!--  -->
+<!ENTITY ap "&lt;img src='images/special/ap.gif'/&gt;">
+<!--  -->
+<!ENTITY becaus "&#x2235;">
+<!-- BECAUSE -->
+<!ENTITY bottom "&#x22A5;">
+<!--  -->
+<!ENTITY cap "&#x2229;">
+<!--  -->
+<!ENTITY cong "&lt;img src='images/special/equalapprox.gif'/&gt;">
+<!--  -->
+<!ENTITY conint "&#x222E;">
+<!--  -->
+<!ENTITY cup "&#x222A;">
+<!--  -->
+<!ENTITY equiv "&lt;img src='images/special/equiv.gif'/&gt;">
+<!--  -->
+<!ENTITY exist "&#x2203;">
+<!--  -->
+<!ENTITY forall "&#x2200;">
+<!--  -->
+<!ENTITY fnof "&#x0192;">
+<!-- LATIN SMALL LETTER F WITH HOOK -->
+<!--<!ENTITY ge	"&#x2265;">  GREATER-THAN OR EQUAL TO -->
+<!ENTITY ge "&lt;img src='images/special/greaterorequal.gif' border='0'/&gt;">
+<!ENTITY iff "&lt;img src='images/special/doublearrow.gif'/&gt;">
+<!-- LEFT RIGHT DOUBLE ARROW -->
+<!ENTITY infin "&#x221E;">
+<!--  -->
+<!ENTITY int "&#x222B;">
+<!--  -->
+<!ENTITY isin "&#x220A;">
+<!--  -->
+<!ENTITY lang "&#x3008;">
+<!--  -->
+<!ENTITY lArr "&#x21D0;">
+<!-- LEFTWARDS ARROW -->
+<!-- <!ENTITY le	"&#x2264;"> -->
+<!ENTITY le "&lt;img src='images/special/lesserorequal.gif'/&gt;">
+<!--<!ENTITY minus	"&#x2212;">  MINUS SIGN -->
+<!ENTITY minus "&amp;#150;">
+<!ENTITY mnplus "&#x2213;">
+<!--  -->
+<!ENTITY nabla "&#x2207;">
+<!-- NABLA -->
+<!ENTITY ne "&#x2260;">
+<!--  -->
+<!ENTITY ni "&#x220D;">
+<!--  -->
+<!ENTITY or "&#x2228;">
+<!--  -->
+<!ENTITY par "&#x2225;">
+<!-- PARALLEL TO -->
+<!ENTITY part "&#x2202;">
+<!--  -->
+<!ENTITY permil "&#x2030;">
+<!-- PER MILLE SIGN -->
+<!ENTITY perp "&#x22A5;">
+<!--  -->
+<!-- <!ENTITY prime	"&#x2032;">PRIME -->
+<!ENTITY prime "'">
+<!ENTITY Prime "&#x2033;">
+<!-- DOUBLE PRIME -->
+<!ENTITY prop "&#x221D;">
+<!--  -->
+<!ENTITY radic "&lt;img src='images/special/squareroot.gif'/&gt;">
+<!--  -->
+<!ENTITY rang "&#x3009;">
+<!--  -->
+<!ENTITY rArr "&#x21D2;">
+<!-- RIGHTWARDS ARROW -->
+<!--<!ENTITY sim	"&#x223C;">   -->
+<!ENTITY sim "&lt;img src='images/special/approx.gif'/&gt;">
+<!ENTITY sime "&#x2243;">
+<!--  -->
+<!ENTITY square "&lt;img src='images/special/squareopen.gif' border='0'/&gt;">
+<!-- WHITE SQUARE -->
+<!ENTITY sub "&#x2282;">
+<!--  -->
+<!ENTITY sube "&#x2286;">
+<!--  -->
+<!ENTITY sup "&#x2283;">
+<!--  -->
+<!ENTITY supe "&#x2287;">
+<!--  -->
+<!ENTITY there4 "&#x2234;">
+<!--  -->
+<!ENTITY Verbar "&#x2016;">
+<!-- DOUBLE VERTICAL LINE -->
+<!ENTITY angst "&#x212B;">
+<!-- ANGSTROM SIGN -->
+<!ENTITY bernou "&#x212C;">
+<!-- SCRIPT CAPITAL B -->
+<!ENTITY compfn "&#x2218;">
+<!-- RING OPERATOR -->
+<!ENTITY Dot "&#x00A8;">
+<!--  -->
+<!ENTITY DotDot "&#x20DC;">
+<!-- COMBINING FOUR DOTS ABOVE -->
+<!ENTITY hamilt "&#x210B;">
+<!-- SCRIPT CAPITAL H -->
+<!ENTITY lagran "&#x2112;">
+<!-- SCRIPT CAPITAL L -->
+<!ENTITY lowast "&#x2217;">
+<!-- ASTERISK OPERATOR -->
+<!ENTITY notin "&#x2209;">
+<!--  -->
+<!ENTITY order "&#x2134;">
+<!-- SCRIPT SMALL O -->
+<!ENTITY phmmat "&#x2133;">
+<!-- SCRIPT CAPITAL M -->
+<!ENTITY tdot "&#x20DB;">
+<!-- COMBINING THREE DOTS ABOVE -->
+<!ENTITY tprime "&#x2034;">
+<!-- TRIPLE PRIME -->
+<!ENTITY wedgeq "&#x2259;">
+<!-- ESTIMATES -->

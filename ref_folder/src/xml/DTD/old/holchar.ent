@@ -1,0 +1,5 @@
+<!-- Entities especially for MH Medical DTD -->
+<!ENTITY cirfl             "cirfl" >
+<!ENTITY cirfr             "cirfr">
+<!ENTITY cirfbtm        "cirfbtm">
+<!ENTITY cirftop         "cirftop">

@@ -1,0 +1,320 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Oxygen Cylinder</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function IsNum(str) {
+	for (var i = 0; i < str.length; i++) {
+		var chr = str.substring(i, i+1);
+		if ((chr < "0" || "9" < chr) && chr != ".")
+			return false; 
+	}
+	if (eval(str)==0)
+		return false;
+	return true;
+}
+
+function calcPressure(obj) {
+	
+	if (!IsNum(obj.k.value)) {
+		alert("Constant K invalid");
+		return;
+	}
+	if (!IsNum(obj.SRP.value)) {
+		alert("Safe Residual Pressure invalid");
+		return;
+	}
+	if (!IsNum(obj.Flow.value)) {
+		alert("Flow invalid");
+		return;
+	}
+	if (!IsNum(obj.Duration.value)) {
+		alert("Duration invalid");
+		return;
+	}
+	
+	var P = 0;
+	var K = parseFloat(obj.k.value);
+	var R = parseFloat(obj.SRP.value);
+	var F = parseFloat(obj.Flow.value);
+	var T = parseFloat(obj.Duration.value);
+	
+	P = T * F / K + R;
+	P = Math.round(P);
+	obj.Pressure.value = P;
+}
+
+function calcDuration(obj) {
+	
+	if (!IsNum(obj.k.value)) {
+		alert("Constant K invalid");
+		return;
+	}
+	if (!IsNum(obj.SRP.value)) {
+		alert("Safe Residual Pressure invalid");
+		return;
+	}
+	if (!IsNum(obj.Flow.value)) {
+		alert("Flow invalid");
+		return;
+	}
+	if (!IsNum(obj.Pressure.value)) {
+		alert("Duration invalid");
+		return;
+	}
+	
+	var T = 0;
+	var K = parseFloat(obj.k.value);
+	var R = parseFloat(obj.SRP.value);
+	var F = parseFloat(obj.Flow.value);
+	var P = parseFloat(obj.Pressure.value);
+	
+	T = K * (P - R) / F;
+	T = Math.round(T);
+	obj.Duration.value = T;
+}
+
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+       <h1><!-- #BeginEditable "Title" -->Oxygen Tank Duration<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Estimate the time that an oxygen cylinder will support delivery of gas at a 
+		particular flow, or estimate the pressure in an oxygen cylinder that will
+		support a particular flow for a particular duration. These calculations apply
+		not only to oxygen but for other gases.</p>
+        <form name="formulaForm">
+          <div align="center"> 
+            <center>
+              <table
+                            border="0" cellspacing="1">
+                <tr> 
+                  <td>Name
+				  (Dimensions)</td>
+                  <td align="center"> 
+                    <div align="center">Tank<br>
+					Constant</div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td> 
+                    <input type="radio"
+                                    name="constant" value="0.16"
+                                    onClick="document.formulaForm.k.value = '0.16'">
+                    D&nbsp;&nbsp;(4&quot; x 16&quot;)</td>
+                  <td align="center"> 
+                    <div align="center">0.16</div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td> 
+                    <input type="radio"
+                                    checked name="constant" value="0.28"
+                                    onClick="document.formulaForm.k.value = '0.28'">
+                    E&nbsp;&nbsp;(4&quot; x 26&quot;)</td>
+                  <td align="center"> 
+                    <div align="center">0.28</div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td> 
+                    <input type="radio"
+                                    name="constant" value="1.56"
+                                    onClick="document.formulaForm.k.value = '1.56'">
+                    M&nbsp;&nbsp;(8&quot; x 36&quot;)</td>
+                  <td align="center"> 
+                    <div align="center">1.56</div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td> 
+                    <input type="radio"
+                                    name="constant" value="3.14"
+                                    onClick="document.formulaForm.k.value = '3.14'">
+                    H&nbsp;&nbsp;(9&quot; x 52&quot;)</td>
+                  <td align="center"> 
+                    <div align="center">3.14</div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td>&nbsp;</td>
+                  <td align="center"> 
+                    <div align="center"> 
+                      <input
+                                    type="text" size="4" name="k" value="0.28">
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </center>
+          </div>
+          <div align="left"> 
+            <table
+                            border="0" cellpadding="0"
+                            cellspacing="1" align="center">
+              <tr> 
+                <td colspan="4">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td>Safe Residual Pressure&nbsp;</td>
+                <td> 
+                  <input
+                                    type="text" size="5"
+                                    name="SRP" value="200">
+                </td>
+                <td>&nbsp;PSI</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td>Input Flow</td>
+                <td> 
+                  <input
+                                    type="text" size="5"
+                                    name="Flow">
+                </td>
+                <td>&nbsp;LPM</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+				<td colspan='4'><br>Input one of the following:<td>
+              </tr>
+              <tr> 
+                <td>Duration</td>
+                <td> 
+                  <input
+                                    type="text" size="5"
+                                    name="Duration">
+                </td>
+                <td>&nbsp;minutes</td>
+                <td>
+				  <div align="center"> 
+                    <input type="button"
+                            name="Calculate Pressure" value="Calculate Pressure"
+                            onClick="calcPressure(this.form)">
+                  </div>
+				</td>
+              </tr>
+              <tr> 
+                <td>Gauge Pressure</td>
+                <td> 
+                  <input
+                                    type="text" size="5"
+                                    name="Pressure">
+                </td>
+                <td>&nbsp;PSI</td>
+                <td>
+                  <div align="center"> 
+                    <input type="button"
+                            name="Calculate Duration" value="Calculate Duration"
+                            onClick="calcDuration(this.form)">
+                  </div>
+				</td>
+              </tr>
+
+              <tr> 
+                <td colspan="4">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="4"> 
+                  <div align="center"> 
+                    <input
+                            type="reset" name="resetButton"
+                            value="Clear">
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <p align="center">&nbsp;</p>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>The calculations are based on Boyle's law that states that pressure and 
+		the volume of a given amount of a confined gas are inversely proportional 
+		(P * V = k).</p>
+        <table cellspacing="1" cellpadding="1" align="center">
+          <tr> 
+            <td rowspan="3">Duration&nbsp;&nbsp;=&nbsp;&nbsp;</td>
+            <td> 
+              <div align="center">k * (P - R)</div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center"><img src="./images/filler.gif" width="65" height="1"></div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center">F</div>
+            </td>
+          </tr>
+		</table>
+		<p>
+		<table cellspacing="1" cellpadding="1" align="center">
+          <tr> 
+            <td rowspan="3">Pressure&nbsp;&nbsp;=&nbsp;&nbsp;</td>
+            <td> 
+              <div align="center">T * F</div>
+            </td>
+            <td rowspan="3">+ R</td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center"><img src="./images/filler.gif" width="40" height="1"></div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center">k</div>
+            </td>
+          </tr>
+		  </table>
+
+		  <p>k is the tank constant in PSI<sup>-1</sup> liters<sup>-1</sup>.<br>
+		  R is the Safe Residual Pressure in PSI, typically 200 PSI.<br>
+		  F is the Flow in liters per minute.<br>
+		  T is the duration in minutes.<br>
+		  P is the tank gauge pressure in PSI.</p>
+		  <p><b>Instructions:</b> Pick the tank and enter the desired flow. Then, either 
+		  <ol>
+		  <li>enter the duration of the trip and click on the Calculate Pressure button 
+		  to get the tank pressure required, or</li>
+		  <li>enter the gauge pressure and click on the Calculate Duration button to 
+		  calculate how long that tank will last.</li>
+		  </ol>
+		  </p>
+		  <p>For example, a respiratory therapist wants to make sure the patient on heliox 
+		  (H cylinder) running at 10 LPM will not run out of gas over the change of shift. 
+		  The gauge reads 600 PSI. Entering these data and hitting Calculate Duration yields
+		  a duration of 126 minutes.</p>
+        <p>&nbsp;</p>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->February 22, 2013<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->February 22, 2013<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol">
+     </div>
+  </div>
+</div>
+
+</body>
+</html>
+

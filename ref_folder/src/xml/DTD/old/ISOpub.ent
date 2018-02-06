@@ -1,0 +1,181 @@
+<!-- iso-pub.ent (initially distributed with DocBook XML DTD V4.1.1beta1) -->
+<!-- Derived from the corresponding ISO 8879 standard entity set
+     and the Unicode character mappings provided by Sebastian Rahtz -->
+<!--<!ENTITY emsp	"&#x2003;">  EM SPACE -->
+<!ENTITY emsp "&amp;#160;">
+<!--<!ENTITY ensp	"&#x2002;">  EN SPACE -->
+<!ENTITY ensp "&amp;#160;">
+<!ENTITY emsp13 "&#x2004;">
+<!-- THREE-PER-EM SPACE -->
+<!ENTITY emsp14 "&#x2005;">
+<!-- FOUR-PER-EM SPACE -->
+<!ENTITY numsp "&amp;#160;">
+<!-- FIGURE SPACE -->
+<!ENTITY puncsp "&#x2008;">
+<!-- PUNCTUATION SPACE -->
+<!--  THIN SPACE -->
+<!ENTITY thinsp	"&amp;#x2009;">
+<!--ENTITY thinsp "&amp;#160;">
+<!ENTITY hairsp "&#x200A;"-->
+<!-- HAIR SPACE -->
+<!-- <!ENTITY mdash	"&#x2014;">EM DASH -->
+<!ENTITY mdash "&amp;#151;">
+<!-- <!ENTITY ndash	"&#x2013;">  EN DASH -->
+<!ENTITY ndash "&amp;#150;">
+<!ENTITY dash "&#x2010;">
+<!-- HYPHEN -->
+<!ENTITY blank "&#x2423;">
+<!-- OPEN BOX -->
+<!--<!ENTITY hellip	"&#x2026;">  HORIZONTAL ELLIPSIS -->
+<!ENTITY hellip ". . .">
+<!ENTITY nldr "&#x2025;">
+<!-- TWO DOT LEADER -->
+<!ENTITY frac13 "&#x2153;">
+<!-- VULGAR FRACTION ONE THIRD -->
+<!ENTITY frac23 "&#x2154;">
+<!-- VULGAR FRACTION TWO THIRDS -->
+<!ENTITY frac15 "&#x2155;">
+<!-- VULGAR FRACTION ONE FIFTH -->
+<!ENTITY frac25 "&#x2156;">
+<!-- VULGAR FRACTION TWO FIFTHS -->
+<!ENTITY frac35 "&#x2157;">
+<!-- VULGAR FRACTION THREE FIFTHS -->
+<!ENTITY frac45 "&#x2158;">
+<!-- VULGAR FRACTION FOUR FIFTHS -->
+<!ENTITY frac16 "&#x2159;">
+<!-- VULGAR FRACTION ONE SIXTH -->
+<!ENTITY frac56 "&#x215A;">
+<!-- VULGAR FRACTION FIVE SIXTHS -->
+<!ENTITY incare "&#x2105;">
+<!-- CARE OF -->
+<!ENTITY block "&#x2588;">
+<!-- FULL BLOCK -->
+<!ENTITY uhblk "&#x2580;">
+<!-- UPPER HALF BLOCK -->
+<!ENTITY lhblk "&#x2584;">
+<!-- LOWER HALF BLOCK -->
+<!ENTITY blk14 "&#x2591;">
+<!-- LIGHT SHADE -->
+<!ENTITY blk12 "&#x2592;">
+<!-- MEDIUM SHADE -->
+<!ENTITY blk34 "&#x2593;">
+<!-- DARK SHADE -->
+<!ENTITY marker "&#x25AE;">
+<!-- BLACK VERTICAL RECTANGLE -->
+<!ENTITY cir "&lt;img src='images/special/opencircle.gif' border='0'/&gt;">
+<!-- WHITE CIRCLE -->
+<!ENTITY squ "&lt;img src='images/special/squareopen.gif' border='0'/&gt;">
+<!-- WHITE SQUARE -->
+<!ENTITY rect "&#x25AD;">
+<!-- WHITE RECTANGLE -->
+<!ENTITY utri "&lt;img src='images/special/triangleopen.gif' border='0'/&gt;">
+<!-- WHITE UP-POINTING TRIANGLE -->
+<!ENTITY dtri "&lt;img src='images/special/triangleopendown.gif' border='0'/&gt;">
+<!-- WHITE DOWN-POINTING TRIANGLE -->
+<!ENTITY star "&#x22C6;">
+<!-- STAR OPERATOR -->
+<!--<!ENTITY bull	"&#x2022;">  BULLET -->
+<!ENTITY bull "&lt;img src='images/special/bullsm.gif' border='0'/&gt;">
+<!ENTITY squf "&lt;img src='images/special/squarefull.gif' border='0'/&gt;">
+<!--  -->
+<!ENTITY utrif "&lt;img src='images/special/triangle.gif' border='0'/&gt;">
+<!-- BLACK UP-POINTING TRIANGLE -->
+<!ENTITY dtrif "&lt;img src='images/special/triangledown.gif' border='0'/&gt;">
+<!-- BLACK DOWN-POINTING TRIANGLE -->
+<!ENTITY ltrif "&#x25C2;">
+<!-- BLACK LEFT-POINTING TRIANGLE -->
+<!ENTITY rtrif "&#x25B8;">
+<!-- BLACK RIGHT-POINTING TRIANGLE -->
+<!ENTITY clubs "&#x2663;">
+<!-- BLACK CLUB SUIT -->
+<!ENTITY diams "&lt;img src='images/special/diams.gif'/&gt;">
+<!-- BLACK DIAMOND SUIT -->
+<!ENTITY hearts "&#x2665;">
+<!-- BLACK HEART SUIT -->
+<!ENTITY spades "&#x2660;">
+<!-- BLACK SPADE SUIT -->
+<!ENTITY malt "&#x2720;">
+<!-- MALTESE CROSS -->
+<!--<!ENTITY dagger	"&#x2020;">  DAGGER -->
+<!ENTITY dagger "&lt;img src='images/special/dagger.gif'/&gt;">
+<!ENTITY Dagger "&#x2021;">
+<!-- DOUBLE DAGGER -->
+<!ENTITY check "&lt;img src='images/special/check.gif' border='0'/&gt;">
+<!-- CHECK MARK -->
+<!ENTITY cross "&#x2717;">
+<!-- BALLOT X -->
+<!ENTITY sharp "&#x266F;">
+<!-- MUSIC SHARP SIGN -->
+<!ENTITY flat "&#x266D;">
+<!-- MUSIC FLAT SIGN -->
+<!ENTITY male "&#x2642;">
+<!-- MALE SIGN -->
+<!ENTITY female "&#x2640;">
+<!--  -->
+<!ENTITY phone "&#x260E;">
+<!-- TELEPHONE SIGN -->
+<!ENTITY telrec "&#x2315;">
+<!-- TELEPHONE RECORDER -->
+<!ENTITY copysr "&#x2117;">
+<!-- SOUND RECORDING COPYRIGHT -->
+<!ENTITY caret "&amp;#94;">
+<!-- CARET -->
+<!ENTITY lsquor "&#x201A;">
+<!-- SINGLE LOW-9 QUOTATION MARK -->
+<!ENTITY ldquor "&#x201E;">
+<!-- DOUBLE LOW-9 QUOTATION MARK -->
+<!ENTITY fflig "&#xFB00;">
+<!--  -->
+<!ENTITY filig "&#xFB01;">
+<!--  -->
+<!--     fjlig	Unknown unicode character -->
+<!ENTITY ffilig "&#xFB03;">
+<!--  -->
+<!ENTITY ffllig "&#xFB04;">
+<!--  -->
+<!ENTITY fllig "&#xFB02;">
+<!--  -->
+<!ENTITY mldr "&#x2026;">
+<!-- HORIZONTAL ELLIPSIS -->
+<!ENTITY rdquor "&#x201C;">
+<!--  -->
+<!ENTITY rsquor "&#x2018;">
+<!--  -->
+<!ENTITY vellip "&#x22EE;">
+<!--  -->
+<!ENTITY hybull "&#x2043;">
+<!-- HYPHEN BULLET -->
+<!ENTITY loz "&#x25CA;">
+<!-- LOZENGE -->
+<!ENTITY lozf "&lt;img src='images/special/lozf.gif'/&gt;">
+<!--  -->
+<!ENTITY ltri "&#x25C3;">
+<!-- WHITE LEFT-POINTING TRIANGLE -->
+<!ENTITY rtri "&#x25B9;">
+<!-- WHITE RIGHT-POINTING TRIANGLE -->
+<!ENTITY starf "&#x2605;">
+<!-- BLACK STAR -->
+<!ENTITY natur "&#x266E;">
+<!-- MUSIC NATURAL SIGN -->
+<!ENTITY rx "&#x211E;">
+<!-- PRESCRIPTION TAKE -->
+<!ENTITY sext "&#x2736;">
+<!-- SIX POINTED BLACK STAR -->
+<!ENTITY target "&#x2316;">
+<!-- POSITION INDICATOR -->
+<!ENTITY dlcrop "&#x230D;">
+<!-- BOTTOM LEFT CROP -->
+<!ENTITY drcrop "&#x230C;">
+<!-- BOTTOM RIGHT CROP -->
+<!ENTITY ulcrop "&#x230F;">
+<!-- TOP LEFT CROP -->
+<!ENTITY urcrop "&#x230E;">
+<!-- TOP RIGHT CROP -->
+<!-- Silverchair add for Chandrasoma in Access Medicine'-->
+<!ENTITY circ1 "&lt;img src='images/special/circle1.gif' border='0'/&gt;">
+<!ENTITY circ2 "&lt;img src='images/special/circle2.gif' border='0'/&gt;">
+<!ENTITY circ3 "&lt;img src='images/special/circle3.gif' border='0'/&gt;">
+<!ENTITY circ4 "&lt;img src='images/special/circle4.gif' border='0'/&gt;">
+<!ENTITY circ5 "&lt;img src='images/special/circle5.gif' border='0'/&gt;">
+<!ENTITY circ6 "&lt;img src='images/special/circle6.gif' border='0'/&gt;">
+<!ENTITY circ7 "&lt;img src='images/special/circle7.gif' border='0'/&gt;">

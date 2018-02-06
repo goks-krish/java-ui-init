@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- KA SSC created 3.16.04-->
+
+<!-- TOC elements and attributes. -->
+<!ELEMENT	book	(booktitle | isbn | authors | cover | topic)*>
+<!ELEMENT	cover	(#PCDATA)*>
+<!ELEMENT	booktitle	(#PCDATA)*>
+<!ELEMENT	title	(#PCDATA | xr | nb | sb | sp | em | img)*>
+<!ELEMENT	authors	(#PCDATA)*>
+<!ELEMENT	author	(#PCDATA)*>
+<!ELEMENT	isbn	(#PCDATA)*>
+<!ELEMENT	topic	(title | author|topic)*>
+<!ATTLIST	topic	
+	id	CDATA	#IMPLIED
+	head-level	CDATA #IMPLIED
+	lid	CDATA #IMPLIED>
+<!ELEMENT sb	(#PCDATA)	>
+<!ELEMENT	img	EMPTY>
+<!ATTLIST	img
+	src	CDATA	#IMPLIED
+	border	CDATA	#IMPLIED>
+<!ELEMENT sp	(#PCDATA)	>	
+<!ELEMENT em	(#PCDATA)	>
+<!ATTLIST	em
+	activity	CDATA	#IMPLIED>
+<!ELEMENT xr	(#PCDATA)	>
+<!ATTLIST	xr
+	linkends	CDATA	#IMPLIED>
+<!ELEMENT nb	(#PCDATA)	>
+<!ATTLIST	nb
+	linkend	CDATA	#IMPLIED>
+<!-- Standard ISO entity file inclusion, plus holchar.ent, from McGraw Hill-->	
+<!ENTITY % ISOpub SYSTEM 
+ "ISOpub.ent">
+%ISOpub;
+<!ENTITY % ISOnum SYSTEM 
+ "ISOnum.ent">
+%ISOnum;
+<!ENTITY % ISOtech SYSTEM 
+ "ISOtech.ent">
+%ISOtech;
+<!ENTITY % ISOdia SYSTEM 
+ "ISOdia.ent">
+%ISOdia;
+<!ENTITY % ISOlat1 SYSTEM 
+ "ISOlat1.ent">
+%ISOlat1;
+<!ENTITY % ISOlat2 SYSTEM 
+ "ISOlat2.ent">
+%ISOlat2;
+<!ENTITY % ISOamso SYSTEM 
+ "ISOamso.ent">
+%ISOamso;
+<!ENTITY % ISOgrk1 SYSTEM 
+ "ISOgrk1.ent">
+%ISOgrk1;
+<!ENTITY % ISOgrk3 SYSTEM 
+ "ISOgrk3.ent">
+%ISOgrk3;
+<!ENTITY % ISOamsa SYSTEM
+ "ISOamsa.ent">
+%ISOamsa;
+<!ENTITY % ISOamsb SYSTEM
+ "ISOamsb.ent">
+%ISOamsb;
+<!ENTITY % ISOamsr SYSTEM
+ "ISOamsr.ent">
+%ISOamsr;
+<!ENTITY % holchar SYSTEM "holchar.ent" >
+%holchar;
+	

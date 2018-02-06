@@ -1,0 +1,72 @@
+<!--============================================================================== -->
+<!-- Formal Public Identifier "-//MGH//ENTITIES a-decs.txt 1998 v1.1//EN" -->
+<!-- KA changed activity IDREFS to CDATA.
+Reason: <em activity="boldrom"> invalid otherwise-->
+<!ENTITY % a-all-atts "id CDATA #IMPLIED
+            activity (boldrom | italic | smcap | underline | boldital | rom | blue | medapp | inline | boldcolor|sansserif|teal | bolditalcolor | italcolor) #IMPLIED            number-stream CDATA #IMPLIED
+            number-scheme CDATA #IMPLIED
+            number CDATA #IMPLIED
+            src	CDATA	#IMPLIED            
+            aid	CDATA	#IMPLIED
+            popup	(yes|no)	#IMPLIED            
+            fm	CDATA	#IMPLIED
+           ">
+<!--KA SSC Changed HyTime NAME to CDATA
+Then killed HyTime CDATA #FIXED 'HyBrid'
+-->
+<!ENTITY % a-all-content "mgh.type CDATA #FIXED 'content'
+           ">
+<!--KA SSC Changed CONREF to IMPLIED-->
+<!ENTITY % a-all-one-to-one "
+	linkend CDATA #IMPLIED
+	">
+<!--KA SSC Changed CONREF to IMPLIED
+Changed linkends IDREFs to CDATA-->
+<!ENTITY % a-all-one-to-many "
+	linkends CDATA #IMPLIED
+	">
+<!--KA SSC Changed HyTime NAME to CDATA-->
+<!ENTITY % a-all-structure "
+           HyTime CDATA #FIXED 'HyBrid'
+            mgh.type CDATA #FIXED 'structure'
+           ">
+<!--KA SSC Changed release NUMBER to CDATA
+Deleted             medium %f-declared-media; %f-medium;
+-->
+<!ENTITY %  a-all-superstructure "
+           HyTime (HyBrid | HyDoc) 'HyDoc'
+            toc-title CDATA #IMPLIED
+            left-running-head CDATA #IMPLIED
+            right-running-head CDATA #IMPLIED
+            datestamp CDATA #IMPLIED
+            release CDATA #IMPLIED
+            status (old | change | new) #IMPLIED
+            owner CDATA #IMPLIED
+            read-class CDATA #IMPLIED
+            write-class CDATA #IMPLIED
+            mgh.type CDATA #FIXED 'super-structure'
+           ">
+<!-- Techbooks: 16/01/2001. The following has been remove from the DTD as the elment
+     "<a>" has been removed.
+
+<!ENTITY %  a.addon "">
+
+ -->
+<!-- SH: 9/14/98. Attributes for clink-style (source/target) links. They
+     document the semantics of the digital addresses used in Entrez. 
+     
+     NOTE: These are all fixed attributes, and need not appear in the data
+     at all. -->
+<!--KA SSC Changed HyTime NAME to CDATA
+Added empty value to HyNames
+-->
+<!ENTITY % a-key-data-is-in- "HyTime   CDATA       #FIXED 'clink'
+            HyNames  CDATA      #FIXED ' '
+           ">
+<!--KA SSC Changed anchcstr and linktrav NAMES to CDATA
+Added empty value to loctype
+-->
+<!ENTITY % a-key-notation-is- "anchcstr CDATA      #FIXED 'self cond'
+            linktrav CDATA      #FIXED 'A D'
+            loctype  CDATA      #FIXED ' '
+           ">

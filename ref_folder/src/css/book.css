@@ -1,0 +1,52 @@
+	/*************************************************************************
+	 *
+	 * Copyright (c) 2005+ MedHand International AB
+	 * All rights reservered.
+	 *
+	 ***************************************************************
+	 *
+	 * @(#)book.css
+   *
+   * DESCRIPTION:
+   * ======================
+   * CSS for formating Wiley Rapid Medicine MedHand XML(MXML) and iHtml. 
+   *
+   * CHANGES:
+   * ======================
+	 *************************************************************************/
+
+/* book specific */
+.outline-box-background-color		{code:1000;width:100%;padding: 5px 10px 5px 10px;margin-top:5px;border: 2px solid rgb(73,153,146);background-color:rgb(207,231,236);}
+.inline-box-background-color		{code:1000;width:100%;padding: 5px 10px 5px 10px;margin-top:5px;border: 2px solid rgb(73,153,146);background-color:rgb(255,255,255);}
+.chapter-foreground-color		{code:1000;font-style: normal; color:rgb(0,140,152);}
+.h1-foreground-color				{code:1001;font-style: normal; color:rgb(0,0,0);}
+.h2-foreground-color				{code:1002;font-style: normal; color:rgb(73,153,146);}
+.h3-foreground-color				{code:1003;font-style: normal; color:rgb(0,0,0);}
+
+
+
+
+
+.outline-box-white					{code:1007;width:100%;margin-top:5px;background-color:rgb(255,255,255);}
+.link-blue									{code:1008;font-weight: Bold;color:rgb(51,102,255);}
+
+/* iphone specific */
+.outline {width:100%;}
+.inline {width:100%;}
+
+/* iphone specific */
+li											{margin-top: -7px;color:rgb((73,153,146);}
+
+body.iphone-style  {background-color: rgb(227,242,241); }
+body.iphone-style div.small-history {background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(189,223,220)), to(rgb(227,242,241)));}
+body.iphone-style div.history {background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(189,223,220)), to(rgb(208,233,231)));}
+body.iphone-style p.title {background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(208,233,231)), to(rgb(227,242,241)));}
+body.iphone-style .outline-box-background-color				{padding: 5px 10px 5px 10px;margin-bottom:5px;-webkit-border-top-left-radius: 8px;-webkit-border-top-right-radius: 8px;-webkit-border-bottom-left-radius: 8px;-webkit-border-bottom-right-radius: 8px;}
+body.iphone-style .inline-box-background-color				{padding: 5px 10px 5px 10px;margin-bottom:5px;-webkit-border-top-left-radius: 8px;-webkit-border-top-right-radius: 8px;-webkit-border-bottom-left-radius: 8px;-webkit-border-bottom-right-radius: 8px;}
+
+
+
+
+
+
+

@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Calculated Bicarbonate &amp; Base Excess</title>
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+// Formula
+
+// HCO3 = 0.03 * pCO2 * 10 **(pH - 6.1)
+// B.E. = 0.9287 * HCO3 + 13.77 * pH - 124.58
+
+function calculateFormula (a,b) {
+     var Result = 0;
+     var pH     = parseFloat(a);
+     var pCO2   = parseFloat(b);
+     var HCO3   = 0;
+     var BE     = 0;
+     HCO3       = 0.03 * pCO2 * Math.pow(10, (pH - 6.1));
+     BE         = 0.9287 * HCO3 + 13.77 * pH - 124.58;
+     ResultBE   = Math.round(BE * 10) / 10;
+     ResultHCO3 = Math.round(HCO3 * 10) / 10;
+     document.formulaForm.resHCO3.value = ResultHCO3;
+     document.formulaForm.resBE.value = ResultBE;
+}
+
+</script>
+  <!-- --> <!-- Begin Body Section  ___________________________________________________________________________________________ --> 
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <!-- End Left Column --> 
+      <!-- Begin Middle Column --> 
+      <div id="centerCol" align="center"> 
+     
+        <h1>Base Excess &amp; Calculated Bicarbonate</h1>
+        <p>Calculate the serum bicarbonate from the serum pH and pCO<sub>2</sub>.</p>
+        <form name="formulaForm">
+          <table border="0" cellpadding="0" align="center">
+            <tr> 
+              <td colspan="2">Input pH&nbsp;</td>
+              <td> 
+                <input
+                                    type="text" size="10"
+                                    name="pH">
+              </td>
+            </tr>
+            <tr> 
+              <td colspan="2">Input pCO<sub>2</sub>&nbsp;</td>
+              <td> 
+                <input
+                                    type="text" size="10"
+                                    name="pCO2">
+              </td>
+            </tr>
+            <tr> 
+              <td colspan="2">&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr> 
+              <td colspan="3"> 
+                <div align="center"> 
+                  <input
+                            type="button" name="Calculate"
+                            value="Calculate"
+                            onClick="calculateFormula(document.formulaForm.pH.value, document.formulaForm.pCO2.value)">
+                  <input type="reset"
+                            name="resetButton" value="Clear">
+                </div>
+              </td>
+            </tr>
+            <tr> 
+              <td colspan="2">&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr> 
+              <td>HCO<sub>3</sub> </td>
+              <td>= </td>
+              <td> 
+                <input type="text" size="10" name="resHCO3">
+              </td>
+            </tr>
+            <tr> 
+              <td>Base Excess </td>
+              <td> = </td>
+              <td > 
+                <input type="text" size="10" name="resBE">
+              </td>
+            </tr>
+          </table>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>The calculations above are based on the Henderson-Hasselbalch equation:</p>
+        <table cellspacing="1" align="center">
+          <tr> 
+            <td rowspan="3">pH = pK + log</td>
+            <td align="center">[HCO<sub>3</sub><sup>-</sup>]</td>
+          </tr>
+          <tr> 
+            <td align="center"><img src="./images/filler.gif" width="50" height="1"></td>
+          </tr>
+          <tr> 
+            <td align="center">[CO<sub>2</sub>]</td>
+          </tr>
+        </table>
+        <p align="center">Replacing pK = 6.1, and [CO<sub>2</sub>] = 0.03 * pCO<sub>2</sub>, 
+          and removing the logarithms to get</p>
+        <p align="center">HCO<sub>3</sub> = 0.03 * pCO<sub>2</sub> * 10 <sup>(pH 
+          - 6.1)</sup></p>
+        <p align="center">In conjunction with the Siggaard-Anderson equation:</p>
+        <p align="center">B.E. = 0.9287 (HCO<sub>3</sub> - 24.4 + 14.83 (pH - 
+          7.4))</p>
+        <p align="center"> or</p>
+        <p align="center"> B.E. = 0.9287 * HCO<sub>3</sub> + 13.77 * pH - 124.58</p>
+        <p align="center">The end result is:</p>
+        <p align="center">B.E. = 0.02786 * pCO<sub>2</sub> * 10 <sup>(pH - 6.1)</sup> 
+          + 13.77 * pH - 124.58</p>
+        <p align="center">&nbsp;</p>
+        <p align="center">See further the great online tutorial on <a href="http://www.acid-base.com/" target="_blank">Acid-Base 
+          Balance</a> by Dr. Alan W. Grogono, MB, BS, MD, FRCA. Retired Professor 
+          and former Chair, Department of Anesthesiology, Tulane University School 
+          of Medicine.</p>
+        <p align="center">Siggaard-Andersen O. An acid-base chart for arterial blood 
+          with normal and pathophysiological reference areas. <i>Scan J Clin Lab 
+          Invest</i>. 27:239-245, 1971.</p>
+        <p align="center">&nbsp;</p>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i>January 7, 2000<br>
+          <i>Revised:</i>January 3, 2001<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

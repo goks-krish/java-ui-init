@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<automation version="1.0">
+
+  <!--
+  THE FOLLOWING VARIABLES CAN BE USED:
+  ROOT_PATH
+  BOOK_SRC_PATH
+  BOOK_BUILD_PATH
+  BOOK_DST_PATH
+  BOOK_TOOLS_PATH
+  BOOK_FULL_NAME
+  BOOK_ENCRYPTION_KEY
+  YEAR_LAST_RUN
+  MONTH_LAST_RUN
+  DAY_LAST_RUN
+  -->
+
+  <encryption_key></encryption_key>
+  <minizip_file_count_limit>1000</minizip_file_count_limit> <!-- maximum minizip file count -->
+  <minizip_size_kb_limit>500</minizip_size_kb_limit>        <!-- maximum minizip size in KB -->
+  <update_percent_limit>60</update_percent_limit>           <!-- maximum % of update-to-book size -->
+
+  <!--download>BOOK_TOOLS_PATH/FassDownloader.exe BOOK_SRC_PATH/xml/xml 1074 YEAR_LAST_RUN-MONTH_LAST_RUN-DAY_LAST_RUN</download-->
+  <!--manifest>java -jar manifest_generator.jar BOOK_SRC_PATH/xml/xml BOOK_SRC_PATH/xml/cdc2012.xml</manifest-->
+  <images>ruby automation-convert-images.rb BOOK_SRC_PATH BOOK_BUILD_PATH</images>
+  <book>MXmlResource\MXmlResource.exe BOOK_SRC_PATH BOOK_BUILD_PATH</book>
+  <verifyhtml>ruby automation-verify-html-links.rb BOOK_BUILD_PATH/ihtml</verifyhtml>
+
+  <!--
+  SEARCH CATEGORY ORDER STRING (e.g. category:company:drug) SHOULD USE WORD any TO INDICATE ALL UNORDERED CATEGORIES
+  FOR EXAMPLE, GIVEN THE FOLLOWING CATEGORIES: substance, drug, company:
+  any                   => produces => substance, drug, company
+  drug:any              => produces => drug, substance, company
+  any:drug              => produces => substance, company, drug
+  any:drug:substance    => produces => company, drug, substance
+  drug:substance        => produces => drug, substance
+  -->
+  <searchdb>ruby automation-xml-to-sqlite.rb BOOK_BUILD_PATH/ihtml/search BOOK_BUILD_PATH/searchDB.sql any</searchdb>
+  <verifysearchdb>ruby automation-verify-searchdb.rb BOOK_BUILD_PATH/searchDB.sql BOOK_BUILD_PATH/ihtml BOOK_DST_PATH</verifysearchdb>
+  <verifyinfoplist>ruby automation-verify-infoplist.rb BOOK_SRC_PATH/info.plist BOOK_FULL_NAME BOOK_DST_PATH</verifyinfoplist>
+  <encryptor>java -jar encryptor.jar BOOK_BUILD_PATH/ihtml BOOK_DST_PATH BOOK_ENCRYPTION_KEY</encryptor>
+  <verifybook>ruby automation-verify-book.rb BOOK_SRC_PATH BOOK_DST_PATH</verifybook>
+  <!--upload>ruby automation-upload.rb books-iphone.medhand.com ROOT_PATH/BOOK_FULL_NAME.zip ROOT_PATH/BOOK_FULL_NAME_update.zip</upload-->
+  <!--upload>ruby automation-upload.rb mh-books-cedar.herokuapp.com ROOT_PATH/BOOK_FULL_NAME.zip ROOT_PATH/BOOK_FULL_NAME_update.zip</upload-->
+
+</automation>
+

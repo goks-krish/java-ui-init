@@ -1,0 +1,404 @@
+<!--============================================================================== -->
+<!-- Formal Public Identifier "-//MGH//ENTITIES s-model.txt 1998 v1.1//EN" -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Structure content model entities. -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- TechBooks: 12/06/2001. A new element <mcl> has been created and added in the
+     entity % s-container. -->
+<!-- KA SSC added ati-table, txt-table to s-container-->
+<!ENTITY % s-container "bl |nl |np |outline |p |ul |mcl| ati-table | question | update | update-cite">
+<!-- PIT, 3-23-00: added new element contents, genetics and guidelines -->
+<!-- TechBooks: 03/12/2002. A new element <essentials> has been created and added in the
+     entity % s-domain. -->
+<!-- KA SSC 1.18.2007 added new element <careplan> for Access Pharmacy Schwinghammer interactive Care Plans -->
+<!ENTITY % s-domain "approach |rx |genetics |guidelines |essentials | careplans">
+<!-- TechBooks: 11/07/2001. A new element <sidebar> has been created and added in the
+     entity % s-resource. -->
+<!ENTITY % s-resource "extract |figure |table-entity |sidebar">
+<!ENTITY % s-structure "%c-bridge; |%s-container; |%s-domain; |%s-resource;">
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Container elements. -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- KA SSC addition of update for Access Surgery, similar to chapter model since that is how it was originally operating -->
+<!ELEMENT update (title | author | %s-structure; | head | subsection | ack | bibliography | semantics)*>
+<!ATTLIST update
+	%a-all-atts;
+	%a-all-superstructure;
+	type (video|citeonly) #IMPLIED 
+>
+<!-- KA SSC addition of update-cite for Access Medicine -->
+<!ELEMENT update-cite (#PCDATA | %c-text;)*>
+<!ATTLIST update-cite
+	aid-cite CDATA #REQUIRED
+	pubdate CDATA #REQUIRED
+>
+<!-- KA SSC create semantic tagging -->
+<!ELEMENT semantics (tag)*>
+<!ELEMENT tag (root-term | sub-term)*>
+<!-- UJH SSC added searchDisplay attribute -->
+<!ELEMENT root-term (#PCDATA | %c-basic;)*>
+<!ATTLIST root-term
+	termID CDATA #IMPLIED
+	searchDisplay CDATA #IMPLIED
+>
+<!ELEMENT sub-term (#PCDATA | %c-basic;)*>
+<!ATTLIST sub-term
+	termID CDATA #IMPLIED
+>
+<!-- KA SSC loosened to include semantics-->
+<!ELEMENT bl (semantics | item)*>
+<!ATTLIST bl
+	%a-all-atts; 
+	%a-all-structure; 
+>
+<!ELEMENT item (#PCDATA | %c-text; | email)*>
+<!ATTLIST item
+	%a-all-atts; 
+	%a-all-structure; 
+>
+<!--KA SSC changed max-list-nesting from NUMBER to CDATA
+Deleted max-list-nesting CDATA #FIXED '%f-max-list-nesting' ?
+-->
+<!-- KA SSC loosened to include semantics-->
+<!ELEMENT nl (semantics | level)*>
+<!ATTLIST nl
+	%a-all-atts; 
+	%a-all-structure; 
+>
+<!-- TechBooks: 12/06/2001. A new element <mcl> has been created to handle mult-column
+     list. -->
+<!-- KA SSC loosened to include semantics-->
+<!ELEMENT mcl (semantics | list-head | column | column)*>
+<!ATTLIST mcl
+	%a-all-atts; 
+	%a-all-structure; 
+>
+<!-- TechBooks: 12/06/2001. A new element <list-head> has been created to handle
+     the heading of multi-column list. -->
+<!ELEMENT list-head (#PCDATA | %c-text;)*>
+<!-- TechBooks: 12/06/2001. A new element <column> has been created to handle
+     the content of multi-columns in <mcl>. -->
+<!ELEMENT column (column-head?, item*)>
+<!-- TechBooks: 12/06/2001. A new element <column-head> has been created to handle
+     the heading of individual columns in <mcl>. -->
+<!ELEMENT column-head (#PCDATA)>
+<!ELEMENT np (p+)>
+<!ATTLIST np
+	%a-all-atts; 
+	%a-all-structure; 
+>
+<!-- KA SSC loosened to include semantics-->
+<!ELEMENT outline (semantics | level)*>
+<!ATTLIST outline
+	%a-all-atts; 
+	%a-all-structure; 
+>
+<!-- KA SSC changed to optional instead of comma order for Papadakis 6.8.2005 -->
+<!ELEMENT level (p | level)*>
+<!ATTLIST level
+	%a-all-atts; 
+	%a-all-structure; 
+>
+<!-- 4.15.97 JB added panel -->
+<!ELEMENT p (#PCDATA | %c-text; | panel | semantics | email)*>
+<!ATTLIST p
+	%a-all-atts; 
+	%a-all-structure; 
+>
+<!-- KA SSC loosened to include semantics-->
+<!ELEMENT ul (semantics | item)*>
+<!ATTLIST ul
+	%a-all-atts; 
+	%a-all-structure; 
+>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Domain elements. -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!--KA SSC changed source:
+source NOTATION (composition) #FIXED 'composition'
+and max-approach-occurance
+max-approach-occurrence NUMBER #FIXED '&f-max-approach-occurrence'
+-->
+<!ELEMENT approach (%c-bridge; | %s-container; | %s-resource; | head | semantics)*>
+<!ATTLIST approach
+	%a-all-atts; 
+	%a-all-content; 
+	source CDATA #FIXED "composition"
+	clause CDATA #FIXED "APPROACH TO PATIENT HEAD"
+	max-approach-occurrence CDATA #IMPLIED 
+>
+<!-- PIT, 3-23-00: added new element, guidelines, same style as approach -->
+<!--KA SSC changed source:
+source NOTATION (composition) #FIXED 'composition'
+and max-approach-occurance
+max-approach-occurrence NUMBER #FIXED '&f-max-approach-occurrence'
+-->
+<!ELEMENT guidelines (%c-bridge; | %s-container; | %s-resource; | head | semantics)*>
+<!ATTLIST guidelines
+	%a-all-atts; 
+	%a-all-content; 
+	source CDATA #FIXED "composition"
+	clause CDATA #FIXED "APPROACH TO PATIENT HEAD"
+	max-approach-occurrence CDATA #IMPLIED 
+>
+<!-- TechBooks: 03/12/2002. A new element <essentials> has been created to handle
+     the "ESSENTIALS OF DIAGNOSIS". -->
+<!--KA SSC changed source:
+source NOTATION (composition) #FIXED 'composition'
+-->
+<!ELEMENT essentials (%c-bridge; | %s-container; | %s-resource; | head | semantics)*>
+<!ATTLIST essentials
+	%a-all-atts; 
+	%a-all-content; 
+	source CDATA #FIXED "composition"
+	clause CDATA #FIXED "ESSENTIALS OF DIAGNOSIS HEAD" 
+>
+<!--KA SSC changed source:
+source NOTATION (composition) #FIXED 'composition'
+and max-approach-occurance
+max-approach-occurrence NUMBER #FIXED '&f-max-approach-occurrence'
+-->
+<!ELEMENT rx (%c-bridge; | %s-container; | %s-resource; | head | semantics)*>
+<!ATTLIST rx
+	%a-all-atts; 
+	%a-all-content; 
+	source CDATA #FIXED "composition"
+	clause CDATA #FIXED "TREATMENT HEAD"
+	max-approach-occurrence CDATA #IMPLIED 
+>
+<!--KA SSC delete ornament attr:
+	ornament ENTITY #FIXED "f-rx-graphic"
+-->
+<!--KA SSC changed source:
+source NOTATION (composition) #FIXED 'composition'
+and max-approach-occurance
+max-approach-occurrence NUMBER #FIXED '&f-max-approach-occurrence'
+-->
+<!-- PIT, 3-23-00: added new element, genetics, same style as rx -->
+<!ELEMENT genetics (%c-bridge; | %s-container; | %s-resource; | head | semantics)*>
+<!ATTLIST genetics
+	%a-all-atts; 
+	%a-all-content; 
+	source CDATA #FIXED "composition"
+	clause CDATA #FIXED "TREATMENT HEAD"
+	max-approach-occurrence CDATA #IMPLIED 
+>
+<!--KA SSC delete ornament attr:
+	ornament ENTITY #FIXED "f-rx-graphic"
+-->
+<!-- TechBooks: 11/07/2001. A new element <sidebar> has been created with
+     the same definition as the genetics element. -->
+<!--KA SSC changed source:
+source NOTATION (composition) #FIXED 'composition'
+and max-approach-occurance
+max-approach-occurrence NUMBER #FIXED '&f-max-approach-occurrence'
+-->
+<!ELEMENT sidebar (%c-bridge; | %s-container; | %s-resource; | head | semantics)*>
+<!ATTLIST sidebar
+	%a-all-atts; 
+	%a-all-content; 
+	source CDATA #FIXED "composition"
+	clause CDATA #FIXED "TREATMENT HEAD"
+	max-approach-occurrence CDATA #IMPLIED 
+>
+<!--KA SSC delete ornament attr:
+	ornament ENTITY #FIXED "f-rx-graphic"
+-->
+<!-- KA SSC 1.18.2007 new element <careplans> definition and related children -->
+<!ELEMENT careplans (careplan)+>
+<!ATTLIST careplans
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!ELEMENT careplan (date, condition, drugtherapy, goals, recommendations, monitoring, followup)+>
+<!ATTLIST careplan
+	%a-all-atts; 
+	%a-all-content;
+	edit	(yes|no)	#REQUIRED
+	ordinal	CDATA	#IMPLIED 
+>
+<!ELEMENT date (p)+>
+<!ELEMENT condition (p)+>
+<!ELEMENT drugtherapy (p)+>
+<!ELEMENT goals (p)+>
+<!ELEMENT recommendations (p)+>
+<!ELEMENT monitoring (p)+>
+<!ELEMENT followup (p)+>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Resource elements. -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!ELEMENT extract ((%s-container; | %s-resource;)*, source?)>
+<!ATTLIST extract
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!-- KA SSC loosened to include semantics-->
+<!ELEMENT figure (title | panel | legend | semantics)*>
+<!ATTLIST figure
+	%a-all-atts; 
+	%a-all-structure; 
+	type (photograph | x-ray | CTscan | MRI | ECG | echocardiogram | endoscopy | bronchoscopy | funduscopy | micrograph | urinalysis | bloodsmear | ultrasound | arteriogram | illustration | venogram | lymphoscintigram | bonemarrow) #IMPLIED 
+>
+<!-- SH: 9/14/98. Created audio and video elements. They are similar to
+     figure, but without the panel substructure that a figure has. So,
+     the source attribute that would pull in an EPS entity for a panel,
+     pulls in a video or audio entity instead. 
+     
+	(Note that since these elements are members of %c-bridge, they could
+	well be contained within figures.)  -->
+<!-- KA SSC deleting           notation %n-audio-notations; %f-audio-notation;-->
+<!-- KA SSC loosened to include semantics-->
+<!ELEMENT audio (title | legend | semantics)*>
+<!ATTLIST audio
+	%a-all-atts; 
+	%a-all-structure; 
+	source CDATA #REQUIRED 
+>
+<!-- KA SSC audio and video source to CDATA from ENTITY to allow correct parsing-->
+<!-- KA SSC deleting                     notation %n-video-notations; %f-video-notation;-->
+<!-- KA SSC loosened to include semantics-->
+<!-- KA SSC added time attribute for Access Surgery implementation, in update context-->
+<!-- UJH SSC added author option 12/13/2007-->
+<!ELEMENT video (title | legend | semantics | author)*>
+<!ATTLIST video
+	%a-all-atts; 
+	%a-all-structure; 
+	source CDATA #REQUIRED
+	time CDATA #REQUIRED
+	width	CDATA	#IMPLIED
+	height	CDATA	#IMPLIED 
+>
+<!-- SH: 11.7: changed content model from callout* to callout, enumerator pairs. -->
+<!-- KA SSC deleting                     notation %n-graphic-notations; %f-graphic-notation;
+Changed panel to CDATA to avoid parsing issues
+-->
+<!ELEMENT panel (callout, enumerator?)*>
+<!ATTLIST panel
+	%a-all-atts; 
+	%a-all-content; 
+	graphic CDATA #REQUIRED
+	notation CDATA #IMPLIED 
+>
+<!-- KA SSC changed %n-graphic-notations; %f-graphic-notation;  to allow error-free processing-->
+<!-- KA SSC changed HyTime NAME to CDATA-->
+<!-- KA SSC deleting                   qcontext %n-graphic-notations; #IMPLIED
+qdomain IDREF to CDATA-->
+<!ELEMENT callout (#PCDATA)>
+<!ATTLIST callout
+	%a-all-atts; 
+	HyTime CDATA #FIXED "notloc"
+	qdomain CDATA #IMPLIED
+	coordinates CDATA "" 
+>
+<!ELEMENT legend ((%s-container;)*, source?)+>
+<!ATTLIST legend
+	%a-all-atts; 
+	%a-all-structure; 
+>
+<!ELEMENT table-entity EMPTY>
+<!ATTLIST table-entity
+	%a-all-atts; 
+	%a-all-structure; 
+	notation CDATA #IMPLIED
+	table-source ENTITY #REQUIRED 
+>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Other elements. -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- KA SSC changed HyTime NAME to CDATA-->
+<!ELEMENT title (#PCDATA | %c-text;)*>
+<!ATTLIST title
+	%a-all-atts; 
+	%a-all-one-to-one; 
+	HyTime CDATA #FIXED "clink"
+	head-level CDATA #IMPLIED 
+>
+<!-- KA SSC removed f-declared-head-levels from title ATTLIST to enable error-free transforms-->
+<!-- KA SSC added element email for access medicine authoring tool development-->
+<!ENTITY % s-person "nm,nt?,(degree,nt?)*,(affiliations,nt?)*, (email)*
+           ">
+<!ELEMENT nm (#PCDATA | gv-nm | img)*>
+<!ATTLIST nm
+	%a-all-atts; 
+>
+<!ELEMENT gv-nm (#PCDATA)>
+<!ATTLIST gv-nm
+	%a-all-atts; 
+>
+<!ELEMENT degree (#PCDATA)>
+<!ATTLIST degree
+	%a-all-atts; 
+>
+<!ELEMENT affiliations (#PCDATA)>
+<!ATTLIST affiliations
+	%a-all-atts; 
+>
+<!-- KA SSC added element email for access medicine authoring tool development-->
+<!ELEMENT email (#PCDATA)>
+<!ATTLIST email
+	%a-all-atts; 
+>
+<!-- Techbooks: 21/03/2001. A new element <secauthor> has been created here to
+capture the section authors.
+ -->
+<!ELEMENT secauthor (author+)>
+<!ATTLIST secauthor
+	%a-all-atts; 
+>
+<!-- KA SSC changed HyTime NAME to CDATA-->
+<!ELEMENT author (%s-person;)+>
+<!ATTLIST author
+	linked CDATA #IMPLIED
+	%a-all-atts; 
+	%a-all-one-to-many; 
+	HyTime CDATA #FIXED "clink" 
+>
+<!-- KA SSC changed HyTime NAME to CDATA-->
+<!ELEMENT editor (%s-person;)+>
+<!ATTLIST editor
+	%a-all-atts; 
+	%a-all-one-to-many; 
+	HyTime CDATA #FIXED "clink" 
+>
+<!-- KA SSC changed HyTime NAME to CDATA-->
+<!ELEMENT contributor (%s-person;)+>
+<!ATTLIST contributor
+	%a-all-atts; 
+	%a-all-one-to-many; 
+	HyTime CDATA #FIXED "clink" 
+>
+<!-- JB: 6.9.97 added * -->
+<!ELEMENT source (nb | nc | nf | na)*>
+<!ATTLIST source
+	%a-all-atts; 
+	%a-all-content; 
+>
+<!ELEMENT overview (#PCDATA | %c-text; | semantics)*>
+<!ATTLIST overview
+	%a-all-atts; 
+	%a-all-structure; 
+>
+<!--KA SSC changed external CONREF to IMPLIED, empty clause to IMPLIED-->
+<!ELEMENT block (line+)>
+<!ATTLIST block
+	%a-all-atts; 
+	source CDATA #IMPLIED
+	clause CDATA #IMPLIED
+	external ENTITY #IMPLIED 
+>
+<!--KA SSC changed external CONREF to IMPLIED, empty clause to IMPLIED-->
+<!ELEMENT line (#PCDATA)>
+<!ATTLIST line
+	%a-all-atts; 
+	source CDATA #IMPLIED
+	clause CDATA #IMPLIED 
+>
+<!-- KA SSC changed above ATTLIST line (source) from  %n-line; %f-line; to allow for error-free processing-->
+<!--KA SSC changed to standard mixed content model, changed extrinsic CONREF to IMPLIED
+extrinsic IDREF to CDATA-->
+<!ELEMENT topic (%s-container; | %s-domain; | %s-resource; | %c-text; | semantics)*>
+<!ATTLIST topic
+	%a-all-atts; 
+	%a-all-content; 
+	extrinsic CDATA #IMPLIED 
+>

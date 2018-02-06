@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1.0;">
+<title>Body Mass Index</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+
+<script language="JavaScript">
+
+function calcBMI(obj) {
+
+   function IsNum(str) {
+      for (var i = 0; i < str.length; i++) {
+         var chr = str.substring(i, i+1);
+         if ((chr < "0" || "9" < chr) && chr != ".")
+            return false;
+         }
+      if (eval(str)==0)
+         return false;
+      return true;
+   }
+
+   function FixNum(num) {
+      if ((num < 1) && (num >= 0.1))
+         num = "0" + num;
+      return num;
+   }
+
+   if (!IsNum(obj.weight.value)) {
+      alert("Weight invalid");
+      return; }
+   if (!IsNum(obj.height.value)) {
+      alert("Height invalid");
+      return; }
+
+   var weight = obj.weight.value;
+   var height = obj.height.value;
+   var bsa = 0;
+
+   // Conversion to metric
+   if (obj.kglb[1].checked) {
+      weight = Math.round(weight / 2.2046 * 100) / 100;
+      obj.kglb[0].checked = true; }
+   else
+      weight = Math.round(weight * 100) / 100;
+   if (obj.cmin[1].checked) {
+      height = Math.round(height * 2.54 * 100)/100;
+      obj.cmin[0].checked = true; }
+   else
+      height = Math.round(height * 100) / 100;
+
+   meters = height / 100
+   bmi = weight / (meters * meters);
+   bmi = Math.round(bmi * 1000) / 1000;
+   bmi = FixNum(bmi);
+
+   // Copy values to object form
+   obj.weight.value = weight;
+   obj.height.value = height;
+   obj.resValue.value = bmi;
+}
+
+</script>
+</head>
+<body>
+  <div id="bodyMaster"> 
+    <div id="bodySub">
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol" align="center"> 
+
+     
+        <h1>Body Mass Index</h1>
+        <p> The Body Mass Index relates height to weight and helps to determine 
+          ideal body proportions.</p>
+        <form name="formulaForm">
+          <div align="center"> 
+            <center>
+              <table
+                            border="0" cellpadding="0"
+                            cellspacing="1">
+                <tr> 
+                  <td>Input Weight&nbsp;</td>
+                  <td> 
+                    <input
+                                    type="text" size="8"
+                                    name="weight">
+                  </td>
+                  <td> 
+                    <input type="radio"
+                                    checked name="kglb"
+                                    value="kg">
+                    kg </td>
+                  <td> 
+                    <input type="radio"
+                                    name="kglb" value="lb">
+                    lbs</td>
+                </tr>
+                <tr> 
+                  <td>Input Height&nbsp;</td>
+                  <td> 
+                    <input
+                                    type="text" size="8"
+                                    name="height">
+                  </td>
+                  <td> 
+                    <input type="radio"
+                                    checked name="cmin"
+                                    value="cm">
+                    cm</td>
+                  <td> 
+                    <input type="radio"
+                                    name="cmin" value="in">
+                    in</td>
+                </tr>
+                <tr> 
+                  <td colspan="1">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td colspan="4"> 
+                    <div align="center"> 
+                      <center>
+                      </center>
+                    </div>
+                    <div align="center"> 
+                      <input type="button"
+                            name="Calculate" value="Calculate"
+                            onClick="calcBMI(this.form)">
+                      <input
+                            type="reset" name="resetButton"
+                            value="Clear">
+                    </div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td colspan="4">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td colspan="4"> 
+                    <div align="center">Body Mass Index = 
+                      <input type="text" size="10"
+                            name="resValue">
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </center>
+          </div>
+          <div align="center"> 
+            <center>
+            </center>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <table
+                            border="1" align="center" cellpadding="3" cellspacing="1">
+          <tr> 
+            <td>&nbsp;</td>
+            <td align="center"><strong>Female</strong> </td>
+            <td align="center"><strong>Male</strong> </td>
+          </tr>
+          <tr> 
+            <td>Underweight </td>
+            <td align="center">&lt; 19</td>
+            <td align="center">&lt;20</td>
+          </tr>
+          <tr> 
+            <td>Acceptable</td>
+            <td align="center">19 - 25 </td>
+            <td align="center">20 - 25 </td>
+          </tr>
+          <tr> 
+            <td>Overweight</td>
+            <td align="center">25 - 30 </td>
+            <td align="center">25 - 30 </td>
+          </tr>
+          <tr> 
+            <td>Obese</td>
+            <td align="center">30 - 40 </td>
+            <td align="center">30 - 40 </td>
+          </tr>
+          <tr> 
+            <td>Morbidly Obese</td>
+            <td align="center">&gt; 40</td>
+            <td align="center">&gt; 40</td>
+          </tr>
+        </table>
+        <p>The formula is:</p>
+        <p align="center">BMI = W / H<sup>2</sup></p>
+        <p>where W is the weight in kilograms and H is the height in meters.</p>
+        <p>For more information on how the BMI should be interpreted, see the 
+          <a href="http://www.cdc.gov/healthyweight/assessing/bmi/childrens_bmi/about_childrens_bmi.html" target="_blank">Centers 
+          for Disease Control and Prevention</a> website.</p>
+        <p>&nbsp;</p>
+        <p> <i>Created:</i>January 10, 2000<br>
+          <i>Revised:</i>October 3, 2000</p>
+      </div>
+      <div id="rightCol"> 
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+

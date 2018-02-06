@@ -1,0 +1,107 @@
+<!-- (0) File: f-decs.txt
+     Status:    Draft   Complete                
+                [ ]     [x]
+     Type:      DTD     DTD external entity
+                [ ]     [x]
+     Date:      9.20.98     
+     Version:   1.1
+     Client:    McGraw-Hill
+                [MGH]   
+     Author:    Sam Hunting                
+                sgmlsh@cam.org
+     .............................................................................
+     README
+     ......
+     System Administator
+     ...................
+     Formal Public Identifier: see below. 
+     Implementor
+     ...........
+     This file contains system defaults:
+         * attribute values used by elements DTDs in the files listed above
+         * attribute values used by notations DTDs in the files listed above
+         * the default content model
+         * the default general entity
+ 
+     File Name            Prefixing Convention*
+     =========            ====================
+     f-decs.txt           System De[F]aults
+     
+     *  This convention also used for entity names declared in the
+        individual files; that is, the entity %f-foo would be found in 
+        f-decs.txt.
+    .............................................................................. -->
+<!--============================================================================== -->
+
+<!-- Formal Public Identifier "-//MGH//ENTITIES f-decs.txt 1996 v0.92//EN" -->
+
+<!-- SH: 9/14/98. Added f-audio-notation. --> 
+
+<!ENTITY % f-audio-notation "#IMPLIED">
+
+<!ENTITY % f-block "#IMPLIED">
+
+<!ENTITY % f-cq-notation "#IMPLIED">
+
+<!-- JB: 10.28.96 Added a to head levels ... JB: 11/6/96 Added apt1 to head levels ... JB: 11.15.96 Added apt2, apt3 rx4, and rx5 heads ... JB: 7.15.97 Added s1 (super 1 head) 6 and 7 ... -->
+<!-- PIT, 3-23-00: add additional head level attributes, rx3, ge1, ge2, ge3, ge4 -->
+
+<!-- Techbooks: 21/03/2001. Added head levels - 8, 9, 10, and 11.
+     Note: The heading level 7 is reserved for a special purpose. -->
+<!-- Techbooks: 05/14/2001. Added head levels - t1, t2, t3, t4 for "tsubhead". -->
+<!-- Techbooks: 07/11/2001. Added head level 0. -->
+
+<!ENTITY % f-declared-head-levels "(0|1|2|3|4|5|6|7|8|9|10|11|a|apt1|apt2|apt3|rx3|rx4|rx5|ge1|ge2|ge3|ge4|s1|t1|t2|t3|t4)">
+
+<!ENTITY % f-declared-media "(print|CD)"> 
+
+<!ENTITY % f-eq-notation "#IMPLIED">
+
+<!ENTITY % f-graphic-notation "#IMPLIED">
+
+<!ENTITY % f-head-level "#REQUIRED">
+
+<!ENTITY % f-line "#IMPLIED">
+
+<!ENTITY % f-medium "print">
+
+<!--KA SSC Change CONREF to IMPLIED-->
+<!ENTITY % f-state-switch "#IMPLIED">
+
+<!ENTITY % f-table-notation "#IMPLIED">
+
+<!ENTITY % f-tbd "ANY"> <!-- Shall never appear in a complete DTD. -->
+
+<!ENTITY f-copyright-symbol "&copy;">
+
+<!ENTITY f-max-approach-occurrence "1">
+
+<!-- PIT, 3-23-00: added entity -->
+<!ENTITY f-max-guidelines-occurrence "1">
+
+<!ENTITY f-max-entry-nesting "3">
+
+<!ENTITY f-max-list-nesting "3">
+
+<!ENTITY f-max-rx-occurrence "1">
+
+<!-- PIT, 3-23-00: added entity -->
+<!ENTITY f-max-genetics-occurrence "1">
+
+<!-- Techbooks: 07/11/2001. Created new entity for sidebar element. -->
+<!ENTITY f-max-sidebar-occurrence "1">
+
+<!-- SH: 9/14/98. Added f-video-notation. --> 
+
+<!ENTITY % f-video-notation "#IMPLIED">
+
+<!-- SH: 9/14/98. Added pubmed2.gif. Would prefer to name
+this f-abstract-icon, to conform to naming conventions and
+be self-documenting, but perhaps there are requirements
+for file extensions that make this name necessary. --> 
+
+<!-- Techbooks: 02/02/2001. Removed the "pubmed2.gif" entity from here as
+     the element abstract-yes has been removed from the DTD.
+
+<!ENTITY pubmed2.gif SYSTEM NDATA GIF>
+ -->

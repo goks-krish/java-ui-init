@@ -1,0 +1,9 @@
+﻿<?xml encoding="utf-8"?>
+
+<!ENTITY % isolat1 PUBLIC "ISO 8879-1986//ENTITIES Added Latin 1//EN//XML" "ISO\ISOLAT1.pen">
+<!ENTITY % isotech PUBLIC "ISO 8879-1986//ENTITIES General Technical//EN//XML" "ISO\ISOTECH.pen">
+<!ENTITY % isogrk1 PUBLIC "ISO 8879-1986//ENTITIES Greek Letters//EN//XML" "ISO\ISOGRK1.pen">
+<!ENTITY % isonum PUBLIC "ISO 8879-1986//ENTITIES Numeric and Special Graphic//EN//XML" "ISO\ISONUM.pen">
+<!ENTITY % isopub PUBLIC "ISO 8879-1986//ENTITIES Publishing//EN//XML" "ISO\ISOPUB.pen">
+<!ENTITY % isogrk3 PUBLIC "ISO 8879-1986//ENTITIES Publishing//EN//XML" "ISO\isogrk3.ent">
+%isolat1;%isotech;%isogrk1;%isogrk3;%isonum;%isopub;

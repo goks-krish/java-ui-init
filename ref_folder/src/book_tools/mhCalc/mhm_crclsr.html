@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Creatinine Clearance - Schwartz Estimate, Revised</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calcSchwartz(obj) {
+
+   function IsNum(str) {
+      for (var i = 0; i < str.length; i++) {
+         var chr = str.substring(i, i+1);
+         if ((chr < "0" || "9" < chr) && chr != ".")
+            return false; 
+      }
+      if (eval(str)==0)
+         return false;
+      return true;
+   }
+
+   if (!IsNum(obj.PCr.value)) {
+      alert("Plasma Creatinine invalid");
+      return; }
+   if (!IsNum(obj.Ht.value)) {
+      alert("Height invalid");
+      return; }
+
+   var CrCl = 0;
+   var K = 0.413;
+   var PCr = obj.PCr.value;
+   var Ht = obj.Ht.value;
+
+   // Conversion to metric
+   if (obj.cmin[1].checked) {
+      Ht = Math.round(Ht * 2.54 * 100) / 100;
+      obj.cmin[0].checked = true; }
+   else {
+      Ht = Math.round(Ht * 100) / 100; }
+   obj.Ht.value = Ht
+
+   CrCl = K * Ht / PCr;
+   CrCl = Math.round(CrCl * 100) / 100;
+   obj.resValue.value=CrCl;
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Creatinine Clearance: <br>
+          Revised Schwartz Estimate<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Estimate glomerular filtration rate (creatinine clearance) from serum 
+          creatinine and the patient's height using the &quot;interim IDMS-traceable&quot; 
+          Schwartz estimate published in 2009.</p>
+        <form name="formulaForm">
+          <div align="center"> 
+            <center>
+            </center>
+          </div>
+          <div align="left"> 
+            <table
+                            border="0" cellpadding="0"
+                            cellspacing="1" align="center">
+              <tr> 
+                <td colspan="4">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td>Input Serum Creatinine&nbsp;</td>
+                <td> 
+                  <input
+                                    type="text" size="5"
+                                    name="PCr">
+                </td>
+                <td>&nbsp;mg/dL</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td>Input Height</td>
+                <td> 
+                  <input
+                                    type="text" size="5"
+                                    name="Ht">
+                </td>
+                <td> 
+                  <input type="radio"
+                                    checked name="cmin"
+                                    value="cm">
+                  cm </td>
+                <td> 
+                  <input type="radio"
+                                    name="cmin" value="in">
+                  in</td>
+              </tr>
+              <tr> 
+                <td colspan="4">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="4"> 
+                  <div align="center"> 
+                    <input type="button"
+                            name="Calculate" value="Calculate"
+                            onClick="calcSchwartz(this.form)">
+                    <input
+                            type="reset" name="resetButton"
+                            value="Clear">
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="4">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="right">GFR =&nbsp; </div>
+                </td>
+                <td colspan="3"> 
+                  <input
+                                    type="text" size="6"
+                                    name="resValue">
+                  &nbsp;mL/min&nbsp;per&nbsp;1.73&nbsp;m<sup>2</sup></td>
+              </tr>
+            </table>
+          </div>
+          <p align="center">&nbsp;</p>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>The revised Schwartz formula<sup>1</sup> is:</p>
+        <table cellspacing="1" cellpadding="1" align="center">
+          <tr> 
+            <td rowspan="3">GFR =</td>
+            <td> 
+              <div align="center">0.413 * Ht</div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center"><img src="./images/filler.gif" width="50" height="1"></div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center">Cr<sub>serum</sub></div>
+            </td>
+          </tr>
+        </table>
+        <p>Height is measured in cm. Serum creatinine is measured in mg/dL. Measured 
+          creatinine should be in steady state. This formula may be most accurate 
+          in the range of 15 to 75 mL/min per 1.73 m<sup>2</sup>. Values &gt;75 
+          should be reported as such rather than as a specific number.</p>
+        <p>This formula applies to enzymatic serum creatinine measurements calibrated 
+          to reference measurements by isotope dilution mass spectroscopy (IDMS), 
+          but not to alkaline picrate (&quot;Jaffe&quot;) methods, even those 
+          traceable to IDMS. (For more information see <a href="http://www.nkdep.nih.gov/labprofessionals/labgfr_children.htm">National 
+          Kidney Disease Education Program</a>.) </p>
+        <p>Serum samples that are hemolyzed or have elevated bilirubin may lower 
+          creatinine measurements.</p>
+        <p>Many medications must be adjusted for renal impairment when the CrCl 
+          falls below 50 mL/min.</p>
+        <ol>
+          <li>Schwartz GJ, Mu&ntilde;oz A, Schneider MF, Mak RH, Kaskel F, Warady 
+            BA, Furth SL. J Am Soc Nephrol. 2009 Mar;20(3):629-37</li>
+        </ol>
+        <p>Special thanks to Dr. Megan Rashid, University of Rochester.</p>
+        <p>&nbsp;</p>
+        <!-- #EndEditable --> 
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->September 28, 
+          2010<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->October 14, 2010<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

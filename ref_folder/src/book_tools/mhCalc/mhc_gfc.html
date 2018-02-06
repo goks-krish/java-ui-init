@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Gauge - French Conversion</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calcFrench(obj) {
+
+	var mGauge       = obj.Gauge.value;
+	if (!IsNum(mGauge)) {
+		alert("Gauge size invalid");
+		return;
+	}
+
+	var mGaugeIndex  = Math.round(mGauge) - 10;
+	if ((mGaugeIndex < 0) || (mGaugeIndex > 23)) {
+		alert("Gauge out of range");
+		return;
+	}
+
+	var aGaugeTable  = new Array(3.404, 3.048, 2.769, 2.413, 2.108, 1.829, 1.651, 1.473, 1.270, 1.067, 0.902, 0.813, 0.711, 0.635, 0.559, 0.508, 0.457, 0.406, 0.356, 0.333, 0.305, 0.254, 0.229, 0.203);
+	var mSizeMM      = 0;
+	var mFrench      = 0;
+
+	// Get mm from the Gauge table
+	mSizeMM  = parseFloat(aGaugeTable.slice(mGaugeIndex, mGaugeIndex + 1));
+	mFrench  = Math.round(mSizeMM * 30)/10;
+
+	// Copy values to object form
+	obj.French.value = mFrench;
+}
+
+function calcGauge(obj) {
+
+	var mFrench      = obj.French.value;
+	if (!IsNum(mFrench) || mFrench < 0 ) {
+      alert("French size invalid");
+      return; 
+	}
+
+	var aGaugeTable  = new Array(3.404, 3.048, 2.769, 2.413, 2.108, 1.829, 1.651, 1.473, 1.270, 1.067, 0.902, 0.813, 0.711, 0.635, 0.559, 0.508, 0.457, 0.406, 0.356, 0.333, 0.305, 0.254, 0.229, 0.203);
+	var mSizeMM         = mFrench / 3;
+	var mRemainder      = 0;
+	var mTestGauge      = 0;
+	var mRightSizeIndex = 0;
+	var mRightSizeMM    = 0;
+	var mLeftSizeMM     = 0;
+	
+	if (mSizeMM > 3.404) {
+		obj.Gauge.value = "<10"
+		return;
+	}
+	for (var i = 0; i < 24; i++) {
+		mTestGauge  = aGaugeTable[i];
+		if (mSizeMM > mTestGauge) {
+			mRightSizeIndex = i;
+			mRightSizeMM    = mTestGauge;
+			mLeftSizeMM     = aGaugeTable[i - 1];
+			i = 100;
+		}
+	}
+	if (i = 100) {
+		// match found
+		mRightGauge  = mRightSizeIndex + 10;
+		// interpolate the Gauge from the size in mm
+		mIntervMM    = mLeftSizeMM - mRightSizeMM;
+		mRemainder   = mSizeMM - mRightSizeMM;
+		mGauge       = mRightGauge - mRemainder / mIntervMM;
+		mGauge       = Math.round(mGauge * 10) / 10;
+	}else{
+		// no match in aGaugeTable
+		alert("French size input out of range");
+		return;
+	}
+	obj.Gauge.value = mGauge;
+
+}
+
+function IsNum(str) {
+   for (var i = 0; i < str.length; i++) {
+      var chr = str.substring(i, i+1);
+      if ((chr < "0" || "9" < chr) && chr != ".")
+         return false;
+      }
+   if (eval(str)==0)
+      return false;
+   return true;
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Gauge - French Conversion<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Enter a value in a cell and click the Calculate button in the same 
+          row to determine approximate equivalence in the other unit.</p>
+        <form name="formulaForm">
+          <div align="center"> 
+            <table
+                            border="0" cellpadding="0"
+                            cellspacing="1">
+              <tr> 
+                <td>Gauge&nbsp;</td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="Gauge">
+                </td>
+                <td> 
+                  <input
+                                    type="button"
+                                    name="CalcFrmGauge"
+                                    value="Calculate"
+                                    onClick="calcFrench(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td>French&nbsp;</td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="French">
+                </td>
+                <td> 
+                  <input
+                                    type="button"
+                                    name="CalcFrmFrench"
+                                    value="Calculate"
+                                    onClick="calcGauge(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="3">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td align="center"
+                                    colspan="3"> 
+                  <input
+                                    type="reset" name="Clear"
+                                    value="Clear">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p>By convention, needles or single lumen catheters are sized by gauge 
+          and multi-lumen catheters are measured by French size. Whereas French 
+          size and diameter are related directly, gauge and size are related inversely; 
+          a lower gauge indicates a greater diameter. Gauge designations generally 
+          go no lower than (bigger than) 10 ga.</p>
+        <p>Standards exist for the inner and outer diameters of needles of a particular 
+          gauge, but standards exist only for the outer diameter of catheters<sup>1</sup>, 
+          even those with a single lumen. Caution must be exercised when considering 
+          catheter/needle and guidewire combinations. Consult the manufacturer's 
+          specifications to ascertain whether a guidewire of a particular diameter 
+          can fit through a particular catheter or needle.</p>
+        <p>This calculator is derived from a conversion table that is available 
+          in PDF format at <a href="http://www.sai-infusion.com/files/ConversionTable.pdf" target="blank">sai-infusion.com</a>.</p>
+        <p> 
+        <p> 
+        <ol>
+          <li><a href="http://www.anesthesia-analgesia.org/content/95/4/1125.1.full" target="blank">Ahn 
+            W, Bahk JH, Lim YJ</a>. &quot;The &#147;Gauge&#148; System for the 
+            Medical Use.&quot; Anesthesia &amp; Analgesia. October 2002. 95(4): 
+            1125</li>
+        </ol>
+        <p>&nbsp;</p>
+        <!-- #EndEditable --> 
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->September 28, 2010<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->October 18, 2010<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

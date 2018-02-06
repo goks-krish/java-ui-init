@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Clearance CRRT</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calculateFormula(frm) {
+  var BFRmin  = parseFloat(frm.BFR.value);
+  var UFRhr   = parseFloat(frm.UFR.value);
+  var RRhr    = parseFloat(frm.RR.value);
+  var Cplasma = parseFloat(frm.Cplasma.value);
+  var ProBind = parseFloat(frm.ProBind.value);
+
+  if ((ProBind > 100) || (ProBind < 0)) {
+    alert("Invalid value for Protein Binding");
+    return;
+  }else{
+    if ((ProBind < 1) && (ProBind > 0)) {
+      alert("Enter Protein Binding as a percentage between 0 and 100.");
+      return;
+    }else{
+      ProBindF = ProBind / 100
+    }
+  }
+
+  var UFRmin  = UFRhr / 60;
+  var RRmin   = RRhr / 60 * 1000;
+
+  Cufil       = Cplasma * (1 - ProBindF) * BFRmin / (BFRmin + RRmin);
+  Cufil       = Math.round(Cufil * 10000) / 10000;
+  Clearance   = Cufil * (UFRmin + RRmin) / Cplasma;
+  Clearance   = Math.round(Clearance * 10) / 10;
+  document.formulaForm.Cufil.value = Cufil;
+  document.formulaForm.Clearance.value = Clearance;
+}
+
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Clearance 
+                  of CRRT<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calculate the theoretical clearance of a <b>continuous renal replacement 
+          therapy</b> (CRRT) system. This calculation applies to pre-filter replacement 
+          configurations only, not post-filter replacement or diafiltration methods. 
+          These clearances are <b>theoretical</b> and should be confirmed by other 
+          means. Medication dosing should not be based solely on the clearance 
+          calculated here.</p>
+        <form name="formulaForm">
+          <div align="left"> 
+            <table border="0"
+                            cellpadding="0" cellspacing="1" align="center">
+              <tr> 
+                <td colspan="2">Input&nbsp;Blood&nbsp;Flow&nbsp;Rate&nbsp;(BFR)&nbsp;&nbsp; 
+                </td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="BFR">
+                  mL/min</td>
+              </tr>
+              <tr> 
+                <td colspan="2">Ultrafiltration&nbsp;Rate&nbsp;(UFR)</td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="UFR">
+                  mL/hr</td>
+              </tr>
+              <tr> 
+                <td colspan="2">Replacement Rate (RR)</td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="RR">
+                  L/hr</td>
+              </tr>
+              <tr> 
+                <td colspan="2">Plasma&nbsp;Concentration</td>
+                <td> 
+                  <input type="text" name="Cplasma" size="6" value="1">
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="2">Protein Binding</td>
+                <td> 
+                  <input type="text" name="ProBind" size="6" value="0">
+                  % </td>
+              </tr>
+              <tr> 
+                <td colspan="2">&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="3"> 
+                  <div align="center"> 
+                    <input type="button"
+                            name="Calculate" value="CALCULATE"
+                            onClick="calculateFormula(this.form)">
+                    <input type="reset"
+                            name="resetButton" value="CLEAR">
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="2">&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="2">Ultrafiltrate Concentration</td>
+                <td> 
+                  <input type="text" name="Cufil" size="6">
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="2">Clearance</td>
+                <td> 
+                  <input type="text"
+                            size="6" name="Clearance">
+                  mL/min</td>
+              </tr>
+            </table>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>The units for the Blood Flow Rate, Ultrafiltration Rate, and Replacement 
+          Rate settings are usually different from one another. They must first 
+          be converted to the same units as the Clearance.</p>
+        <p>The Plasma Concentration can be for any solute, but the actual value 
+          is unimportant; only the ratio to the Ultrafiltrate Concentration matters. 
+          (Note that protein binding will diminish actual clearance of specific 
+          solutes). Similarly, the units for Plasma Concentration and Ultrafiltrate 
+          Concentration cancel out and thus need not be specified. The Ultrafiltrate 
+          Concentration equals the Plasma Concentration times the Blood Flow Rate 
+          divided by the sum of the Blood Flow Rate and the Replacement Rate (after 
+          converting the units). This Ultrafiltrate Concentration would equal 
+          the concentration of that solute in the blood returning to the patient 
+          if there is no protein binding. If the protein binding is not insignificant, 
+          the Ultrafiltrate Concentration would be multiplied by quantity 1 - 
+          Protein Bound Fraction.</p>
+        <p>The formula for the calculation of clearance (in this case creatinine) 
+          is:</p>
+        <table
+                            border="0" cellpadding="0"
+                            cellspacing="1" align="center">
+          <tr> 
+            <td rowspan="3">CrCl = </td>
+            <td align="center">U<sub>Cr</sub> * U<sub>Vol</sub></td>
+          </tr>
+          <tr> 
+            <td align="center"><img src="./images/filler.gif" width="80" height="1"></td>
+          </tr>
+          <tr> 
+            <td align="center">P<sub>Cr</sub> * T<sub>min</sub></td>
+          </tr>
+        </table>
+        <p>For continuous renal replacement therapy, the ultrafiltrate is the 
+          &quot;urine.&quot;</p>
+        <p>Note that when the Replacement Rate is zero, the Clearance is equivalent 
+          to the Ultrafiltration Rate (in mL/min rather than mL/hr). Also note 
+          that the initial Plasma Concentration ultimately does not affect the 
+          Clearance.</p>
+        <p>&nbsp;</p>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->November 4, 2009<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->November 5, 2009<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Ventilation Index</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calculateFormula (a,b,c,d) {
+        var Result= 0;
+        var RRate = parseFloat(a);
+        var PIP   = parseFloat(b);
+        var PEEP  = parseFloat(c);
+        var PaCO2 = parseFloat(d);
+        var Vi    = 0;
+        Vi = RRate*(PIP-PEEP)*PaCO2/1000;
+        Result = Math.round(Vi*10) / 10;
+        document.formulaForm.resValue.value = Result;
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Ventilation 
+                  Index<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calculate the ventilation index given ventilator rate, peak airway 
+          pressure, positive end-expiratory pressure, and P<sub>a</sub>CO<sub>2.</sub></p>
+        <form name="formulaForm">
+          <div align="left"> 
+            <table border="0"
+                            cellpadding="0" align="center">
+              <tr> 
+                <td colspan="2">Input Ventilator Respiratory Rate</td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="RRate">
+                  bpm&nbsp; </td>
+              </tr>
+              <tr> 
+                <td height="26" colspan="2">Input Peak Inspiratory Pressure</td>
+                <td height="26"> 
+                  <input
+                                    type="text" size="6"
+                                    name="PIP">
+                  torr &nbsp; </td>
+              </tr>
+              <tr> 
+                <td height="31" colspan="2">Input&nbsp;Positive&nbsp;End&#150;Expiratory&nbsp;Pressure&nbsp; 
+                </td>
+                <td height="31"> 
+                  <input
+                                    type="text" size="6"
+                                    name="PEEP">
+                  torr&nbsp; </td>
+              </tr>
+              <tr> 
+                <td height="22" colspan="2">Input P<sub>a</sub>CO<sub>2</sub></td>
+                <td height="22"> 
+                  <input
+                                    type="text" size="6"
+                                    name="PaCO2">
+                  torr&nbsp; </td>
+              </tr>
+              <tr> 
+                <td height="22" colspan="2">&nbsp;</td>
+                <td height="22">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td height="22" colspan="3"> 
+                  <div align="left"></div>
+                  <div align="center"> 
+                    <input type="button"
+                            name="Calculate" value="CALCULATE"
+                            onClick="calculateFormula(document.formulaForm.RRate.value, document.formulaForm.PIP.value, document.formulaForm.PEEP.value, document.formulaForm.PaCO2.value)">
+                    <input type="reset"
+                            name="resetButton" value="CLEAR">
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td height="22" colspan="2">&nbsp;</td>
+                <td height="22">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td height="22">
+                  <div align="right">Ventilation Index </div>
+                </td>
+                <td height="22"> &nbsp;=</td>
+                <td height="22"> 
+                  <input type="text" size="6"
+                            name="resValue">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>The equation is:</p>
+        <table border="0" cellpadding="0"
+                            cellspacing="1" align="center">
+          <tr> 
+            <td rowspan="3">VI =&nbsp;</td>
+            <td align="center">RR * (PIP - PEEP) * P<sub>a</sub>CO<sub>2</sub> 
+            </td>
+          </tr>
+          <tr> 
+            <td align="center"> <img src="./images/filler.gif" width="160" height="1"></td>
+          </tr>
+          <tr> 
+            <td align="center">1000 </td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->January 
+        7, 2000<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->October 
+        19, 2000<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol">
+     </div>
+  </div>
+</div>
+
+</body>
+</html>
+

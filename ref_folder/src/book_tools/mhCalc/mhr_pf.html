@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Peak Flows</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calcPeakFlow(obj) {
+
+   function IsNum(str) {
+      for (var i = 0; i < str.length; i++) {
+         var chr = str.substring(i, i+1);
+         if ((chr < "0" || "9" < chr) && chr != ".")
+            return false;
+         }
+      if (eval(str)==0)
+         return false;
+      return true;
+   }
+
+   if (!IsNum(obj.Height.value)) {
+      alert("Height invalid");
+      return; }
+   var DoPerCent = true;
+   if (!IsNum(obj.mPeakFlow.value)) {
+      DoPerCent = false; }
+
+   var PredPeakFlow = 0;
+   var PerCentPred  = 0;
+   var PFIndex      = 0;
+   var PFTable      = new Array(147, 160, 173, 187, 200, 214, 227, 240, 254, 267, 280, 293, 307, 320, 334, 347, 360, 373, 387, 400, 413, 427, 440, 454, 467)
+   var PHeight      = obj.Height.value;
+   var PeakFlow     = obj.mPeakFlow.value;
+
+   // Conversion to inches
+   if (obj.munit[1].checked) {
+      PHeight              = Math.round(PHeight / 2.54);
+      obj.Height.value     = PHeight; 
+      obj.munit[0].checked = true; }
+   else {
+      PHeight              = Math.round(PHeight); }
+
+   // Get the peak flow from the table
+   PFIndex       = PHeight - 43;
+   if (PFIndex < 0) {
+      PFIndex = 0; }
+   else {
+      if (PFIndex > 24)
+         PFIndex = 24; }
+   PredPeakFlow  = parseFloat(PFTable.slice(PFIndex, PFIndex + 1));
+   PerCentPred   = Math.round(PeakFlow / PredPeakFlow * 100);
+
+   // Copy values to object form
+   obj.pPeakFlow.value = PredPeakFlow;
+   obj.PCPred.value    = PerCentPred;
+}
+
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub">
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol" align="center"> 
+
+     
+        <h1>Peak Flows</h1>
+        <p>Obtain the <i>normal predicted average peak expiratory flow</i> based 
+          on the patient's height for children and adolescents (less than 20 years 
+          of age). Enter the measured personal best peak flow and the percent 
+          of predicted will be calculated as well.</p>
+        <form name="PeakFlowForm">
+          <div align="left"> 
+            <table border="0"
+                            cellpadding="0" cellspacing="1" align="center">
+              <tr> 
+                <td>Patient Height </td>
+                <td> 
+                  <input
+                                    type="text" size="8"
+                                    name="Height">
+                </td>
+                <td> 
+                  <input type="radio"
+                                    name="munit" value="in" checked>
+                  in </td>
+                <td> 
+                  <input type="radio" name="munit"
+                                    value="cm">
+                  cm </td>
+              </tr>
+              <tr> 
+                <td>Measured Peak Flow&nbsp; </td>
+                <td> 
+                  <input
+                                    type="text" size="8"
+                                    name="mPeakFlow">
+                </td>
+                <td>&nbsp;L/min </td>
+                <td>&nbsp; </td>
+              </tr>
+              <tr> 
+                <td colspan="4">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="3"> 
+                  <div align="center"> 
+                    <input type="button"
+                            name="CalcPFlow" value="Calculate"
+                            onClick="calcPeakFlow(this.form)">
+                    <input
+                            type="reset" name="resetButton"
+                            value="Clear">
+                  </div>
+                </td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="4">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td>Predicted Peak Flow&nbsp; </td>
+                <td> 
+                  <input type="text" name="pPeakFlow" size="8">
+                </td>
+                <td>&nbsp;L/min</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="left">Percent of Predicted&nbsp; </div>
+                </td>
+                <td> 
+                  <input type="text" size="8" name="PCPred">
+                </td>
+                <td>&nbsp;%</td>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+            <div align="left"></div>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p> An acceptable peak flow in the &quot;Green Zone&quot; is more than 
+          80% of predicted.</p>
+        <p>Patient height in the data table ranges from 43&quot; to 67&quot;.</p>
+        <p align="center">Data from Polgar G, Promadhat V. <i>Pulmonary Fuction 
+          Testing in Children: Techniques and standards</i>. Philadelphia. W.B. 
+          Saunders Company. 1971.</p>
+        <p>&nbsp;</p>
+        <p> <i>Created:</i>October 24, 2000<br>
+          <i>Revised:</i>October 25, 2000</p>
+      </div>
+      <div id="rightCol"> 
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+

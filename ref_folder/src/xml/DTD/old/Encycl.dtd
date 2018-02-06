@@ -1,0 +1,322 @@
+<!--============================================================================== -->
+<!-- Formal Public Identifier "-//MGH//DTD d-encycl-2.dtd 1998 v1.1//EN" -->
+<!-- JOE's PATH:  -->
+<!-- SAM's MAC:  C:Projects:MGH4:reviseddtds: -->
+<!--KA changed .txt files to .ent files-->
+<!ENTITY % f-decs SYSTEM "f-decs.ent">
+%f-decs;
+<!ENTITY % n-decs SYSTEM "n-decs.ent">
+%n-decs;
+<!ENTITY % a-decs SYSTEM "a-decs.ent">
+%a-decs;
+<!ENTITY % c-model SYSTEM "c-model.ent">
+%c-model;
+<!ENTITY % s-model SYSTEM "s-model.ent">
+%s-model;
+<!ENTITY % l-model SYSTEM "l-model.ent">
+%l-model;
+<!-- PIT, 3-23-00: added %g-decs; below to call in declared entity -->
+<!ENTITY % g-decs SYSTEM "g-decs.ent">
+%g-decs;
+<!-- KA SSC added ati-tble definitions as entity-->
+<!ENTITY % ati-table SYSTEM "ati-table.ent">
+%ati-table;
+<!-- KA SSC added qa-model.ent-->
+<!ENTITY % qa-model SYSTEM "qa-model.ent">
+%qa-model;
+<!--KA SSC copied txt-table element definition from txt-table.dtd-->
+<!--KA SSC changed rowsep and pgwide NUMBER to CDATA
+Changed notation from %n-table-notations; to allow for error free processing-->
+<!ELEMENT txt-table (metadata?, title, (((%s-container; | %c-bridge;)* | panel+), legend?)+)>
+<!ATTLIST txt-table
+	%a-all-atts; 
+	%a-all-structure; 
+	notation CDATA #IMPLIED
+	frame (top | bottom | topbot | all | sides | none) #IMPLIED
+	rowsep CDATA #IMPLIED
+	orient (port | land) #IMPLIED
+	pgwide CDATA #IMPLIED 
+>
+<!ELEMENT encyclopedia (metadata, main-title, previous-editors, editors, copyright-data, colophon, CIP-data, contributors, preface, TOC+, part+, appendix*, index+)>
+<!ATTLIST encyclopedia
+	%a-all-atts; 
+	%a-all-superstructure; 
+>
+<!-- KA SSC change CONREF to IMPLIED-->
+<!ELEMENT main-title (title, edition)>
+<!ATTLIST main-title
+	%a-all-atts; 
+	graphic ENTITY #IMPLIED 
+>
+<!ELEMENT edition (#PCDATA)>
+<!ATTLIST edition
+	%a-all-atts; 
+	%a-all-superstructure; 
+>
+<!ELEMENT previous-editors (title, block+)>
+<!ATTLIST previous-editors
+	%a-all-atts; 
+	%a-all-superstructure; 
+>
+<!ELEMENT editors (title, editor+)>
+<!ATTLIST editors
+	%a-all-atts; 
+	%a-all-superstructure; 
+>
+<!ELEMENT copyright-data (publisher, scope-note?, copyright-notice, keyline, foreign, prior-publication?, acknowledgments?, media-data?)>
+<!ATTLIST copyright-data
+	%a-all-atts; 
+	%a-all-superstructure; 
+>
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT publisher (block+)>
+<!ATTLIST publisher
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.27"
+	logo ENTITY #IMPLIED 
+>
+<!ELEMENT scope-note (#PCDATA | %c-basic;)*>
+<!ATTLIST scope-note
+	%a-all-atts; 
+>
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT copyright-notice (main-title, copyright, rights, editions, renewal, printed, permission-policy)>
+<!ATTLIST copyright-notice
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.16" 
+>
+<!-- PIT, 3-23-00: corrected typo below: changed &f-copyright-symbol below to %f-copyright-symbol -->
+<!--KA SSC changed to standard mixed content model-->
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT copyright (#PCDATA | year | owner)*>
+<!ATTLIST copyright
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.16" 
+>
+<!--	
+Commented out from element copyright, validation error:
+symbol CDATA #FIXED "&copy;"-->
+<!--KA SSC deleted exclusions-->
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT year (#PCDATA)>
+<!ATTLIST year
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.16" 
+>
+<!--KA SSC deleted exclusions-->
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT owner (#PCDATA)>
+<!ATTLIST owner
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.16" 
+>
+<!--KA SSC changed to standard mixed content model-->
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT rights (#PCDATA | copyright)*>
+<!ATTLIST rights
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.16" 
+>
+<!--KA SSC changed to standard mixed content model-->
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT editions (#PCDATA | copyright)*>
+<!ATTLIST editions
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.18" 
+>
+<!--KA SSC changed to standard mixed content model-->
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT renewal (#PCDATA | copyright)*>
+<!ATTLIST renewal
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.18" 
+>
+<!--KA SSC changed to standard mixed content model-->
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT printed (#PCDATA | year)*>
+<!ATTLIST printed
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.24" 
+>
+<!ELEMENT permission-policy (#PCDATA)>
+<!ATTLIST permission-policy
+	%a-all-atts; 
+>
+<!-- 6.30.97 JB: Added + to allow more than one language -->
+<!ELEMENT foreign (language, edition, owner, copyright)+>
+<!ATTLIST foreign
+	%a-all-atts; 
+>
+<!--KA SSC deleted exclusions-->
+<!--KA SSC corrected entity names to include closing semicolon-->
+<!ELEMENT language (#PCDATA | %c-basic;)*>
+<!ATTLIST language
+	%a-all-atts; 
+	code CDATA "" 
+>
+<!--KA SSC deleted exclusions-->
+<!--KA SSC corrected entity names to include closing semicolon-->
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT colophon (#PCDATA | %c-basic;)*>
+<!ATTLIST colophon
+	%a-all-atts; 
+	%a-all-superstructure; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.18" 
+>
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT keyline (#PCDATA)>
+<!ATTLIST keyline
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.25" 
+>
+<!--KA SSC changed to XML compliant expression-->
+<!-- KA SSC change source NOTATION (CIP) #FIXED 'CIP'-->
+<!ELEMENT CIP-data (block | isbn)+>
+<!ATTLIST CIP-data
+	%a-all-atts; 
+	%a-all-superstructure; 
+	source CDATA #FIXED "CIP" 
+>
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT isbn (#PCDATA)>
+<!ATTLIST isbn
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.31" 
+>
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT prior-publication (#PCDATA | acknowledgment | copyright)*>
+<!ATTLIST prior-publication
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.33" 
+>
+<!--KA SSC deleted exclusion, switched to XML compliant mixed content expression-->
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT acknowledgment (#PCDATA | owner)*>
+<!ATTLIST acknowledgment
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.33" 
+>
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT media-data (#PCDATA)>
+<!ATTLIST media-data
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.35" 
+>
+<!--KA SSC switched to XML compliant mixed content expression-->
+<!-- KA SSC change           source NOTATION (Chicago) #FIXED 'Chicago'-->
+<!ELEMENT acknowledgments (#PCDATA | acknowledgment | owner)*>
+<!ATTLIST acknowledgments
+	%a-all-atts; 
+	source CDATA #FIXED "Chicago"
+	clauses CDATA #FIXED "1.34" 
+>
+<!ELEMENT contributors (title, contributor+)>
+<!ATTLIST contributors
+	%a-all-atts; 
+	%a-all-superstructure; 
+>
+<!ELEMENT preface (title, author, (%s-structure; | head)*)>
+<!ATTLIST preface
+	%a-all-atts; 
+	%a-all-superstructure; 
+>
+<!-- KA SSC Changed HyTime NAME to CDATA-->
+<!ELEMENT TOC EMPTY>
+<!ATTLIST TOC
+	%a-all-atts; 
+	HyTime CDATA #FIXED "clink"
+	linkend IDREF #IMPLIED
+	reftype CDATA #FIXED "toc" 
+>
+<!-- UJH SSC 05/15/2008 loosened part to allow for parts with content (added head and subsection) -->
+<!ELEMENT part (title, (section | chapter | atlas | semantics | head | subsection)*)>
+<!ATTLIST part
+	%a-all-atts; 
+	%a-all-superstructure; 
+>
+<!-- KA SSC loosened to include semantics-->
+<!ELEMENT section (title | chapter | semantics)*>
+<!ATTLIST section
+	%a-all-atts; 
+	%a-all-superstructure; 
+>
+<!-- PIT, 3-23-00: added new element content, ack -->
+<!-- Techbooks: 21/03/2001. Two new elements <secauthor> and <secbib> have been created
+and allowed in the element <chapter>.
+ -->
+<!-- KA SSC added subsection. Made ack and bibliography pipe delimited options instead of ordered-->
+<!-- KA SSC loosened to add semantics-->
+<!ELEMENT chapter (metadata | title | author | overview | %s-structure; | head | secauthor | secbib | subsection | ack | bibliography | semantics)*>
+<!ATTLIST chapter
+	%a-all-atts; 
+	%a-all-superstructure; 
+>
+<!ELEMENT subsection (%s-structure; | head | secauthor | secbib | subsection | ack | bibliography | semantics | update-cite)*>
+<!ATTLIST subsection
+	%a-all-atts; 
+	%a-all-superstructure; 
+	head-level CDATA #IMPLIED
+	type CDATA #IMPLIED 
+	update CDATA #IMPLIED 
+>
+<!-- KA SSC loosened to add semantics-->
+<!ELEMENT atlas (metadata | title | author | overview | atlas | %s-structure; | head | bibliography | semantics)*>
+<!ATTLIST atlas
+	%a-all-atts; 
+	%a-all-superstructure; 
+>
+<!-- PIT, 3-23-00: added new element, ack -->
+<!ELEMENT ack (#PCDATA | %c-text;)*>
+<!ATTLIST ack
+	%a-all-atts; 
+	%a-all-structure; 
+>
+<!-- Techbooks: 21/03/2001. A new element <secbib> has been created here to
+capture the Bibliography at the end of sections.
+ -->
+<!ELEMENT secbib (bibliography)>
+<!ATTLIST secbib
+	%a-all-atts; 
+>
+<!-- added + to title to allow more than one title within bibliography  JB: 10.14.96 -->
+<!-- allowed element title to appear in between bib citations    TB: 10th Nov. 2K
+     <!ELEMENT bibliography (title+,(bk|bk-group|ci|ci-group)*)>   -->
+<!ELEMENT bibliography (title | bk | bk-group | ci | ci-group)+>
+<!ATTLIST bibliography
+	%a-all-atts; 
+	%a-all-structure; 
+	medium CDATA #IMPLIED 
+>
+<!-- KA SSC took out %f-declared-media from medium in ATTLIST to provide error-free processing-->
+<!ELEMENT appendix (title, (%s-structure; | head | semantics)*)>
+<!ATTLIST appendix
+	%a-all-atts; 
+	%a-all-superstructure; 
+>
+<!-- KA SSC Changed HyTime NAME to CDATA-->
+<!ELEMENT index EMPTY>
+<!ATTLIST index
+	%a-all-atts; 
+	HyTime CDATA #FIXED "clink"
+	linkend IDREF #IMPLIED
+	reftype CDATA #FIXED "index" 
+>
+<!--]>-->
+<!-- commented out JB 9.18.96 -->
+<!-- commented in SH 9.14.98
+<encyclopedia> -->

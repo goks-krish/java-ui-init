@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Body Surface Area</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calcBSA(obj) {
+
+   function IsNum(str) {
+      for (var i = 0; i < str.length; i++) {
+         var chr = str.substring(i, i+1);
+         if ((chr < "0" || "9" < chr) && chr != ".")
+            return false;
+         }
+      if (eval(str)==0)
+         return false;
+      return true;
+   }
+
+//   function FixNum(num) {
+//      if ((num < 1) && (num >= 0.1))
+//         num = "0" + num;
+//      return num;
+//   }
+
+   if (!IsNum(obj.weight.value)) {
+      alert("Weight invalid");
+      return; }
+   if (!IsNum(obj.height.value)) {
+      alert("Height invalid");
+      return; }
+
+   var weight = obj.weight.value;
+   var height = obj.height.value;
+   var bsa = 0;
+
+   // Conversion to metric
+   if (obj.kglb[1].checked) {
+      weight = Math.round(weight / 2.2046 * 100) / 100;
+      obj.kglb[0].checked = true; }
+   else
+      weight = Math.round(weight * 100) / 100;
+   if (obj.cmin[1].checked) {
+      height = Math.round(height * 2.54 * 100)/100;
+      obj.cmin[0].checked = true; }
+   else
+      height = Math.round(height * 100) / 100;
+
+   bsa = Math.pow(weight,0.425) * Math.pow(height,0.725) * 0.007184;
+   bsa = Math.round(bsa * 1000) / 1000;
+//   bsa = FixNum(bsa);
+
+   // Copy values to object form
+   obj.weight.value = weight;
+   obj.height.value = height;
+   obj.resValue.value = bsa;
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Body 
+                  Surface Area<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calculate body surface area given the height and weight</p>
+        <form name="formulaForm">
+          <div align="left"> 
+            <table border="0"
+                            cellpadding="0" cellspacing="1" align="center">
+              <tr> 
+                <td>Input Weight</td>
+                <td> 
+                  <input
+                                    type="text" size="8"
+                                    name="weight">
+                </td>
+                <td> 
+                  <input type="radio"
+                                    checked name="kglb"
+                                    value="kg">
+                  kg </td>
+                <td> 
+                  <input type="radio"
+                                    name="kglb" value="lb">
+                  lbs </td>
+              </tr>
+              <tr> 
+                <td>Input Height</td>
+                <td> 
+                  <input
+                                    type="text" size="8"
+                                    name="height">
+                </td>
+                <td> 
+                  <input type="radio"
+                                    checked name="cmin"
+                                    value="cm">
+                  cm</td>
+                <td> 
+                  <input type="radio"
+                                    name="cmin" value="in">
+                  in </td>
+              </tr>
+              <tr> 
+                <td colspan="4">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="4"> 
+                  <div align="center"> 
+                    <input type="button"
+                            name="Calculate" value="Calculate"
+                            onClick="calcBSA(this.form)">
+                    <input
+                            type="reset" name="resetButton"
+                            value="Clear">
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="4">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="4"> 
+                  <div align="center">Body surface area (m<sup>2</sup>) = 
+                    <input type="text" size="10" name="resValue">
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <div align="left"></div>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="400" height="4"></p>
+        <p> The calculation is from the formula of DuBois and DuBois:</p>
+        <p align="center">BSA = (W <sup>0.425</sup> x H <sup>0.725</sup>) x 0.007184</p>
+        <p align="left">where the weight is in kilograms and the height is in 
+          centimeters.</p>
+        <p align="left"> 
+        <ol>
+          <li>DuBois D, DuBois EF. A formula to estimate the approximate surface 
+            area if height and weight be known. Arch Intern Medicine. 1916; 17:863-71.</li>
+          <li>Wang Y, Moss J, Thisted R. Predictors of body surface area.<br>
+            J Clin Anesth. 1992; 4(1):4-10.</li>
+        </ol>
+        <p>&nbsp;</p>
+        <p></p>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->December 9, 1998<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->October 19, 2000<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

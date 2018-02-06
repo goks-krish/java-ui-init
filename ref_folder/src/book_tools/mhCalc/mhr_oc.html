@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Oxygen Content</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calculateFormula (a, b, c) {
+        var O2Content = 0;
+        var Hgb  = parseFloat(a);
+        var SaO2 = parseFloat(b);
+        var PaO2 = parseFloat(c);
+        result   = 1.36*Hgb*SaO2/100 + 0.0031*PaO2;
+        result   = Math.round(result * 100) / 100;
+        document.formulaForm.O2Content.value = result;
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Oxygen 
+                  Content<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calculate the oxygen content given the P<sub>a</sub>O<sub>2</sub>, 
+          S<sub>a</sub>O<sub>2</sub>, and the hemoglobin (Hgb).</p>
+        <form name="formulaForm">
+          <div align="left"> 
+            <table border="0"
+                            cellpadding="0" cellspacing="1" align="center">
+              <tr> 
+                <td colspan="2">Input&nbsp;Hemoglobin</td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="Hgb">
+                  &nbsp;gm/dL </td>
+              </tr>
+              <tr> 
+                <td colspan="2">Input S<sub>a</sub>O<sub>2</sub></td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="SaO2">
+                  &nbsp;% </td>
+              </tr>
+              <tr> 
+                <td colspan="2">Input P<sub>a</sub>O<sub>2</sub></td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="PaO2">
+                  &nbsp;torr </td>
+              </tr>
+              <tr> 
+                <td colspan="2">&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="3"> 
+                  <div align="center"> 
+                    <input type="button"
+                            name="Calculate" value="CALCULATE"
+ onClick="calculateFormula(document.formulaForm.Hgb.value,document.formulaForm.SaO2.value,document.formulaForm.PaO2.value)">
+                    <input type="reset"
+                            name="resetButton" value="CLEAR">
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="2">&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td>Oxygen Content </td>
+                <td> &nbsp;=&nbsp;</td>
+                <td> 
+                  <input type="text"
+                            size="6" name="O2Content">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>The equation is:</p>
+        <table border="0" cellpadding="0" align="center">
+          <tr> 
+            <td rowspan="3">C<sub>a</sub>O<sub>2</sub> = 1.36 * Hgb *</td>
+            <td> 
+              <div align="center"> S<sub>a</sub>O<sub>2</sub> </div>
+            </td>
+            <td rowspan="3"> + 0.0031 * P<sub>a</sub>O<sub>2</sub></td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center"><img src="./images/filler.gif" width="40" height="1"></div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center">100</div>
+            </td>
+          </tr>
+        </table>
+        <p>The constant, 1.36, is the amount of oxygen (ml at 1 atmosphere) bound 
+          per gram of hemoglobin. The exact value of this constant varies from 
+          1.34 to 1.39, depending on the reference and the way it is derived. 
+          The constant 0.0031 represents the amount of oxygen dissolved in plasma. 
+          The dissolved oxygen term is generally small relative to the hemoglobin-bound 
+          oxygen, but becomes significant at very high P<sub>a</sub>O<sub>2</sub> 
+          (as in a hyperbaric chamber) or in severe anemia.</p>
+        <p>&nbsp;</p>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->January 
+        7, 2000<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->October 19, 2000<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

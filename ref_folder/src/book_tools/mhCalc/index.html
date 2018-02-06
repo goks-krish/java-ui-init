@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+    <title>DrCompanion Calculators</title>
+
+    <style type="text/css">
+    body, html {
+        height: 100%;
+        margin: 0 auto;
+        margin-top: 10px;
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 1.0em;
+        background-color: #e9e9ff;
+    }
+    select {
+      font-size: 0.9em;
+    }
+    </style>
+    <script type="text/javascript">
+    function pageLoad() {
+        swapClcSel(document.getElementById('selClc'));
+    }
+
+    function swapClc(el) {
+
+        var sel = el;
+        if (sel.selectedIndex > -1) {
+            var option = sel.childNodes[sel.selectedIndex];
+            var link = option.value;
+            document.getElementById('clc').src = link;
+        }
+    }
+
+    function swapClcSel(sel) {
+        if (sel.selectedIndex > -1) {
+            var option = sel.childNodes[sel.selectedIndex];
+            var elID = option.value;
+            var div = document.getElementById('divClc');
+            var children = div.childNodes;
+            for(var n=0; n < children.length; n++) {	
+	            var chld = children[n];
+	            if (chld.style) {
+	                if (chld.id == elID) {
+	                    chld.style.display = "block";
+	                    swapClc(chld);
+	                } else {
+	                    chld.style.display = "none";
+	                }
+	            }
+            }
+        }
+    }
+    
+    function iframeDidLoad() {
+        //alert('done!');
+    }
+    </script>
+</head>
+<body onload="pageLoad()">
+    <a name="top"></a>
+    <div align="center">
+    <!-- the below select must be without \n otherwise this silly browser creates extra text nodes -->
+    Category :
+    <select id="selClc" onchange="swapClcSel(this);"><option value="convSel">Conversions</option><option value="metabolSel">Metabolic</option><option value="respSel">Respiratory</option><option value="pharmaSel">Pharmacology</option></select>
+    </div>
+    <div id="divClc" align="center">
+    <select id="convSel" onchange="swapClc(this);" style="display:none"><option value="./mhc_Age.html">Age</option><option value="./mhc_bsa.html">Body Surface Area</option><option value="./mhc_ce.html">Calcium Equivalents</option><option value="./mhc_gfc.html">Gauge - French</option><option value="./mhc_pc.html">Pressure</option><option value="./mhc_pp.html">Potassium Phosphate</option><option value="./mhc_mc.html">Measurement</option></select>
+    <select id="metabolSel" onchange="swapClc(this);" style="display:none"><option value="./mhm_beb.html">Base Excess &amp; Calculated Bicarbonate</option><option value="./mhm_bee.html">Basal Energy Expenditure</option><option value="./mhm_bmi.html">Body Mass Index</option><option value="./mhm_clcrrt.html">Clearance of CRRT</option><option value="./mhm_crcl.html">Creatinine Clearance</option><option value="./mhm_crcls.html">Creatinine Clearance,Schwartz</option><option value="./mhm_crclsr.html">Creatinine Clearance,Schwartz Revised</option><option value="./mhm_dehydrt.html">Dehydration Correction</option><option value="./mhm_FENa.html">FENa</option><option value="./mhm_gir.html">Glucose Infusion Rate</option><option value="./mhm_sos.html">Serum Osmolality</option></select>
+    <select id="pharmaSel" onchange="swapClc(this);" style="display:none"><option value="./mhp_hl.html">Half Life, Drug</option></select>
+    <select id="respSel" onchange="swapClc(this);" style="display:none"><option value="./mhr_AaGradient.html">Alveolar-arterial Gradient</option><option value="./mhr_AGasEquation.html">Alveolar Gas Equation</option><option value="./mhr_oc.html">Oxygen Content</option><option value="./mhr_oi.html">Oxygenation Index</option><option value="./mhr_os.html">Oxygen Saturation</option><option value="./mhr_otd.html">Oxygen Tank Duration</option><option value="./mhr_pf.html">Peak Flows</option><option value="./mhr_vi.html">Ventilation Index</option></select>
+    </div>
+    <iframe src="./mhc_Age.html" id="clc" style="width:100%; height:90%" onLoad="iframeDidLoad();">Your browser does not support iFrames</iframe>
+    <div id="backToTop"><a href="#top"><img src="./images/up_arrow.gif" alt="" width="13" border="0" height="10"></a><span class="nav4"><a href="#top"> 
+      Back to Top </a></span></div>
+</body>
+</html>

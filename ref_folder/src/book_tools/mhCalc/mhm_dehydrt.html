@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Dehydration Correction Calculator</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+
+<script language="JavaScript">
+
+function CalcDehyd(frm) 
+{
+
+var WtBase  = parseFloat(frm.WtBaseline.value);
+var WtDehyd = parseFloat(frm.WtDehydrated.value);
+var PCDehyd = parseFloat(frm.PCDehydration.value);
+var NaSerum = parseFloat(frm.SerumNa.value);
+var Intervl = parseFloat(frm.ReplaceInt.value);
+
+var Dummy;
+var DType   = 0;
+var H2ODef  = 0;
+
+// Check for invalid or wacky numbers
+if (!(NumCheck(WtBase, 500, 0, "Baseline Weight")))
+  return;
+if (!(NumCheck(NaSerum, 200, 100, "Serum Sodium")))
+  return;
+if (!(NumCheck(Intervl, 72, 10, "Replacement Interval")))
+  return;
+
+// Calculate per cent dehydration and water deficit
+if (WtDehyd > WtBase) {
+  alert("Dehydrated weight is above baseline weight.");
+  return;
+}
+if ((isNaN(WtDehyd)) || (WtDehyd == 0)) {
+  frm.WtDehydrated.value = "";
+  if (!(NumCheck(PCDehyd, 50, 0, "Per cent Dehydration"))) {
+    alert("Unable to calculate fluid deficit. \nInvalid dehydrated weight and percentage dehydration.");
+    return;
+  }else{
+    if (PCDehyd == 0) {
+      alert("Unable to calculate fluid deficit. \nPercentage dehydration is zero.");
+      return;
+    }else{
+      H2ODef = Math.round(WtBase * PCDehyd * 10);
+    }
+  }
+}else{
+  H2ODef  = Math.round((WtBase - WtDehyd) * 1000);
+  PCDehyd = Math.round((WtBase - WtDehyd) / WtBase * 100);
+  frm.PCDehydration.value = PCDehyd;
+}
+
+if (NaSerum > 150) {
+//  Dummy = window.open('dehycalc.htm','Dehydration_Correction_Calculator','scrollbars,resizable,width=640,height=640,toolbar'); 
+}else{
+//  Dummy = window.open('dehycalc.htm','Dehydration_Correction_Calculator','scrollbars,resizable,width=640,height=720,toolbar'); 
+}
+
+}
+// End of function CalcDehyd
+
+// Subroutines =======================
+
+function NumCheck(mVar, mHi, mLo, mName) 
+{
+  if (isNaN(mVar)) {
+    alert(mName + " invalid.");
+    return false;
+  }
+  if (mVar > mHi) {
+    alert(mName + " too high.");
+    return false;
+  }
+  if (mVar <= mLo) {
+    alert(mName + " too low.");
+    return false;
+  }
+return true;
+}
+
+</script>
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol" align="center"> 
+
+     
+        <h1>Dehydration Correction Calculator</h1>
+        <p>Calculate the intravenous fluids required to correct isonatremic, hyponatremic, 
+          or hypernatremic dehydration.</p>
+        <form name="DehydForm">
+          <table border="0" cellspacing="1" cellpadding="0" align="center">
+            <tr> 
+              <td>Baseline Weight</td>
+              <td> 
+                <input type="text" name="WtBaseline" maxlength="4" size="8">
+                kg </td>
+            </tr>
+            <tr> 
+              <td valign="top">Dehydrated Weight</td>
+              <td> 
+                <input type="text" name="WtDehydrated" size="8" maxlength="4">
+                kg&nbsp;or %&nbsp;Dehydration&nbsp;
+                <input type="text" name="PCDehydration" size="8" maxlength="2">
+              </td>
+            </tr>
+            <tr> 
+              <td>Serum Na+</td>
+              <td> 
+                <input type="text" name="SerumNa" size="8" maxlength="3">
+                mEq/L </td>
+            </tr>
+            <tr> 
+              <td>Replacement Interval</td>
+              <td> 
+                <input type="text" name="ReplaceInt" size="8" maxlength="3" value="24">
+                hrs </td>
+            </tr>
+            <tr align="center"> 
+              <td colspan="2"> 
+                <input type="button" name="Calculate" value="Calculate" onClick="CalcDehyd(this.form)">
+                <input type="reset" name="Reset" value="Clear">
+              </td>
+            </tr>
+          </table>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>Correct shock and treat hyponatremic seizures before initiating correction 
+          for dehydration. Consider ongoing losses and replace as appropriate. 
+          Exercise caution with large and non-pediatric patients.</p>
+        <p>Maintenance fluids are calculated based on the Holliday-Segar method. 
+          Maintenance sodium and potassium are calculated based on body weight 
+          per day: 3 mEq/kg/day, and 2 mEq/kg/day, respectively.</p>
+        <p>Deficit fluids are based on degree of dehydration. In hypernatremic 
+          dehydration, a fraction of the deficit fluids is a free water deficit 
+          (4 mL/excess Na+ in mEq/kg). Deficit sodium and potassium are calculated 
+          on the remaining fluid deficit: 0.6 * 145 mEq/L, and 0.4 * 150 mEq/L, 
+          respectively.</p>
+        <p>Correction of isotonic and hyponatremic dehydration replaces the first 
+          half of the deficit during the first third of the replacement interval. 
+          Correction of hypernatremic dehydration calls for correction of the 
+          first half of the free-water deficit during the first 24 hours.</p>
+        <p>The last line(s) of the fluid schedule is the &quot;bottom line.&quot; 
+          Pick an appropriate, available, intravenous fluid that matches the specified 
+          concentrations and administer at the specified rate for the specified 
+          intervals. Consider using buffers such as acetate or phosphate as appropriate.</p>
+        <p>Calculations based on the <i>Harriet Lane Handbook</i>.</p>
+        <p>&nbsp;</p>
+        <p> <i>Created:</i>June 3, 2009<br>
+          <i>Revised:</i>June 3, 2009</p>
+      </div>
+      <div id="rightCol"> 
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+

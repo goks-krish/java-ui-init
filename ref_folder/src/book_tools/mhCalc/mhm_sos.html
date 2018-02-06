@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Serum Osmolality</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calculateFormula (a,b,c) {
+        var result= 0;
+        var Na=parseFloat(a);
+        var Glu=parseFloat(b);
+        var BUN=parseFloat(c)
+        var Osm=0;
+        Osm=2*Na + Glu/18 + BUN/2.8
+        result=Math.round(Osm * 10) / 10
+        document.formulaForm.resValue.value=result;
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Serum 
+                  Osmolality<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calculate the <b>predicted</b> serum osmolality given the serum sodium, 
+          glucose and blood urea nitrogen.</p>
+        <form name="formulaForm">
+          <div align="left"> 
+            <table border="0"
+                            cellpadding="0" cellspacing="1" align="center">
+              <tr> 
+                <td colspan="2">Input Serum Na</td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="Na">
+                  &nbsp;mEq/L</td>
+              </tr>
+              <tr> 
+                <td colspan="2">Input Serum Glucose</td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="Glu">
+                  &nbsp;mg/dL</td>
+              </tr>
+              <tr> 
+                <td colspan="2">Input BUN</td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="BUN">
+                  &nbsp;mg/dL</td>
+              </tr>
+              <tr> 
+                <td colspan="3">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="3"> 
+                  <div align="center"> 
+                    <input type="button"
+                            name="Calculate" value="Calculate"
+                            onClick="calculateFormula(document.formulaForm.Na.value,document.formulaForm.Glu.value,document.formulaForm.BUN.value)">
+                    <input type="reset"
+                            name="resetButton" value="Clear">
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="3">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td>Predicted&nbsp;Serum&nbsp;Osmolality</td>
+                <td>&nbsp;=&nbsp;</td>
+                <td> 
+                  <input type="text"
+                            size="6" name="resValue">
+                  &nbsp;mOsm/kg </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="400" height="4"></p>
+        <p>The normal range of serum osmolality is 285-295 mOsm/kg. The <b>measured</b> 
+          osmolality should not exceed the <b>predicted</b> by more than 10 mOsm/kg. 
+          A difference of more than 10 mOsm/kg is considered an <b>osmolal gap</b>. 
+          Causes for a serum osmolal gap include mannitol, ethanol, methanol, 
+          ethylene glycol and other compounds in very high concentration, usually 
+          small molecules and often toxins. The propylene glycol in lorazepam 
+          may cause hyperosmolarity and sometimes hyperosmolar coma in some patients, 
+          particularly when the lorazepam is used as a continuous infusion.</p>
+        <p>The equation is:</p>
+        <table border="0" cellpadding="0" align="center">
+          <tr> 
+            <td rowspan="3">Osmolality&nbsp;=&nbsp;2&nbsp;*&nbsp;Na&nbsp;+&nbsp; 
+            </td>
+            <td> 
+              <div align="center">Glu</div>
+            </td>
+            <td rowspan="3">&nbsp;+&nbsp;</td>
+            <td> 
+              <div align="center">BUN</div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center"><img src="./images/filler.gif" width="30" height="1"></div>
+            </td>
+            <td> 
+              <div align="center"><img src="./images/filler.gif" width="30" height="1"></div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center">18</div>
+            </td>
+            <td> 
+              <div align="center">2.8</div>
+            </td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->January 
+        7, 2000<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->October 
+        3, 2000<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol">
+     </div>
+  </div>
+</div>
+
+</body>
+</html>
+

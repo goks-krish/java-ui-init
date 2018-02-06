@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Potassium Phosphate</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function CalcP(obj) {
+   var vP     = parseFloat(obj.P.value);
+   if (!IsNum(vP)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kP     = 1;
+   DoConvert(vP, kP, obj);
+}
+
+function CalcK(obj) {
+   var vK      = parseFloat(obj.K.value);
+   if (!IsNum(vK)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kK      = 0.6818;
+   DoConvert(vK, kK, obj);
+}
+
+function CalcVol(obj) {
+   var vVol      = parseFloat(obj.Vol.value);
+   if (!IsNum(vVol)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kVol      = 3;
+   DoConvert(vVol, kVol, obj);
+}
+
+
+// Reused Functions
+
+function DoConvert(vAmount, k, obj, roundto) {
+
+   var vP        = Math.round(vAmount /   1     * k *  100) /  100;
+   var vK        = Math.round(vAmount /  0.6818 * k *  100) /  100;
+   var vVol      = Math.round(vAmount /   3     * k *  100) /  100;
+
+   // Copy values to object form
+   obj.P.value   = FixNum(vP);
+   obj.K.value   = FixNum(vK);
+   obj.Vol.value = FixNum(vVol);
+}
+
+function IsNum(str) {
+      for (var i = 0; i < str.length; i++) {
+         var chr = str.substring(i, i+1);
+         if ((chr < "0" || "9" < chr) && chr != ".")
+            return false;
+         }
+      if (eval(str)==0)
+         return false;
+      return true;
+}
+
+function FixNum(num) {
+//      if ((num < 1) && (num >= 0.1))
+//         num = "0" + num;
+      return num;
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Potassium 
+                  Phosphate<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+                  <p>Each 
+                    mL of potassium phosphate contains 4.4 milliequivalents (mEq) 
+                    of potassium and 3 millimoles (mmol) of phosphate. The solution 
+                    contains a mixture of both potassium phosphate monobasic (KH<sub>2</sub>PO<sub>4</sub>) 
+                    and potassium phosphate dibasic (K<sub>2</sub>HPO<sub>4</sub>). 
+                    The different concentrations of the ions is a source of potential 
+                    medication error.</p>
+                  <p>Enter 
+                    a value in a cell and click the Calculate button in the same 
+                    row to determine the equivalent forms. Be aware that there 
+                    may be some rounding error with multiple conversions.</p>
+                  <form name="formulaForm">
+                    <div align="center"> 
+                      <table
+                            border="0" cellpadding="0"
+                            cellspacing="1">
+                        <tr> 
+                          
+                <td>PO<sub>4</sub> (mmol)</td>
+                          <td> 
+                            <input
+                                    type="text" size="10"
+                                    name="P">
+                            </td>
+                          <td> 
+                            <input
+                                    type="button"
+                                    name="CalcFromP"
+                                    value="Calculate"
+                                    onClick="CalcP(this.form)">
+                            </td>
+                        </tr>
+                        <tr> 
+                          <td>K 
+                            (mEq)</td>
+                          <td>
+                            <input
+                                    type="text" size="10"
+                                    name="K">
+                            </td>
+                          <td>
+                            <input
+                                    type="button"
+                                    name="CalcFromK"
+                                    value="Calculate"
+                                    onClick="CalcK(this.form)">
+                            </td>
+                        </tr>
+                        <tr> 
+                          <td>Volume 
+                            (mL)</td>
+                          <td>
+                            <input
+                                    type="text" size="10"
+                                    name="Vol">
+                            </td>
+                          <td>
+                            <input
+                                    type="button"
+                                    name="CalcFromVol"
+                                    value="Calculate"
+                                    onClick="CalcVol(this.form)">
+                            </td>
+                        </tr>
+                        <tr> 
+                          <td colspan="3">&nbsp;</td>
+                        </tr>
+                        <tr> 
+                          <td align="center"
+                                    colspan="3">
+                            <input
+                                    type="reset" name="Clear"
+                                    value="Clear">
+                            </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </form>
+                  <p>&nbsp;</p>
+                  <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->October 28, 2008<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->October 28, 2008<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol">
+     </div>
+  </div>
+</div>
+
+</body>
+</html>
+

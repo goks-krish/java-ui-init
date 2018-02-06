@@ -1,0 +1,278 @@
+<!-- (0) File: n-decs.txt
+     Status:    Draft   Complete                
+                [ ]     [x]
+     Type:      DTD     DTD component
+                [ ]     [x]
+     Date:      9.20.98     
+     Version:   1.1
+     Client:    McGraw-Hill
+                [MGH]     
+     Author:    Sam Hunting                
+                sgmlsh@cam.org
+     .............................................................................
+     README
+     ......
+     System Administator
+     ...................
+     Formal Public Identifier: see below. 
+     Implementor
+     ...........
+     This file contains NOTATIONS, and other notation-related parameter
+     entities, used by DTDs in the files listed above.
+     File Name            Prefixing Convention*
+     =========            ====================
+     n-decs.txt           [N]otations
+     
+     *  This convention also used for entity names declared in the
+        individual files; that is, the entity %a-foo would be found in 
+        a-decs.txt; %m-bar in m-decs.txt.
+    .............................................................................. -->
+<!--============================================================================== -->
+
+<!-- Formal Public Identifier "-//MGH//ENTITIES n-decs.txt 1995 v01.0//EN" -->
+
+<!-- KA SSC commenting out all NOTATIONs-->
+<!--<!NOTATION SGML     PUBLIC "+//ISO 8879:1986//NOTATION
+                           Standard Generalized Markup Language//EN">
+
+<!NOTATION HyTime   PUBLIC "ISO/IEC 10744:1992//NOTATION
+                           Hypermedia/Time-based Structuring Language//EN">
+
+<!NOTATION application SYSTEM>
+-->
+<!ENTITY % n-notation-atts 
+           "degrade CDATA ''
+            unit CDATA ''
+            width CDATA ''
+            height CDATA ''
+            platform CDATA ''
+           ">
+<!--
+<!NOTATION EPS PUBLIC "+//ISBN 0-201-18127-4::Adobe//NOTATION 
+                   Postscript Language Reference Manual//EN">
+-->
+
+<!--
+<!ATTLIST #NOTATION 
+          EPS 
+          degrade CDATA ''
+          unit CDATA ''
+          width CDATA ''
+          height CDATA ''
+          platform CDATA ''
+          >
+ -->
+ <!--
+<!NOTATION PICT PUBLIC "+//ISBN 0-7923-1::Graphic Notation//NOTATION 
+                   Apple Computer QuickDraw Picture//EN">
+<!ATTLIST #NOTATION 
+          PICT 
+          degrade CDATA ''
+          unit CDATA ''
+          width CDATA ''
+          height CDATA ''
+          platform CDATA ''
+          >
+
+<!NOTATION TIFF PUBLIC "+//ISBN 0-7923-9432-1::Graphic Notation//NOTATION
+                                  Aldus/Microsoft Tagged Interchange File Format//EN">
+<!ATTLIST #NOTATION 
+          TIFF 
+          degrade CDATA ''
+          unit CDATA ''
+          width CDATA ''
+          height CDATA ''
+          platform CDATA ''
+          >
+
+<!NOTATION BMP PUBLIC "+//ISBN 0-7923-9432-1::Graphic Notation//NOTATION
+                                                        Microsoft Windows Bitmap//EN">
+<!ATTLIST #NOTATION 
+          BMP 
+          degrade CDATA ''
+          unit CDATA ''
+          width CDATA ''
+          height CDATA ''
+          platform CDATA ''
+          >
+-->
+<!-- SH: 9/14/98. Declared JPG, GIF, PNG notations. --> 
+<!--
+<!NOTATION JPG PUBLIC 
+    "+//ISO DIS 10918-1//NOTATION Interchange format for graphics files//EN">
+
+<!NOTATION GIF PUBLIC 
+    "-//CompuServe//NOTATION CompuServe Graphic Interchange Format GIF87a GIF89a//EN">
+
+<!NOTATION PNG PUBLIC "-//IETF//NOTATION Portable Network Graphics//EN">
+-->
+<!-- SH: 9/14/98. Added JPG, GIF, PNG notations to n-graphic-notations. --> 
+<!-- KA SSC deleted NOTATION-->
+<!ENTITY % n-graphic-notations " (eps |pict |tiff |bmp|jpg|gif|png) ">
+
+
+<!-- Notations for Print Publishing. -->
+<!--
+<!NOTATION Harrisons PUBLIC "-//Volume 14//NOTATION Nomenclature//EN">
+
+<!NOTATION CIP PUBLIC "-//ISBN X-XXX-XXXXX-X::
+                        Library of Congress//NOTATION The CIP Publishers Manual//EN">
+
+<!NOTATION Chicago PUBLIC "-//ISBN 0-226-10389-7::
+                            The University of Chicago Press//NOTATION 
+                   The Chicago Manual of Style, Fourteenth Edition//EN">
+
+<!NOTATION composition PUBLIC "-//McGraw-Hill//NOTATION Composition Order of 12.21.95//EN">
+-->
+<!-- KA SSC deleted NOTATION-->
+<!ENTITY % n-block "(application) ">
+<!--
+<!NOTATION TeX SYSTEM "" >
+
+<!NOTATION maths-12083 PUBLIC "+//ISO 12083:1993//NOTATION Mathematics//EN">
+-->
+<!ENTITY % n-eq-notations " (TeX|maths-12083|EPS) ">
+<!--
+<!NOTATION ChemDraw PUBLIC
+                      "-//ChemDraw//NOTATION ChemDraw Software//EN"   >
+<!ATTLIST #NOTATION 
+          ChemDraw 
+          degrade CDATA ''
+          unit CDATA ''
+          width CDATA ''
+          height CDATA ''
+          platform CDATA ''
+          >
+-->
+<!ENTITY % n-cq-notations " (ChemDraw|EPS|maths-12083) ">
+<!-- KA SSC deleted NOTATION-->
+<!ENTITY % n-line "(application) ">
+<!--
+<!NOTATION Arbortext PUBLIC "-//Arbortext table model//NOTATION Table//EN">
+
+<!NOTATION table-cals PUBLIC "+//CALS:1993//NOTATION Table//EN">
+
+<!NOTATION txt-table PUBLIC "-//Harrisons//NOTATION Table//EN">
+-->
+<!-- KA SSC deleted NOTATION-->
+<!ENTITY % n-table-notations " (table-cals|EPS|Arbortext|txt-table) ">
+<!--
+<!NOTATION image SYSTEM>
+<!ATTLIST #NOTATION 
+          image 
+          degrade CDATA ''
+          unit CDATA ''
+          width CDATA ''
+          height CDATA ''
+          platform CDATA ''
+          >
+-->
+
+<!-- KA SSC deleted sample-image1 ENTITY
+<!ENTITY sample-image1 SYSTEM "null.txt" NDATA image> 
+-->
+<!--         [degrade="image-strategy"
+              unit='pica'
+              width='21'
+              height=''
+             platform='print']
+            -->
+
+<!-- KA SSC deleted sample-image2 ENTITY
+<!ENTITY sample-image2 SYSTEM "null.txt" NDATA image>
+-->
+<!--     [degrade="image-strategy"
+          unit='foot'
+          width='30'
+          height=''
+          platform='billboard']
+         -->
+
+<!-- Default graphic. -->
+
+<!-- KA SSC deleted f-rx-graphic ENTITY
+<!ENTITY f-rx-graphic SYSTEM "null.txt" NDATA EPS> 
+-->
+
+<!-- URL. 
+<!NOTATION URL PUBLIC "-//IETF/RFC1738//NOTATION Uniform Resource Locator//EN">
+-->
+<!-- SH: 9/14/98. Medical database notations: Format of name is 
+     [database].[key field]. See www.nlm.nih.gov/pubs/osrm_nlm.html. -->
+<!--
+<!NOTATION medline.ui PUBLIC
+    "-//NLM//NOTATION Medline Unique Identifier//EN">
+
+<!NOTATION pubmed.pmid PUBLIC
+    "-//NLM//NOTATION Pubmed Unique Identifier//EN">
+-->
+<!-- Techbooks: 16/01/2001. The following notation has been added for "<omim>" element. -->
+<!--
+<!NOTATION omim.ui PUBLIC
+    "-//NLM//NOTATION Omim Unique Identifier//EN">-->
+
+<!-- SH: 9/14/98. Added notations for audio files. 
+     Names are in the form [notation].[extension] where the notation
+     may have more than one file format. --> 
+<!--
+<!NOTATION AIFF PUBLIC 
+    "-//Apple//NOTATION Audio Interchange File Format//EN">
+<!NOTATION AU SYSTEM>-->
+ <!-- Sun and NeXT?? -->
+<!--
+<!NOTATION RealAudio.r PUBLIC 
+    "-//RealNetworks//NOTATION Plugin format//EN">
+<!NOTATION RealAudio.ram PUBLIC 
+    "-//RealNetworks//NOTATION Plugin format//EN">
+<!NOTATION RealAudio.rm PUBLIC 
+    "-//RealNetworks//NOTATION Plugin format//EN">
+<!NOTATION WAV PUBLIC 
+    "-//Microsoft//NOTATION Waveform Audio File Format//EN">
+-->
+<!-- SH: 9/14/98. Declared %n-audio-notations. --> 
+
+<!ENTITY % n-audio-notations
+           " NOTATION 
+             (AIFF
+              |AU
+              |RealAudio.r
+              |RealAudio.rm
+              |RealAudio.ram
+              |WAV
+              ) ">
+
+<!-- SH: 9/14/98. Added notations for video files. 
+     Names are in the form [notation].[extension] where the notation
+     may have more than one file format. --> 
+<!--
+<!NOTATION AVI PUBLIC 
+    "-//ISO 11172//NOTATION Audio/Video Interleaved file format//EN">
+<!NOTATION MPEG.mpeg PUBLIC 
+    "+//ISO 11172//NOTATION Motion pictures//EN">
+<!NOTATION MPEG.mpg PUBLIC 
+    "+//ISO 11172//NOTATION Motion pictures//EN">
+<!NOTATION QuickTime.mv PUBLIC 
+    "-//Apple//NOTATION QuickTime Movie file//EN">
+<!NOTATION QuickTime.qt PUBLIC 
+    "-//Apple//NOTATION QuickTime file//EN">
+<!NOTATION RealVideo.ra PUBLIC 
+    "-//RealNetworks//NOTATION Plugin file format//EN">
+<!NOTATION RealVideo.ram PUBLIC 
+    "-//RealNetworks//NOTATION Plugin file format//EN">
+<!NOTATION RealVideo.rm PUBLIC 
+    "-//RealNetworks//NOTATION Plugin file format//EN">
+-->
+
+<!-- SH: 9/14/98. Declared %n-video-notations. --> 
+<!-- KA SSC deleted NOTATION-->
+<!ENTITY % n-video-notations
+           "(AVI
+             |MPEGmpeg
+             |MPEGmpg
+             |QuickTime.mv
+             |QuickTime.qt
+             |RealVideo.ra
+             |RealVideo.ram
+             |RealVideo.rm
+             ) ">
+

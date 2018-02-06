@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Pressure Conversion</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function CalcfromHg(obj) {
+    var pcmH20 = 0;
+    var pkPa   = 0;
+    var pPSI   = 0;
+    var pmmHg  = parseFloat(obj.mmHg.value);
+    pcmH2O     = pmmHg * 1.36;
+    pcmH2O     = Math.round(pcmH2O * 10) / 10;
+    obj.cmH2O.value = pcmH2O;
+    pkPa       = pmmHg * 0.133;
+    pkPa       = Math.round(pkPa * 100) / 100;
+    obj.kPa.value = pkPa;
+    pPSI       = pmmHg * 0.01934;
+    pPSI       = Math.round(pPSI * 1000) / 1000;
+    obj.PSI.value = pPSI;
+}
+
+function CalcfromH2O(obj) {
+    var pmmHg  = 0;
+    var pkPa   = 0;
+    var pPSI   = 0;
+    var pcmH2O = parseFloat(obj.cmH2O.value);
+    pmmHg     = pcmH2O * 0.735;
+    pmmHg     = Math.round(pmmHg * 10) / 10;
+    obj.mmHg.value = pmmHg;
+    pkPa       = pcmH2O * 0.0978;
+    pkPa       = Math.round(pkPa * 100) / 100;
+    obj.kPa.value = pkPa;
+    pPSI       = pcmH2O * 0.01422;
+    pPSI       = Math.round(pPSI * 1000) / 1000;
+    obj.PSI.value = pPSI;
+}
+
+function CalcfromkPa(obj) {
+    var pmmHg  = 0;
+    var pcmH2O = 0;
+    var pPSI   = 0;
+    var pkPa   = parseFloat(obj.kPa.value);
+    pmmHg     = pkPa * 7.519;
+    pmmHg     = Math.round(pmmHg * 10) / 10;
+    obj.mmHg.value = pmmHg;
+    pcmH2O     = pkPa * 10.225;
+    pcmH2O     = Math.round(pcmH2O * 10) / 10;
+    obj.cmH2O.value = pcmH2O;
+    pPSI       = pkPa * 0.1454;
+    pPSI       = Math.round(pPSI * 1000) / 1000;
+    obj.PSI.value = pPSI;
+}
+
+function CalcfromPSI(obj) {
+    var pmmHg  = 0;
+    var pcmH2O = 0;
+    var pkPa   = 0;
+    var pPSI   = parseFloat(obj.PSI.value);
+    pmmHg     = pPSI / 0.01934;
+    pmmHg     = Math.round(pmmHg * 10) / 10;
+    obj.mmHg.value = pmmHg;
+    pcmH2O     = pPSI * 70.32;
+    pcmH2O     = Math.round(pcmH2O * 10) / 10;
+    obj.cmH2O.value = pcmH2O;
+    pkPa      = pPSI * 6.877;
+    pkPa      = Math.round(pkPa * 100) / 100;
+    obj.kPa.value = pkPa;
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Pressure 
+                  Conversion<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Convert one measurement of pressure to mmHg, cmH<sub>2</sub>O, or kPa. 
+          Enter a value in the appropriate row and click on the adjacent calculate 
+          button. </p>
+        <form action="" name="Temperature">
+          <table border="0" cellspacing="0" cellpadding="0" align="center">
+            <tr> 
+              <td>mmHg </td>
+              <td> = 
+                <input type="text" name="mmHg" size="6">
+              </td>
+              <td> 
+                <div align="center"> 
+                  <input type="button" name="CalcHg" value="Calculate" onClick="CalcfromHg(this.form)">
+                </div>
+              </td>
+            </tr>
+            <tr> 
+              <td>cmH<sub>2</sub>O </td>
+              <td> = 
+                <input type="text" name="cmH2O" size="6">
+              </td>
+              <td> 
+                <div align="center"> 
+                  <input type="button" name="CalcH2O" value="Calculate" onClick="CalcfromH2O(this.form)">
+                </div>
+              </td>
+            </tr>
+            <tr> 
+              <td>kPa </td>
+              <td>= 
+                <input type="text" name="kPa" size="6">
+              </td>
+              <td> 
+                <input type="button" name="CalckPa" value="Calculate" onClick="CalcfromkPa(this.form)">
+              </td>
+            </tr>
+            <tr> 
+              <td>PSI </td>
+              <td>= 
+                <input type="text" name="PSI" size="6">
+              </td>
+              <td> 
+                <input type="button" name="CalcPSI" value="Calculate" onClick="CalcfromPSI(this.form)">
+              </td>
+            </tr>
+            <tr> 
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td> 
+                <div align="center"> 
+                  <input type="reset" name="ClearTemp" value="Clear">
+                </div>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>The relationship of these measurements are:</p>
+        <p align="center">1 mmHg = 1.36 cmH2O = 0.133 kPa = 0.0193 PSI</p>
+        <p>A Pascal (Pa) is a Newton-per-meter squared.</p>
+        <p>Please be aware of potential rounding errors when going back and forth 
+          between units of measurement.</p>
+        <p>&nbsp;</p><!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->October 
+        5, 2000<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->October 
+        25, 2000<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol">
+     </div>
+  </div>
+</div>
+
+</body>
+</html>
+

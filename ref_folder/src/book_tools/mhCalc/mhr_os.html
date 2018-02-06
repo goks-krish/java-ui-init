@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Oxygen Saturation</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calcO2Sat(a) {
+     var Result = 0;
+     var pO2    = parseFloat(a);
+     Term1      = Math.pow(pO2, 3)
+     Term2      = Term1 + 150 * pO2
+     Term3      = 23400 / Term2
+     SO2        = 1 / (Term3 + 1)
+     Result     = Math.round(SO2 * 1000) / 10;
+     document.formulaForm.ResultO2Sat.value = Result;
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" --> Oxygen Saturation, Calculated<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calculate the oxygen saturation from the pO2.</p>
+        <form name="formulaForm">
+          <table border="0" cellpadding="0" align="center">
+            <tr> 
+              <td colspan="2">Input pO<sub>2</sub>&nbsp;</td>
+              <td> 
+                <input
+                                    type="text" size="10"
+                                    name="pO2">
+                &nbsp;torr</td>
+            </tr>
+            <tr> 
+              <td colspan="2">&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr> 
+              <td colspan="3"> 
+                <div align="center"> 
+                  <input
+                            type="button" name="CalcButton"
+                            value="Calculate"
+                            onClick="calcO2Sat(document.formulaForm.pO2.value)">
+                  <input type="reset"
+                            name="resetButton" value="Clear">
+                </div>
+              </td>
+            </tr>
+            <tr> 
+              <td colspan="2">&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr> 
+              <td>Oxygen&nbsp;Saturation </td>
+              <td> &nbsp;=&nbsp;</td>
+              <td> 
+                <input type="text" size="10" name="ResultO2Sat">
+                &nbsp;%</td>
+            </tr>
+          </table>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>The calculations above are based on the equation developed by Severinghaus*:</p>
+        <p align="center">SO<sub>2</sub> = (23,400 * (pO<sub>2</sub><sup>3</sup> 
+          + 150 * pO<sub>2</sub>)<sup>-1</sup> + 1)<sup>-1</sup></p>
+        <p align="left">This is only an estimate and does not account for differences 
+          in temperature, pH, and concentrations of 2,3 DPG.</p>
+        <p align="left">See also the interactive <a href="http://www.health.adelaide.edu.au/paed-anaes/javaman/Respiratory/oxygen/oxygen.html">Oxyhemoglobin 
+          Dissociation Curve</a> that does take into account temperature and pH. 
+          It was created by Dr. Dave Sainsbury, MBBS, BMedSc(Hons), FANZCA. Department 
+          of Paediatric Anaesthesia, Women's & Children's Hospital, North Adelaide, 
+          South Australia.</p>
+        <p>*Severinghaus, J. W. Simple, accurate equations for human blood O2 
+          dissociation computations. <i>J Appl Physiol</i>. 46(3): 599-602. 1979. 
+        </p>
+        <p>&nbsp; </p>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->January 
+        7, 2000<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->January 
+        3, 2001<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+      </div>
+  </div>
+</div>
+
+</body>
+</html>
+

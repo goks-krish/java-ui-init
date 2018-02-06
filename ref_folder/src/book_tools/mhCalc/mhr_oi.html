@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Oxygenation Index</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calculateFormula (a,b,c) {
+        var result= 0;
+        var fio2=parseFloat(a);
+        var map=parseFloat(b);
+        var parto2=parseFloat(c)
+        var oi=0;
+        oi=fio2*map/parto2
+        result=Math.round(oi*10) / 10
+        document.formulaForm.resValue.value=result;
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Oxygenation 
+          Index<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calculate the oxygenation index given F<sub>i</sub>O<sub>2</sub>, mean 
+          airway pressure and P<sub>a</sub>O<sub>2</sub></p>
+        <form name="formulaForm">
+          <div align="left"> 
+            <table border="0"
+                            cellpadding="0" cellspacing="1" align="center">
+              <tr> 
+                <td>Input F<sub>i</sub>O<sub>2</sub></td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="FiO2">
+                  &nbsp;% </td>
+              </tr>
+              <tr> 
+                <td>Input Mean Airway Pressure&nbsp; </td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="PaCO2">
+                  &nbsp;cmH<sub>2</sub>O </td>
+              </tr>
+              <tr> 
+                <td>Input P<sub>a</sub>O<sub>2</sub></td>
+                <td> 
+                  <input
+                                    type="text" size="6"
+                                    name="PartO2">
+                  &nbsp;torr </td>
+              </tr>
+              <tr> 
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="2"> 
+                  <div align="center"> 
+                    <input type="button"
+                            name="Calculate" value="CALCULATE"
+  onClick="calculateFormula(document.formulaForm.FiO2.value,document.formulaForm.PaCO2.value,document.formulaForm.PartO2.value)">
+                    <input type="reset"
+                            name="resetButton" value="CLEAR">
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td>
+                  <div align="right">Oxygenation Index =&nbsp;&nbsp;</div>
+                </td>
+                <td> 
+                  <input type="text" size="10"
+                            name="resValue">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="400" height="4"></p>
+        <p>The equation is:</p>
+        <table border="0" cellspacing="0" cellpadding="2" align="center">
+          <tr> 
+            <td rowspan="3">OI&nbsp;=</td>
+            <td> 
+              <div align="center">F<sub>i</sub>O<sub>2</sub> * MAP</div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center"><img src="./images/filler.gif" width="80" height="1"></div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center">P<sub>a</sub>O<sub>2</sub></div>
+            </td>
+          </tr>
+        </table>
+        <p><br>
+        </p>
+        <p> 
+        <ul>
+          <li> Ortiz RM, Cilley RE, Bartlett RH. Extracorporeal membrane oxygenation 
+            in pediatric respiratory failure. Pediatr Clin North Am. 1987 Feb;34(1):39-46.</li>
+        </ul>
+        <p></p>
+        <p>Special thanks to <a href="mailto:medcalc@hotmail.com">Mathias Tschopp</a>, 
+          Creator of <a href="http://www.med-ia.ch/medcalc/">MedCalc</a> for handheld devices.</p>
+        <p>&nbsp;</p><!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->January 7, 2000<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->January 31, 2001<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

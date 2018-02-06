@@ -1,0 +1,49 @@
+<!-- iso-grk3.ent (initially distributed with DocBook XML DTD V4.1.1beta1) -->
+
+<!-- Derived from the corresponding ISO 8879 standard entity set
+     and the Unicode character mappings provided by Sebastian Rahtz -->
+
+<!ENTITY alpha	"&lt;img src='images/special/alphalower.gif' border='0'/&gt;"> <!--  -->
+<!ENTITY beta	"&lt;img src='images/special/betalower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER BETA -->
+<!ENTITY gamma	"&lt;img src='images/special/gammalower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER GAMMA -->
+<!ENTITY Gamma	"&lt;img src='images/special/gammaupper.gif' border='0'/&gt;"> <!-- GREEK CAPITAL LETTER GAMMA -->
+<!ENTITY gammad	"&lt;img src='images/special/gammalower.gif' border='0'/&gt;"> <!-- GREEK LETTER DIGAMMA -->
+<!ENTITY deltaspecial	"&lt;img src='images/special/deltaspecial.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER DELTA, Old Style -->
+<!ENTITY delta	"&lt;img src='images/special/deltalower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER DELTA -->
+<!ENTITY Delta	"&lt;img src='images/special/deltaupper.gif' border='0'/&gt;"> <!-- GREEK CAPITAL LETTER DELTA -->
+<!ENTITY epsi	"&lt;img src='images/special/epsilonlower.gif' border='0'/&gt;"> <!--  -->
+<!ENTITY epsiv	"&lt;img src='images/special/epsilonlower.gif' border='0'/&gt;"> <!--  -->
+<!ENTITY epsis	"&lt;img src='images/special/epsilonlower.gif' border='0'/&gt;"> <!--  -->
+<!ENTITY zeta	"&lt;img src='images/special/zetalower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER ZETA -->
+<!ENTITY eta	"&lt;img src='images/special/etalower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER ETA -->
+<!ENTITY thetas	"&lt;img src='images/special/thetalower.gif' border='0'/&gt;"> <!--  -->
+<!ENTITY Theta	"&lt;img src='images/special/thetaupper.gif' border='0'/&gt;"> <!-- GREEK CAPITAL LETTER THETA -->
+<!ENTITY thetav	"&#x03D1;"> <!--  -->
+<!ENTITY iota	"&lt;img src='images/special/iotalower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER IOTA -->
+<!ENTITY kappa	"&lt;img src='images/special/kappalower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER KAPPA -->
+<!ENTITY kappav	"&#x03F0;"> <!-- GREEK KAPPA SYMBOL -->
+<!ENTITY lambda	"&lt;img src='images/special/lambdalower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER LAMDA -->
+<!ENTITY Lambda	"&lt;img src='images/special/lambdaupper.gif' border='0'/&gt;"> <!-- GREEK CAPITAL LETTER LAMDA -->
+<!ENTITY mu	"&lt;img src='images/special/mulower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER MU -->
+<!ENTITY nu	"&lt;img src='images/special/nulower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER NU -->
+<!ENTITY xi	"&lt;img src='images/special/xilower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER XI -->
+<!ENTITY Xi	"&lt;img src='images/special/xiupper.gif' border='0'/&gt;"> <!-- GREEK CAPITAL LETTER XI -->
+<!ENTITY pi	"&lt;img src='images/special/pilower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER PI -->
+<!ENTITY piv	"&#x03D6;"> <!-- GREEK PI SYMBOL -->
+<!ENTITY Pi	"&lt;img src='images/special/piupper.gif' border='0'/&gt;"> <!-- GREEK CAPITAL LETTER PI -->
+<!ENTITY rho	"&lt;img src='images/special/rholower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER RHO -->
+<!ENTITY rhov	"&#x03F1;"> <!-- GREEK RHO SYMBOL -->
+<!ENTITY sigma	"&lt;img src='images/special/sigmalower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER SIGMA -->
+<!ENTITY Sigma	"&lt;img src='images/special/sigmaupper.gif' border='0'/&gt;"> <!-- GREEK CAPITAL LETTER SIGMA -->
+<!ENTITY sigmav	"&#x03C2;"> <!--  -->
+<!ENTITY tau	"&lt;img src='images/special/taulower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER TAU -->
+<!ENTITY upsi	"&lt;img src='images/special/upsilonlower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER UPSILON -->
+<!ENTITY Upsi	"&lt;img src='images/special/upsilonupper.gif' border='0'/&gt;"> <!--  -->
+<!ENTITY phis	"&#x03C6;"> <!-- GREEK SMALL LETTER PHI -->
+<!ENTITY Phi	"&lt;img src='images/special/phiupper.gif' border='0'/&gt;"> <!-- GREEK CAPITAL LETTER PHI -->
+<!ENTITY phiv	"&#x03D5;"> <!-- GREEK PHI SYMBOL -->
+<!ENTITY chi	"&lt;img src='images/special/chilower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER CHI -->
+<!ENTITY psi	"&lt;img src='images/special/psilower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER PSI -->
+<!ENTITY Psi	"&lt;img src='images/special/psiupper.gif' border='0'/&gt;"> <!-- GREEK CAPITAL LETTER PSI -->
+<!ENTITY omega	"&lt;img src='images/special/omegalower.gif' border='0'/&gt;"> <!-- GREEK SMALL LETTER OMEGA -->
+<!ENTITY Omega	"&lt;img src='images/special/omegaupper.gif' border='0'/&gt;"> <!-- GREEK CAPITAL LETTER OMEGA -->

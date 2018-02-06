@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Measurement Conversions</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function CalcFahr(obj) {
+    var TempCent = 0;
+    var TempFahr = parseFloat(obj.TempFahr.value);
+    TempCent     = (TempFahr - 32) / 9 * 5;
+    Result       = Math.round(TempCent * 10) / 10;
+    obj.TempCent.value = Result;
+}
+
+function CalcCent(obj) {
+    var TempFahr = 0;
+    var TempCent = parseFloat(obj.TempCent.value);
+    TempFahr     = TempCent / 5 * 9 + 32;
+    Result       = Math.round(TempFahr * 10) / 10;
+    obj.TempFahr.value = Result;
+}
+
+function CalcCms(obj) {
+    var LenInch = 0;
+    var LenCms  = parseFloat(obj.LenCms.value);
+    LenInch     = LenCms / 2.54;
+    Result      = Math.round(LenInch * 10) / 10;
+    obj.LenInch.value = Result;
+}
+
+function CalcInch(obj) {
+    var LenCms  = 0;
+    var LenInch = parseFloat(obj.LenInch.value);
+    LenCms      = LenInch * 2.54;
+    Result      = Math.round(LenCms * 10) / 10;
+    obj.LenCms.value = Result;
+}
+
+function CalcPoun(obj) {
+    var WtKilo  = 0;
+    var WtPoun  = parseFloat(obj.WtPoun.value);
+    WtKilo      = WtPoun / 2.2;
+    Result      = Math.round(WtKilo * 10) / 10;
+    obj.WtKilo.value = Result;
+}
+
+function CalcKilo(obj) {
+    var WtPoun  = 0;
+    var WtKilo  = parseFloat(obj.WtKilo.value);
+    WtPoun      = WtKilo * 2.2;
+    Result      = Math.round(WtPoun * 10) / 10;
+    obj.WtPoun.value = Result;
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Measurement 
+                  Conversions<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Convert from the English system measurements to metric measurements 
+          or <i>vice versa</i>. Enter a value in the appropriate row and click 
+          on the adjacent calculate button.</p>
+        <form action="" name="Temperature">
+          <table border="0" cellspacing="0" cellpadding="0" align="center">
+            <tr> 
+              <td colspan="3"> 
+                <h2>Temperature</h2>
+              </td>
+            </tr>
+            <tr> 
+              <td>Fahrenheit </td>
+              <td> = 
+                <input type="text" name="TempFahr" size="6">
+              </td>
+              <td> 
+                <div align="center"> 
+                  <input type="button" name="CalcFtoC" value="Calculate" onClick="CalcFahr(this.form)">
+                </div>
+              </td>
+            </tr>
+            <tr> 
+              <td>Centigrade </td>
+              <td> = 
+                <input type="text" name="TempCent" size="6">
+              </td>
+              <td> 
+                <div align="center"> 
+                  <input type="button" name="CalcCtoF" value="Calculate" onClick="CalcCent(this.form)">
+                </div>
+              </td>
+            </tr>
+            <tr> 
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td> 
+                <div align="center"> 
+                  <input type="reset" name="ClearTemp" value="Clear">
+                </div>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <form action="" name="Length">
+          <table border="0" cellspacing="0" cellpadding="0" align="center">
+            <tr> 
+              <td colspan="3"> 
+                <h2>Length</h2>
+              </td>
+            </tr>
+            <tr> 
+              <td>Inches </td>
+              <td> = 
+                <input type="text" name="LenInch" size="6">
+              </td>
+              <td> 
+                <div align="center"> 
+                  <input type="button" name="CalcItoC" value="Calculate" onClick="CalcInch(this.form)">
+                </div>
+              </td>
+            </tr>
+            <tr> 
+              <td>Centimeters </td>
+              <td> = 
+                <input type="text" name="LenCms" size="6">
+              </td>
+              <td> 
+                <div align="center"> 
+                  <input type="button" name="CalcCtoI" value="Calculate" onClick="CalcCms(this.form)">
+                </div>
+              </td>
+            </tr>
+            <tr> 
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td> 
+                <div align="center"> 
+                  <input type="reset" name="ClearLength" value="Clear">
+                </div>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <form action="" name="Weight">
+          <table border="0" cellspacing="0" cellpadding="0" align="center">
+            <tr> 
+              <td colspan="3"> 
+                <h2>Weight</h2>
+              </td>
+            </tr>
+            <tr> 
+              <td>Pounds </td>
+              <td> = 
+                <input type="text" name="WtPoun" size="6">
+              </td>
+              <td> 
+                <div align="center"> 
+                  <input type="button" name="CalcPtoK" value="Calculate" onClick="CalcPoun(this.form)">
+                </div>
+              </td>
+            </tr>
+            <tr> 
+              <td>Kilograms </td>
+              <td> = 
+                <input type="text" name="WtKilo" size="6">
+              </td>
+              <td> 
+                <div align="center"> 
+                  <input type="button" name="CalcKtoP" value="Calculate" onClick="CalcKilo(this.form)">
+                </div>
+              </td>
+            </tr>
+            <tr> 
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td> 
+                <div align="center"> 
+                  <input type="reset" name="ClearWeight" value="Clear">
+                </div>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>Temperature in Fahrenheit is related to Centigrade or Celsius by the 
+          following equation:</p>
+        <table border="0" cellpadding="0" align="center">
+          <tr> 
+            <td rowspan="3">F&nbsp;=&nbsp;</td>
+            <td rowspan="3">C&nbsp;*&nbsp;</td>
+            <td> 
+              <div align="center">9</div>
+            </td>
+            <td rowspan="3">&nbsp;+&nbsp;32</td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center"><img src="./images/filler.gif" width="15" height="1"></div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center">5</div>
+            </td>
+          </tr>
+        </table>
+        <p>Inches are equal to centimeters divided by 2.54.</p>
+        <p>Pounds are equal to kilograms multiplied by 2.2.</p>
+        <p>&nbsp;</p>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->October 
+        5, 2000<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->October 
+        25, 2001<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol">
+     </div>
+  </div>
+</div>
+
+</body>
+</html>
+

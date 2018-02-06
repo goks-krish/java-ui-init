@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Fractional Excretion of Na Calculator</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calculateFormula (a,b,c,d) {
+        var result= 0;
+        var UNa=parseFloat(a);
+        var UCr=parseFloat(b);
+        var PNa=parseFloat(c);
+        var PCr=parseFloat(d);
+        var FENa=0;
+        FENa=UNa * PCr / PNa / UCr * 100
+        FENa=Math.round(FENa * 10) / 10
+        document.formulaForm.resValue.value=FENa;
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->FENa 
+                  Calculator<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calculate the fractional excretion of sodium given the serum and urine 
+          sodium, and the serum and urine creatinine.</p>
+        <form name="formulaForm">
+          <div align="center"> 
+            <table border="0"
+                            cellpadding="0" cellspacing="1" width="273">
+              <tr> 
+                <td colspan="2">Input Urine Sodium (U<sub>Na</sub>)</td>
+                <td> 
+                  <input
+                                    type="text" size="5"
+                                    name="UNa">
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="2">Input Urine Creatinine (U<sub>Cr</sub>)</td>
+                <td> 
+                  <input
+                                    type="text" size="5"
+                                    name="UCr">
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="2">Input Plasma Sodium (P<sub>Na</sub>)</td>
+                <td> 
+                  <input
+                                    type="text" size="5"
+                                    name="PNa">
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="2">Input&nbsp;Plasma&nbsp;Creatinine&nbsp;(P<sub>Cr</sub>)&nbsp;</td>
+                <td> 
+                  <input
+                                    type="text" size="5"
+                                    name="PCr">
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="3">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="3"> 
+                  <div align="left"></div>
+                  <p align="center"> 
+                    <input type="button"
+                            name="Calculate" value="Calculate" onClick="calculateFormula(document.formulaForm.UNa.value,document.formulaForm.UCr.value,document.formulaForm.PNa.value,document.formulaForm.PCr.value)">
+                    <input type="reset"
+                            name="resetButton" value="Clear">
+                  </p>
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="3">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="2"> 
+                  <div align="right">FE<sub>Na</sub>&nbsp;=&nbsp; </div>
+                  </td>
+                <td> 
+                  <input
+                                    type="text" size="5"
+                                    name="resValue">
+                  % </td>
+              </tr>
+            </table>
+          </div>
+          <div align="left"> </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>To accurately interpret FENa, patients should not have recently received 
+          diuretics. FENa is greater than 1% and usually greater than 3% with 
+          acute tubular necrosis and severe obstruction of the urinary drainage 
+          of both kidneys. It is generally less than 1% in patients with acute 
+          glomerulonephritis, hepatorenal syndrome, and states of prerenal azotemia 
+          such as congestive heart failure or dehydration. FENa may also be less 
+          than 1% with acute partial urinary tract obstruction. -- <em>Stein JH, 
+          ed. Internal Medicine, 4th edition. Mosby-Year Book. 1994.</em></p>
+        <p>The equation is:</p>
+        <table border="0"
+                            cellpadding="1" cellspacing="0" align="center">
+          <tr> 
+            <td align="center"
+                                    rowspan="3">FE<sub>Na</sub> = </td>
+            <td> 
+              <div align="center">U<sub>Na</sub> * P<sub>Cr</sub></div>
+            </td>
+            <td rowspan="3">&nbsp;x 100 </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center"><img src="./images/filler.gif" width="100" height="1"></div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="center">P<sub>Na</sub> * U<sub>Cr</sub></div>
+            </td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->January 7, 2000<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->October 19, 2000<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Creatinine Clearance</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calcCrCl(obj) {
+
+   function IsNum(str) {
+      for (var i = 0; i < str.length; i++) {
+         var chr = str.substring(i, i+1);
+         if ((chr < "0" || "9" < chr) && chr != ".")
+            return false; 
+      }
+      return true;
+   }
+
+   if (!IsNum(obj.CTime.value) || (obj.CTime.value==0)) {
+      alert("Collection Time invalid");
+      return; }
+   if (!IsNum(obj.UVol.value) || (obj.UVol.value==0)) {
+      alert("Urine Volume invalid");
+      return; }
+   if (!IsNum(obj.UCr.value) || (obj.UCr.value==0)) {
+      alert("Urine Creatinine invalid");
+      return; }
+   if (!IsNum(obj.PCr.value) || (obj.PCr.value==0)) {
+      alert("Plasma Creatinine invalid");
+      return; }
+   if (!IsNum(obj.Wt.value)) {
+      alert("Weight invalid");
+      obj.Wt.value = ""
+      return; }
+   if (!IsNum(obj.Ht.value)) {
+      alert("Height invalid");
+      obj.Ht.value = ""
+      return; }
+
+   var bsa=0;
+   var Tmin=0;
+   var CrCl=0;
+   var CrClc=0;
+   var CTime=obj.CTime.value;
+   var UVol=obj.UVol.value;
+   var UCr=obj.UCr.value;
+   var PCr=obj.PCr.value;
+   var Wt=obj.Wt.value;
+   var Ht=obj.Ht.value;
+
+   // Conversion to metric
+   if (obj.kglb[1].checked) {
+      Wt = Math.round(obj.Wt.value/2.2046*100)/100;
+      obj.kglb[0].checked = true; }
+   else
+      Wt = Math.round(obj.Wt.value*100)/100;
+   if (obj.cmin[1].checked) {
+      Ht = Math.round(obj.Ht.value*2.54*100)/100;
+      obj.cmin[0].checked = true }
+   else
+      Ht = Math.round(obj.Ht.value*100)/100;
+
+   Tmin=CTime * 60;
+   CrCl=UCr * UVol / Tmin / PCr;
+   CrCl = Math.round(CrCl * 10) / 10;
+   obj.resValue1.value = CrCl;
+
+   if ((Wt==0) || (Ht==0)) {
+      obj.Wt.value = "";
+      obj.Ht.value = "";
+      obj.resValue2.value = ""; }
+   else {
+      bsa = Math.pow(Wt,0.425) * Math.pow(Ht,0.725) * 0.007184;
+      CrClc = CrCl * 1.73 / bsa;
+      CrClc = Math.round(CrClc * 10) / 10;
+      obj.Wt.value = Wt;
+      obj.Ht.value = Ht;
+      obj.resValue2.value = CrClc; }
+
+}
+
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Creatinine 
+                  Clearance<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calculate creatinine clearance (glomerular filtration rate) from a 
+          timed urine collection (time, volume, and creatinine concentration), 
+          and plasma creatinine. In pediatrics, it is generally corrected to a 
+          body surface area of 1.73 m<sup>2</sup> (standard body surface area 
+          of an adult).</p>
+        <form name="formulaForm">
+          <div align="center"> 
+            <table border="0"
+                            cellpadding="0" cellspacing="1">
+              <tr> 
+                <td>Input Collection Time</td>
+                <td> 
+                  <input
+                                    type="text" size="8"
+                                    name="CTime">
+                </td>
+                <td>hr</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td>Input Urine Volume</td>
+                <td> 
+                  <input
+                                    type="text" size="8"
+                                    name="UVol">
+                </td>
+                <td>mL</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td>Input Urine Creatinine</td>
+                <td> 
+                  <input
+                                    type="text" size="8"
+                                    name="UCr">
+                </td>
+                <td>mg/dL</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td>Input Plasma Creatinine</td>
+                <td> 
+                  <input
+                                    type="text" size="8"
+                                    name="PCr">
+                </td>
+                <td>mg/dL</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="4"><font color="#CC0000">For correction for BSA, 
+                  input weight and height:</font></td>
+              </tr>
+              <tr> 
+                <td>Input Weight</td>
+                <td> 
+                  <input
+                                    type="text" size="8"
+                                    name="Wt">
+                </td>
+                <td> 
+                  <input type="radio"
+                                    checked name="kglb"
+                                    value="kg">
+                  kg </td>
+                <td> 
+                  <input type="radio"
+                                    name="kglb" value="lb">
+                  lbs</td>
+              </tr>
+              <tr> 
+                <td>Input Height</td>
+                <td> 
+                  <input
+                                    type="text" size="8"
+                                    name="Ht">
+                </td>
+                <td> 
+                  <input type="radio"
+                                    checked name="cmin"
+                                    value="cm">
+                  cm </td>
+                <td> 
+                  <input type="radio"
+                                    name="cmin" value="in">
+                  in</td>
+              </tr>
+              <tr> 
+                <td colspan="4">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="4"> 
+                  <div align="center"> 
+                    <input type="button"
+                            name="Calculate" value="CALCULATE"
+                            onClick="calcCrCl(this.form)">
+                    <input
+                            type="reset" name="resetButton"
+                            value="CLEAR">
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="4">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="right">CrCl =&nbsp; </div>
+                </td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="resValue1">
+                </td>
+                <td>&nbsp;mL/min</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="right">Corrected CrCl =&nbsp; </div>
+                </td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="resValue2">
+                </td>
+                <td colspan="2">&nbsp;mL/min/1.73*m<sup>2</sup></td>
+              </tr>
+            </table>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>The formula for the calculation is as below. The BSA here is calculated 
+          from the height and weight with the formula of DuBois and DuBois.</p>
+        <div align="center"> 
+          <center>
+            <table
+                            border="0" cellpadding="0"
+                            cellspacing="1">
+              <tr> 
+                <td rowspan="3">CrCl = </td>
+                <td align="center">U<sub>Cr</sub> * U<sub>Vol</sub></td>
+              </tr>
+              <tr> 
+                <td align="center"><img src="./images/filler.gif" width="80" height="1"></td>
+              </tr>
+              <tr> 
+                <td align="center">P<sub>Cr</sub> * T<sub>min</sub></td>
+              </tr>
+            </table>
+            <br>
+          </center>
+        </div>
+        <div align="center"> 
+          <center>
+            <table
+                            border="0" cellpadding="0"
+                            cellspacing="1">
+              <tr> 
+                <td rowspan="3">Corrected CrCl = CrCl *</td>
+                <td align="center">1.73</td>
+              </tr>
+              <tr> 
+                <td align="center"><img src="./images/filler.gif" width="50" height="1"></td>
+              </tr>
+              <tr> 
+                <td align="center">BSA</td>
+              </tr>
+            </table>
+            <p align="left">Reference range in our laboratory of an &quot;uncorrected&quot; 
+              creatinine clearance for an adult male is 90-139 mL/minute, and 
+              for an adult female is 80-125 mL/minute. Many medications must be 
+              adjusted for renal impairment when the CrCl falls below 50 mL/min. 
+              Creatinine clearance often overestimates actual glomerular filtration 
+              rate by 10-20% because of active secretion in the peritubular capillaries.</p>
+          </center>
+        </div>
+        <p align="left">&nbsp;</p>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->January 7, 2000<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->September 28, 2010<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

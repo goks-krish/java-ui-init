@@ -1,0 +1,128 @@
+<!-- (0) File: l-model.txt
+     Status:    Draft   Complete                
+                [ ]     [x]
+     Type:      DTD     DTD external entity
+                [ ]     [x]
+     Date:      9.6.96     
+     Version:   1.0
+     Client:    McGraw-Hill
+                [MGH]     
+     Author:    Martin Hensel Corp.                
+                sgmlsh@world.std.com
+     .............................................................................
+     README
+     ......
+     System Administator
+     ...................
+     Formal Public Identifier: see (1.0). 
+     Implementor
+     ...........
+     This file contains HyTime locators used by DTDs in the files listed above.
+     File Name            Prefixing Convention*
+     =========            ====================
+     l-model.txt           [L]inks and locators
+     *  This convention also used for entity names declared in the
+        individual files; that is, the entity %l-foo would be found in 
+        l-model.txt.
+    .............................................................................. -->
+<!--============================================================================== -->
+<!-- Formal Public Identifier "-//MGH//ENTITIES l-model.txt 1996 v0.92//EN" -->
+<!-- Note: Use of multiple-locator and span-locator is discouraged.
+           Pl. use name-locator tag and code as per the below example:
+
+     <name-locator id="ch328nameloc"><element-list>ch328</element-list></name-locator>
+     <name-locator id="ch331nameloc"><element-list>ch331</element-list></name-locator>
+
+ -->
+<!ENTITY % l-locator "name-locator|multiple-locator|span-locator">
+<!--KA SSC changed HyTime name to CDATA-->
+<!ELEMENT name-locator (element-list)>
+<!ATTLIST name-locator
+	%a-all-atts; 
+	HyTime CDATA #FIXED "nameloc"
+	ordering (ordered | noorder) #FIXED "noorder"
+	set (set | notset) #FIXED "notset"
+	aggloc (aggloc | agglink | nagg) #FIXED "nagg"
+	spanloc (spanloc | spanlink | nspan) #FIXED "nspan"
+	limsort (limsort | nlimsort) #FIXED "nlimsort"
+>
+<!-- Note: Use of multiple-locator and span-locator is discouraged.
+           Pl. use name-locator tag and code as per the below example:
+
+     <name-locator id="ch328nameloc"><element-list>ch328</element-list></name-locator>
+     <name-locator id="ch331nameloc"><element-list>ch331</element-list></name-locator>
+
+ -->
+<!--KA SSC changed HyTime name to CDATA-->
+<!ELEMENT multiple-locator (element-list)>
+<!ATTLIST multiple-locator
+	%a-all-atts; 
+	HyTime CDATA #FIXED "nameloc"
+	ordering (ordered | noorder) #FIXED "ordered"
+	set (set | notset) #FIXED "set"
+	aggloc (aggloc | agglink | nagg) #FIXED "agglink"
+	spanloc (spanloc | spanlink | nspan) #FIXED "nspan"
+	limsort (limsort | nlimsort) #FIXED "limsort"
+>
+<!-- Note: Use of multiple-locator and span-locator is discouraged.
+           Pl. use name-locator tag and code as per the below example:
+
+     <name-locator id="ch328nameloc"><element-list>ch328</element-list></name-locator>
+     <name-locator id="ch331nameloc"><element-list>ch331</element-list></name-locator>
+
+ -->
+<!--KA SSC changed HyTime name to CDATA-->
+<!ELEMENT span-locator (element-list)>
+<!ATTLIST span-locator
+	%a-all-atts; 
+	HyTime CDATA #FIXED "nameloc"
+	ordering (ordered | noorder) #FIXED "ordered"
+	set (set | notset) #FIXED "set"
+	aggloc (aggloc | agglink | nagg) #FIXED "aggloc"
+	spanloc (spanloc | spanlink | nspan) #FIXED "spanloc"
+	limsort (limsort | nlimsort) #FIXED "limsort"
+>
+<!--KA SSC changed HyTime NAME to CDATA-->
+<!ELEMENT element-list (#PCDATA)>
+<!ATTLIST element-list
+	%a-all-atts; 
+	HyTime CDATA #FIXED "nmlist"
+	nametype (entity | element | unified) "element"
+	docorsub ENTITY #IMPLIED
+>
+<!--KA SSC changed HyTime, CApH NAME to CDATA
+linkends IDREFS to CDATA-->
+<!ELEMENT locator EMPTY>
+<!ATTLIST locator
+	%a-all-atts; 
+	HyTime CDATA #FIXED "ilink"
+	CApH CDATA #FIXED "CApH.semanticAssignment"
+	anchrole CDATA #FIXED "Assignment 
+                                 AssignedSemanticSet #AGG
+                                 OccurrenceSet #AGG"
+	reftype CDATA "locator 
+                         semantic-set-amodel 
+                         occurrence-amodel"
+	linkends CDATA #REQUIRED
+>
+<!-- KA SSC deleted comment (lextype("null|NAME"), user must enter) from id
+and (lextype("null|NAME")) from existence-test
+existence-test IDREFS to CDATA-->
+<!ELEMENT null EMPTY>
+<!ATTLIST null
+	id ID #REQUIRED
+	existence-test CDATA "null"
+	reftype CDATA #FIXED "null"
+>
+<!ELEMENT metadata (process | null | %l-locator;)*>
+<!ATTLIST metadata
+	%a-all-atts; 
+>
+<!--KA SSC changed HyTime NAME to CDATA-->
+<!ELEMENT process (#PCDATA)>
+<!ATTLIST process
+	%a-all-atts; 
+	HyTime CDATA #FIXED "activity"
+	actypes (create | modify | link | access | unlink | delete) #REQUIRED
+	executables ENTITIES #IMPLIED
+>

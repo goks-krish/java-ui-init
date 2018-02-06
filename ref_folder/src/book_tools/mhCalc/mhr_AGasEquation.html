@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Alveolar Gas Equation</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calcAlvGas(obj) {
+
+  var mfio2     = obj.FiO2.value;
+  var mpaco2    = obj.PaCO2.value;
+  var mpatmos   = obj.Patmos.value;
+  var mrespquot = obj.RespQuot.value;
+  var mpalvo2   = 0;
+  var mresult   = 0;
+
+   if (!IsNum(mfio2)) {
+      alert("FiO2 invalid.");
+      return; }
+   if (!IsNum(mpaco2)) {
+      alert("PCO2 invalid.");
+      return; }
+   if (!IsNum(mpatmos)) {
+      alert("Atmospheric Pressure invalid.");
+      return; }
+   if (!IsNum(mrespquot)) {
+      alert("Respiratory Quotient invalid.");
+      return; }
+
+  if ((mfio2 > 100) || (mfio2 < 1)){
+    alert("Enter FiO2 as a percentage; \nas a whole number between 1 and 100.");
+    return;
+  }
+  if ((mpaco2 > 150) || (mpaco2 < 1)) {
+    alert("pCO2 is out of range.");
+    return;
+  }
+  if ((mpatmos > 2280) || (mpatmos < 0)) {
+    alert("Atmospheric Pressure is out of range.");
+    return;
+  }
+  if ((mrespquot > 2) || (mrespquot < 0)) {
+    alert("Respiratory Quotient is out of range.");
+    return;
+  }
+
+  mpalvo2 = (mfio2/100 * (mpatmos - 47))-(mpaco2/mrespquot);
+  mresult = Math.round((mpalvo2*10) / 10);
+  document.formulaForm.resValue.value = mresult;
+}
+
+function calcElevPress (obj) {
+
+  var mElev     = obj.Elevation.value;
+  var mFTM      = obj.feetmeter.value;
+  var mPressPa  = 0;
+  var mPress    = 0;
+  var mExponent = 0;
+
+  if (!IsNum(mElev)) {
+    alert("Elevation invalid.");
+    return; }
+
+  if ((mElev > 50000) || (mElev < -1000)){
+    alert("This calculator does not apply where \ntemperature changes are significant.");
+    return;
+  }
+
+  if (obj.feetmeter[1].checked) {
+    // convert meters to feet
+    mElev = Math.round(mElev * 3.28084 * 10) / 10;
+    obj.Elevation.value = mElev;
+    obj.feetmeter[0].checked = true;
+  }
+
+// pressure = 760 * e^ (-elevation/27200)
+
+  mExponent   = ((-1 * mElev) / 27200);
+  mPress      = 760 * Math.pow(Math.E, mExponent);
+  mPress      = Math.round(mPress);
+  document.formulaForm.PatmosCalc.value = mPress;
+  document.formulaForm.Patmos.value = mPress;
+
+}
+
+function calcLocPress (obj) {
+
+  var mLocation = obj.Location.selectedIndex;
+  var mLocPress = obj.Location.options[mLocation].value;
+  document.formulaForm.PatmosCalc.value = mLocPress;
+  document.formulaForm.Patmos.value = mLocPress;
+
+}
+
+function IsNum(str) {
+   for (var i = 0; i < str.length; i++) {
+      var chr = str.substring(i, i+1);
+      if ((chr < "0" || "9" < chr) && chr != ".")
+         return false;
+      }
+   if (eval(str)==0)
+      return false;
+   return true;
+}
+
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Alveolar Gas Equation<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calculate the pO<sub>2</sub> of alveolar gas. </p>
+        <p>Atmospheric pressure is 760 torr at sea level or in costal cities, 
+          but can be estimated from elevation. Elevations of various cities in 
+          the United States are listed.</p>
+        <form name="formulaForm">
+          <div align="left"> 
+            <table border="0"
+                            cellpadding="0" cellspacing="1" align="center">
+              <tr> 
+                <td colspan="2">Input F<sub>i</sub>O<sub>2</sub></td>
+                <td> 
+                  <input type="text" size="6" name="FiO2">
+                  % </td>
+              </tr>
+              <tr> 
+                <td colspan="2">Input P<sub>a</sub>CO<sub>2</sub></td>
+                <td> 
+                  <input type="text" size="6" name="PaCO2">
+                  torr </td>
+              </tr>
+              <tr> 
+                <td colspan="2">Input&nbsp;Atmospheric&nbsp;Pressure&nbsp;&nbsp;</td>
+                <td> 
+                  <input type="text" name="Patmos" size="6" value="760">
+                  torr </td>
+              </tr>
+              <tr> 
+                <td colspan="2">Input&nbsp;Respiratory&nbsp;Quotient&nbsp;</td>
+                <td> 
+                  <input type="text" size="6" name="RespQuot" value="0.8">
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="3">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="3"> 
+                  <div align="center"> 
+                    <input type="button" name="CalcAlvGas" value="Calculate"
+                            onClick="calcAlvGas(this.form)">
+                    <input type="reset"
+                            name="resetButton" value="Clear">
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="3">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="2"> 
+                  <div align="right">P<sub>A</sub>O<sub>2</sub> <font size="2">&nbsp;&nbsp;=&nbsp;&nbsp;</font> 
+                  </div>
+                </td>
+                <td> 
+                  <input type="text" size="6" name="resValue">
+                </td>
+              </tr>
+            </table>
+            <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+            <table cellspacing="1" cellpadding="1" align="center">
+              <tr> 
+                <td colspan="3"> 
+                  <div align="center">Determine Atmospheric Pressure</div>
+                </td>
+              </tr>
+              <tr> 
+                <td>Elevation</td>
+                <td> 
+                  <input type="text" name="Elevation" size="6">
+                  feet 
+                  <input type="radio" checked name="feetmeter" value="3.28084">
+                  &nbsp;&nbsp;meters 
+                  <input type="radio" name="feetmeter" value="1">
+                </td>
+                <td> 
+                  <input type="button" name="CalcElev" value="Calculate" onClick="calcElevPress(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td>Location</td>
+                <td> 
+                  <select name="Location">
+                    <option value="760">-- Sea Level ( 0 ft ) --</option>
+                    <option value="625">Albuquerque, NM (5,311 ft)</option>
+                    <option value="732">Atlanta, GA (1,010 ft)</option>
+                    <option value="760">Atlantic City, NJ (7 ft)</option>
+                    <option value="756">Baltimore, MD (148 ft)</option>
+                    <option value="715">Bismarck, ND (1,647 ft)</option>
+                    <option value="685">Boise, ID (2,838 ft)</option>
+                    <option value="760">Boston, MA (15 ft)</option>
+                    <option value="741">Buffalo, NY (705 ft)</option>
+                    <option value="751">Burlington, VT (332 ft)</option>
+                    <option value="759">Charleston, SC (40 ft)</option>
+                    <option value="742">Chicago, IL (658 ft)</option>
+                    <option value="739">Cleveland, OH (777 ft)</option>
+                    <option value="751">Concord, NH (342 ft)</option>
+                    <option value="745">Dallas, TX (551 ft)</option>
+                    <option value="626">Denver, CO (5,283 ft)</option>
+                    <option value="734">Des Moines, IA (938 ft)</option>
+                    <option value="743">Detroit, MI (633 ft)</option>
+                    <option value="755">Hartford, CT (169 ft)</option>
+                    <option value="660">Helena, MT (3,828 ft)</option>
+                    <option value="760">Honolulu, HI (7 ft)</option>
+                    <option value="757">Houston, TX (96 ft)</option>
+                    <option value="738">Indianapolis, IN (792 ft)</option>
+                    <option value="752">Jackson, MS (291 ft)</option>
+                    <option value="732">Kansas City, MO (1,014 ft)</option>
+                    <option value="706">Las Vegas, NV (2,020 ft)</option>
+                    <option value="753">Little Rock, AR (257 ft)</option>
+                    <option value="757">Los Angeles, CA (96 ft)</option>
+                    <option value="747">Louisville, KY (477 ft)</option>
+                    <option value="753">Memphis, TN (258 ft)</option>
+                    <option value="760">Miami, FL (7 ft)</option>
+                    <option value="741">Milwaukee, WI (672 ft)</option>
+                    <option value="737">Minneapolis, MN (834 ft)</option>
+                    <option value="744">Nashville, TN (590 ft)</option>
+                    <option value="760">New Orleans, LA (4 ft)</option>
+                    <option value="756">New York, NY (132 ft)</option>
+                    <option value="759">Norfolk, VA (24 ft)</option>
+                    <option value="725">Oklahoma City, OK (1,285 ft)</option>
+                    <option value="733">Omaha, NE (997 ft)</option>
+                    <option value="760">Philadelphia, PA (5 ft)</option>
+                    <option value="730">Phoenix, AZ (1,110 ft)</option>
+                    <option value="729">Pittsburgh, PA (1,137 ft)</option>
+                    <option value="759">Portland, ME (43 ft)</option>
+                    <option value="759">Portland, OR (21 ft)</option>
+                    <option value="759">Providence, RI (51 ft)</option>
+                    <option value="646">Reno, NV (4,404 ft)</option>
+                    <option value="745">St. Louis, MO (535 ft)</option>
+                    <option value="651">Salt Lake City, UT (4,221 ft)</option>
+                    <option value="760">San Francisco, CA (8 ft)</option>
+                    <option value="749">Seattle, WA (400 ft)</option>
+                    <option value="725">Springfield, MO (1,268 ft)</option>
+                    <option value="760">Washington, DC (10 ft)</option>
+                    <option value="758">Wilmington, DE (74 ft)</option>
+                  </select>
+                </td>
+                <td> 
+                  <input type="button" name="CalcLoc" value="Calculate" onClick="calcLocPress(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="2"> 
+                  <div align="right">Atmospheric Pressure&nbsp;&nbsp;=&nbsp;&nbsp;</div>
+                </td>
+                <td> 
+                  <input type="text" name="PatmosCalc" size="6">
+                  torr</td>
+              </tr>
+            </table>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>The alveolar gas equation is usually used to calculate the partial 
+          pressure of oxygen in the alveoli:</p>
+        <p align="center">P<sub>A</sub>O<sub>2</sub> = ( F<sub>i</sub>O<sub>2</sub> 
+          * (P<sub>atmos</sub> - P<sub>H<sub>2</sub>O</sub>)) - (P<sub>a</sub>CO<sub>2</sub> 
+          / RQ)</p>
+        <p align="left">The FiO2 is the fraction of inspired oxygen (usually as 
+          a fraction, but entered here as a percentage for ease of use). P<sub>atmos</sub> 
+          is the ambient atmospheric pressure, which is 760 torr at sea level. 
+          P<sub>H<sub>2</sub>O</sub> is water vapor pressure at 37&deg;C and is 
+          equal to 47 mmHg. The respiratory quotient (RQ) is the ratio of CO<sub>2</sub> 
+          eliminated divided by the O<sub>2</sub> consumed, and its value is typically 
+          0.8 but can range from 0.7 to 1.0.</p>
+        <p align="left">The alveolar gas equation is most commonly used in the 
+          calculation of the Alveolar - arterial gradient:</p>
+        <p align="center">A-a gradient = P<sub>A</sub>O<sub>2</sub> - P<sub>a</sub>O<sub>2</sub></p>
+        <p align="left">See <a href="./mhr_AaGradient.html">A-a Gradient</a> calculator.</p>
+        <p>&nbsp;</p>
+        <!-- #EndEditable --> 
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->September 29, 
+          2010<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->October 18, 2010<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
+

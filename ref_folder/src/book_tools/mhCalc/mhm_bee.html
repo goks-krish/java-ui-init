@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Basal Energy Expenditure</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+
+function calcBEE(obj) {
+
+   function IsNum(str) {
+      for (var i = 0; i < str.length; i++) {
+         var chr = str.substring(i, i+1);
+         if ((chr < "0" || "9" < chr) && chr != ".")
+            return false; 
+      }
+      if (eval(str)==0)
+         return false;
+      return true;
+   }
+
+	if (!obj.gender[0].checked && !obj.gender[1].checked) {
+      alert("Click either male or female");
+      return; }
+
+   if (!IsNum(obj.Ht.value)) {
+      alert("Height invalid");
+      return; }
+   if (!IsNum(obj.Wt.value)) {
+      alert("Weight invalid");
+      return; }
+   if (!IsNum(obj.Age.value)) {
+      alert("Age invalid");
+      return; }
+
+   var Ht     = obj.Ht.value;
+   var Wt     = obj.Wt.value;
+   var Age    = obj.Age.value;
+   var i      = obj.Stress.selectedIndex;
+   var Stress   = obj.Stress.options[i].value;
+   var Activity = 1.2;
+   var Factor   = 0;
+
+   // Conversions
+   if (obj.cmin[1].checked) {
+      Ht = Ht * 2.54;
+      obj.cmin[0].checked = true; }
+   Ht = Math.round(Ht * 100) / 100;
+   obj.Ht.value = Ht;
+
+   if (obj.kglb[1].checked) {
+      Wt = Wt / 2.2;
+      obj.kglb[0].checked = true; }
+   Wt = Math.round(Wt * 100) / 100;
+   obj.Wt.value = Wt;
+
+   if (obj.yrmo[1].checked) {
+      Age = Age / 12;
+      obj.yrmo[0].checked = true; }
+   Age = Math.round(Age * 100) / 100;
+   obj.Age.value = Age;
+
+
+   // Stress and Activity factors
+   // Default activity factor of 1.2 set at declaration
+   if (obj.Activity[1].checked) {
+      Activity = 1.25; }
+   Factor = parseFloat(Activity) + parseFloat(Stress);
+
+   // Calculation
+   // Male
+   if (obj.gender[0].checked) {
+      BEE = 66.5 + 13.75 * Wt + 5.003 * Ht - 6.775 * Age; }
+   else {
+      BEE = 655.1 + 9.563 * Wt + 1.85 * Ht - 4.676 * Age; }
+
+   BEE   = Math.round(BEE);
+   TotCR = Math.round(BEE * Factor);
+   obj.BeeValue.value = BEE;
+   obj.CalReqValue.value = TotCR;
+}
+
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub">
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol" align="center"> 
+
+     
+        <h1>Basal Energy Expenditure: <br>
+        Harris-Benedict Equation</h1>
+        <p>Estimate basal energy expenditure using the Harris-Benedict equations. 
+        </p>
+        <form name="formulaForm">
+          <div align="center"> 
+            <center>
+              <table
+                            border="0" cellpadding="0"
+                            cellspacing="1">
+                <tr> 
+                  <td>&nbsp;</td>
+                  <td> 
+                    <input type="radio" name="gender" value="m">
+                    Male </td>
+                  <td colspan="2"> 
+                    <input type="radio" name="gender" value="f">
+                    Female</td>
+                </tr>
+                <tr> 
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td>Input Height</td>
+                  <td> 
+                    <input
+                                    type="text" size="5"
+                                    name="Ht">
+                  </td>
+                  <td> 
+                    <input type="radio"
+                                    checked name="cmin"
+                                    value="cm">
+                    cm </td>
+                  <td> 
+                    <input type="radio"
+                                    name="cmin" value="in">
+                    in </td>
+                </tr>
+                <tr> 
+                  <td>Input Weight</td>
+                  <td> 
+                    <input type="text"
+                                    size="5" name="Wt">
+                  </td>
+                  <td> 
+                    <input type="radio"
+                                    checked name="kglb"
+                                    value="kg">
+                    kg</td>
+                  <td> 
+                    <input type="radio"
+                                    name="kglb" value="lb">
+                    lb</td>
+                </tr>
+                <tr> 
+                  <td>Input Age</td>
+                  <td> 
+                    <input type="text"
+                                    size="5" name="Age">
+                  </td>
+                  <td> 
+                    <input type="radio"
+                                    checked name="yrmo"
+                                    value="yr">
+                    yrs</td>
+                  <td> 
+                    <input type="radio"
+                                    name="yrmo" value="mo">
+                    mos </td>
+                </tr>
+                <tr> 
+                  <td>Stress Factor </td>
+                  <td colspan="3"> 
+                    <select
+                                    name="Stress" size="1">
+                      <option selected
+                                        value="0">None</option>
+                      <option value="0.1">Infection, mild</option>
+                      <option value="0.25">Infection, moderate</option>
+                      <option value="0.45">Infection, severe</option>
+                      <option value="0.15">Infection, peritonitis</option>
+                      <option value="0.1">Operation, minor</option>
+                      <option value="0.15">Operation, major</option>
+                      <option value="0.05">Post-op</option>
+                      <option value="0.5">Burns, &lt; 20%</option>
+                      <option value="0.7">Burns, 20-40%</option>
+                      <option value="1.0">Burns, &gt; 40%</option>
+                      <option value="0.3">Trauma, multiple</option>
+                      <option value="0.4">Trauma, blunt</option>
+                      <option value="0.2">Trauma, skeletal</option>
+                      <option value="0.25">Trauma, long-bone fracture</option>
+                      <option value="0.15">Cancer</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr> 
+                  <td colspan="4">Activity Factor 
+                    <input type="radio"
+                                    checked name="Activity"
+                                    value="br">
+                    Bedrest 
+                    <input type="radio"
+                                    name="Activity" value="am">
+                    Ambulating</td>
+                </tr>
+                <tr> 
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td colspan="4"> 
+                    <p
+                                    align="center"> 
+                      <input
+                                    type="button"
+                                    name="Calculate"
+                                    value="Calculate"
+                                    onClick="calcBEE(this.form)">
+                      <input type="reset"
+                                    name="resetButton"
+                                    value="Clear">
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </center>
+          </div>
+          <p>&nbsp;</p>
+          <div align="center"> 
+            <center>
+              <table
+                            border="0" cellpadding="0"
+                            cellspacing="1">
+                <tr> 
+                  <td>B.E.E.</td>
+                  <td>= 
+                    <input
+                                    type="text" size="10"
+                                    name="BeeValue">
+                    &nbsp;&nbsp;kcal/d</td>
+                </tr>
+                <tr> 
+                  <td>Caloric Requirement&nbsp;</td>
+                  <td>= 
+                    <input type="text"
+                                    size="10" name="CalReqValue">
+                    &nbsp;&nbsp;kcal/d </td>
+                </tr>
+              </table>
+            </center>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>For men, <br>
+          B.E.E. = 66.5 + (13.75 x kg) + (5.003 x cm) - (6.775 x age)</p>
+        <p>For women, <br>
+          B.E.E. = 655.1 + (9.563 x kg) + (1.850 x cm) - (4.676 x age)</p>
+        <p>Total Caloric Requirements equal the B.E.E. multiplied by the sum of 
+          the stress and activity factors. Stress plus activity factors range 
+          from 1.2 to over 2.</p>
+        <p> 
+        <ul>
+          <li>Harris J, Benedict F. A biometric study of basal metabolism in man. 
+            Washington D.C. Carnegie Institute of Washington. 1919.</li>
+        </ul>
+        <p></p>
+        <p>Special thanks to Dr. T.K. Shiao, University of Kansas Medical Center, 
+          co-author of <a href="http://epen.kumc.edu/" target="_blank">Electronic Parenteral and 
+          Enteral Nutrition</a>.</p>
+        <p>&nbsp;</p>
+        <p> <i>Created:</i>March 9, 2000<br>
+          <i>Revised:</i>October 3, 2000</p>
+      </div>
+      <div id="rightCol"> 
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

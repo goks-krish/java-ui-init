@@ -1,0 +1,232 @@
+
+<!-- JB: 12.17.96 added * to table -->
+<!-- KA SSC loosened to include semantics-->
+<!ELEMENT ati-table (metadata | table | legend  | semantics)*>
+<!ATTLIST ati-table
+          %a-all-atts;
+          %a-all-structure;
+          notation CDATA	#IMPLIED
+          >
+<!-- KA SC changed %n-table-notations; %f-table-notation; to allow error-free processing-->
+<!--	This entity is fragment of:
+	<!DOCTYPE doc PUBLIC "-//USA-DOD//DTD MIL-M-38784B 910201//EN">
+	...and contains the elements that define CALS tables.
+	NOTE:  The table elements and ATTLISTs reference a number
+	of other elements and parametric entities that are not
+	defined in this fragment.  They are listed below.
+Parameter entities that must be defined by the referencing entity:
+	ENTITY NAME	WHERE USED -->
+
+<!ENTITY % titles "title">
+
+<!--	%yesorno	In ATTLIST of:
+			<table>
+			<chart>
+			<tgroup>
+			<colspec>
+			<spanspec>
+			<row>
+			<entry>
+			<entrytbl>
+-->
+<!ENTITY % yesorno "CDATA" >
+<!-- KA SSC changed yesorno from NUMBER to CDATA-->
+<!--	%bodyatt	In ATTLIST of:
+			<table>
+			<chart>
+-->
+<!ENTITY % bodyatt "%a-all-atts;">
+
+<!--	%secur		In ATTLIST of:
+			<table>
+			<chart>
+			<tgroup>
+			<thead>
+			<tfoot>
+			<tbody>
+			<row>
+			<entry>
+			<entrytbl>
+-->
+<!ENTITY % secur
+           "security (u | c | s | ts) #IMPLIED
+            restrict NMTOKENS #IMPLIED
+            release NMTOKENS #IMPLIED
+            codeword NMTOKENS #IMPLIED
+            scilevel %yesorno; '0'
+            diglyph NMTOKENS #IMPLIED">
+
+<!--	%paracon	In content model of:
+			<entry> -->
+<!-- JB: 11.15.96 Added c-apparatus to allow xr within ATI table body 
+     JB: 12.4.96 Need eq in table cell so I replaced PCDATA, c-basic, c-domain, c-apparatus with c-text -->
+<!-- JB: 1.10.97 Added panel to allow a graphic in a table cell -->
+<!-- JB: 1.29.97 Added s-container to allow those elements within a table 
+cell -->
+
+<!ENTITY % paracon "#PCDATA | %c-text;|panel|%s-container;">
+
+
+<!--
+Elements that are referenced either in a content model,
+inclusions, or exclusions.
+      <chart>/<table> content model:
+		%titles;
+-->
+
+<!--	<chart>/<table> exclusion list: 
+		<figure>
+-->
+
+<!--	<entry> content model:
+          <p>
+		<warning>
+		<caution>
+		<note>
+		<legend>
+		%paracon;
+-->
+<!-- KA SSC removed exclusion  -(table)-->
+<!ELEMENT table  (%titles;,tgroup+)>
+
+<!ATTLIST table   tabstyle    NMTOKEN     #IMPLIED
+                            tocentry    %yesorno;   "1"
+                            shortentry  %yesorno;   #IMPLIED
+                            frame  (top|bottom|topbot|all|sides|none) #IMPLIED
+                            colsep      %yesorno;    #IMPLIED
+                            rowsep      %yesorno;    #IMPLIED
+                            orient    (port | land)  #IMPLIED
+                            pgwide      %yesorno;    #IMPLIED
+                            %bodyatt;
+                            %secur; >
+
+<!ELEMENT tgroup (colspec*, spanspec*, thead?, tfoot?, tbody) >
+<!-- KA SSC change cols NUMBER to CDATA
+Change charoff NUTOKEN to CDATA-->
+<!ATTLIST tgroup  cols         CDATA   #REQUIRED
+                  tgroupstyle  NMTOKEN  #IMPLIED
+                  colsep       %yesorno;  #IMPLIED
+                  rowsep       %yesorno;  #IMPLIED
+                  align  (left | right | center | justify | char )  "left"
+                  charoff      CDATA    "50"
+                  char         CDATA       ""
+                  %secur; >
+
+<!-- KA SSC change colnum NUMBER to CDATA, colname NMTOKEN to CDATA
+Change charoff NUTOKEN to CDATA-->                  
+<!ELEMENT colspec    EMPTY>
+<!ATTLIST colspec  colnum     CDATA      #IMPLIED
+                   colname    CDATA     #IMPLIED
+                   align  (left|right|center|justify|char)  #IMPLIED
+                   charoff    CDATA     #IMPLIED
+                   char       CDATA       #IMPLIED
+                   colwidth   CDATA       #IMPLIED
+                   colsep     %yesorno;   #IMPLIED
+                   rowsep     %yesorno;   #IMPLIED>
+                   
+ <!-- KA SSC change charoff NUTOKEN to CDATA-->                      
+<!ELEMENT spanspec    EMPTY >
+<!ATTLIST spanspec  namest    NMTOKEN     #REQUIRED
+                    nameend   NMTOKEN     #REQUIRED
+                    spanname  NMTOKEN     #REQUIRED
+                    align  (left|right|center|justify|char)  "center"
+                    charoff   CDATA    #IMPLIED
+                    char      CDATA       #IMPLIED
+                    colsep    %yesorno;   #IMPLIED
+                    rowsep    %yesorno;   #IMPLIED>
+                    
+<!-- KA SSC removed exclusion -(entrytbl) 
+Declared thead and tfoot separately-->                    
+<!ELEMENT thead 	(colspec*, row+)  >
+<!ELEMENT tfoot	(colspec*, row+)  >
+
+<!ATTLIST thead   valign  (top | middle | bottom) "bottom"
+                  %secur; >
+<!ATTLIST tfoot   valign   (top | middle | bottom) "top"
+                  %secur; >
+<!ELEMENT tbody  (row+) >
+<!ATTLIST tbody   valign  (top | middle | bottom)  "top"
+                  %secur; >
+<!ELEMENT row      (entry | entrytbl)+ >
+<!ATTLIST row   rowsep   %yesorno;   #IMPLIED
+                %secur; >
+<!--CHANGE 910201 - FOLLOWING ELEMENT CHANGED  -->
+
+<!-- Techbooks: 08/31/2000. ELEMENT NOTE HAS BEEN MOVED TO C-MODEL.TXT -->
+<!-- Techbooks: 02/02/2001. Renamed the "para" element as "p" -->
+<!-- Techbooks: 03/05/2001. Removed "p" from the below content model -->
+<!-- Techbooks: 05/14/2001. Added "tsubhead" element in "entry" -->
+
+<!-- KA SSC change entry to XML validity. Arguement is as follows-->
+<!-- If you express %paracon; as all of its parts: 
+
+c-text
+#PCDATA |%c-apparatus; |%c-basic; |%c-bridge; |%c-domain;
+panel
+callout,enumerator?
+s-container
+bl |nl |np |outline |p |ul |mcl
+c-apparatus
+nb |nf |nt |xc |xr |xd
+c-basic
+em |enumerator |fo |in |ww |url | img | small
+c-bridge
+cq |eq |topic |video
+c-domain
+ab |ac |gn |sc |mx |sb |sp |tf |td |tr |ty
+
+Therefore paracon is actually: 
+#PCDATA |nb |nf |nt |xc |xr |xd |em |enumerator |fo |in |ww |url | img | small |cq |eq |topic |video |ab |ac |gn |sc |mx |sb |sp |tf |td |tr |ty|callout,enumerator?|bl |nl |np |outline |p |ul |mcl
+
+Which is invalid in entry context for two reasons. First, PCDATA must be declared first in a mixed-content element. Second, the declaration must end with * not +. 
+
+Solution: Declare paracon first to move PCDATA to first position. 
+Change + to *
+-->
+<!-- KA SSC added caution element to validate-->
+<!ELEMENT entry  (%paracon; | warning | caution | note | legend | tsubhead | email)*>
+<!ELEMENT	caution	(#PCDATA)>
+<!ELEMENT	warning	(#PCDATA)>
+<!--CHANGE 910201 - FOLLOWING ATTLIST CHANGED  -->
+<!-- KA SSC changed morerows NUMBER to CDATA 
+Changed charoff NUTOKEN to CDATA
+Adding attr level to allow indenting information -->
+<!ATTLIST entry   colname     NMTOKEN     #IMPLIED
+                  namest      NMTOKEN     #IMPLIED
+                  nameend     NMTOKEN     #IMPLIED
+                  spanname    NMTOKEN     #IMPLIED
+                  morerows    CDATA       #IMPLIED
+                  colsep      %yesorno;   #IMPLIED
+                  rowsep      %yesorno;   #IMPLIED
+                  rotate      %yesorno;   "0"
+                  valign  (top | bottom | middle)  "top"
+                  align  (left | right | center | justify | char )  #IMPLIED 
+                  charoff      CDATA    #IMPLIED
+                  char         CDATA      #IMPLIED
+                  level	(l1 | l2 | l3 | l4 | l5 | l6 | l7 | l8 | l9)	#IMPLIED
+                  %secur; >
+
+<!-- Techbooks: 05/14/2001. Created new element "tsubhead" -->
+<!ELEMENT tsubhead  (%paracon;)*>
+<!ATTLIST tsubhead   %a-all-atts;
+                     %a-all-content;
+                     head-level  CDATA	#IMPLIED>
+<!--KA SSC changed %f-declared-head-levels; %f-head-level; to allow for error-free processing-->
+<!-- ELEMENT      ATTR  MIN   VALUE CONTENT     DEFAULT     EXCEPT -->
+<!-- KA SSC removed exclusion -(entrytbl)
+Changed cols NUMBER to CDATA
+Changed charoff NUTOKEN to CDATA-->
+<!ELEMENT entrytbl   (colspec*, spanspec*, thead?, tbody)+    >
+<!ATTLIST entrytbl  cols    CDATA    #REQUIRED
+                   tgroupstyle  NMTOKEN  #IMPLIED
+                   colname      NMTOKEN  #IMPLIED
+                   spanname     NMTOKEN  #IMPLIED
+                   colsep       %yesorno; #IMPLIED
+                   rowsep       %yesorno; #IMPLIED
+                   align  (left | right | center | justify | char )  #IMPLIED
+                   charoff      CDATA    #IMPLIED
+                   char         CDATA      #IMPLIED
+                   %secur; >
+
+
+

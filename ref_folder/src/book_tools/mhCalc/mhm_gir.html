@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Glucose Infusion Rate</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calcGIR(obj) {
+
+   function IsNum(str) {
+      for (var i = 0; i < str.length; i++) {
+         var chr = str.substring(i, i+1);
+         if ((chr < "0" || "9" < chr) && chr != ".")
+            return false; 
+      }
+      if (eval(str)==0)
+         return false;
+      return true;
+   }
+
+   if (!IsNum(obj.Wt.value)) {
+      alert("Weight invalid");
+      return; }
+
+   var Wt     = obj.Wt.value;
+   var D5R    = obj.D5Rate.value;
+   var D10R   = obj.D10Rate.value;
+   var DOth   = obj.DOther.value;
+   var DOR    = obj.DORate.value;
+
+   var Glu5   = 0;
+   var Glu10  = 0;
+   var Glu0   = 0;
+   var GluTot = 0;
+
+   // Conversions
+   if (obj.kglb[1].checked) {
+      Wt = Wt / 2.2;
+      obj.kglb[0].checked = true; }
+   Wt = Math.round(Wt * 100) / 100;
+   obj.Wt.value = Wt;
+
+   // Calculation
+   Glu5      = D5R * 5 * 0.1667 / Wt;
+   Glu10     = D10R * 10 * 0.1667 / Wt;
+   GluOth    = DOth * DOR * 0.1667 / Wt;
+   GluTot    = Glu5 + Glu10 + GluOth;
+
+   GluTot = Math.round(GluTot*10)/10;
+
+   obj.GIRValue.value = GluTot;
+
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Glucose 
+                  Infusion Rate<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calculate the total glucose infusion rate from up to three concentrations 
+          of dextrose. </p>
+        <form name="formulaForm">
+          <div align="center"> 
+            <center>
+              <table
+                            border="0" cellpadding="0"
+                            cellspacing="1">
+                <tr> 
+                  <td>Input&nbsp;Weight&nbsp;</td>
+                  <td> 
+                    <input type="text"
+                                    size="5" name="Wt">
+                  </td>
+                  <td> 
+                    <input type="radio"
+                                    checked name="kglb"
+                                    value="kg">
+                    kg 
+                    <input type="radio"
+                                    name="kglb" value="lb">
+                    lb</td>
+                </tr>
+                <tr> 
+                  <td>D5 Rate&nbsp;</td>
+                  <td> 
+                    <input type="text" name="D5Rate" size="5">
+                  </td>
+                  <td>&nbsp;mL/hr</td>
+                </tr>
+                <tr> 
+                  <td>D10 Rate&nbsp;</td>
+                  <td> 
+                    <input type="text" name="D10Rate" size="5">
+                  </td>
+                  <td>&nbsp;mL/hr</td>
+                </tr>
+                <tr> 
+                  <td>D
+<input type="text" name="DOther" size="5">
+                    Rate&nbsp;</td>
+                  <td> 
+                    <input type="text"
+                                    size="5" name="DORate">
+                  </td>
+                  <td>&nbsp;mL/hr</td>
+                </tr>
+                <tr> 
+                  <td colspan="3">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td colspan="3"> 
+                    <div align="center"> 
+                      <input
+                                    type="button"
+                                    name="Calculate"
+                                    value="Calculate"
+                                    onClick="calcGIR(this.form)">
+                      <input type="reset"
+                                    name="resetButton"
+                                    value="Clear">
+                    </div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td colspan="3">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td> 
+                    <div align="right">Total GIR =&nbsp;</div>
+                  </td>
+                  <td> 
+                    <input
+                                    type="text" size="6"
+                                    name="GIRValue">
+                  </td>
+                  <td>&nbsp;mg/kg/min</td>
+                </tr>
+              </table>
+            </center>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>This calculation is a simple conversion of units (into mg/kg/min):</p>
+        <table border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr> 
+            <td rowspan="3" align="center">GIR&nbsp;=&nbsp;</td>
+            <td align="center">IV Rate (mL/hr) * Dextrose Conc (g/dL) * 1000 (mg/g)</td>
+          </tr>
+          <tr> 
+            <td align="center"> <img src="./images/filler.gif" width="320" height="1"></td>
+          </tr>
+          <tr> 
+            <td align="center">Weight (kg) * 60 (min/hr) * 100 (mL/dL)</td>
+          </tr>
+        </table>
+        <p>where the dextrose concentration is expressed as a whole number, e.g. 
+          5 or 10. </p>
+        <p>A GIR of 5-8 mg/kg/min is typical. Infants who are not feeding should 
+          not be allowed a rate less than 5 mg/kg/min for any significant period 
+          of time. The GIR needed to optimize nutrition in neonates is 14 mg/kg/min.</p>
+        <p>&nbsp;</p><!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->July 13, 2010<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->July 13, 2010<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Alveolar-arterial Gradient</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function calculateFormula (a,b,c) {
+  var result= 0;
+  var fio2=parseFloat(a);
+  var paco2  = parseFloat(b);
+  var parto2 = parseFloat(c);
+  var palvo2 = 0;
+
+  if (a > 1) {
+    alert("FiO2 must be in decimal form.");
+    return;
+  }
+  if (b > 150) {
+    alert("pCO2 is out of range.");
+    return;
+  }
+  if (c > 760) {
+    alert("pO2 is out of range.");
+    return;
+  }
+
+  palvo2 = (fio2*713)-(paco2/0.8);
+  result = Math.round((palvo2-parto2)*10) / 10;
+  document.formulaForm.resValue.value = result;
+}
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Alveolar-arterial 
+                  Gradient<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calculate the Alveolar - arterial gradient given FiO2, PaCO2 and PaO2.</p>
+        <form name="formulaForm">
+          <div align="left"> 
+            <table border="0"
+                            cellpadding="0" cellspacing="1" align="center">
+              <tr> 
+                <td colspan="2">Input F<sub>i</sub>O<sub>2</sub></td>
+                <td> 
+                  <input type="text" size="6" name="FiO2">
+                  decimal </td>
+              </tr>
+              <tr> 
+                <td colspan="2">Input P<sub>a</sub>CO<sub>2</sub></td>
+                <td> 
+                  <input type="text" size="6" name="PaCO2">
+                  torr </td>
+              </tr>
+              <tr> 
+                <td colspan="2">Input P<sub>a</sub>O<sub>2</sub></td>
+                <td> 
+                  <input type="text" size="6" name="PartO2">
+                  torr </td>
+              </tr>
+              <tr> 
+                <td colspan="3">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="3"> 
+                  <div align="center"> 
+                    <input type="button" name="Calculate" value="Calculate"
+                            onClick="calculateFormula(document.formulaForm.FiO2.value,document.formulaForm.PaCO2.value,document.formulaForm.PartO2.value)">
+                    <input type="reset"
+                            name="resetButton" value="Clear">
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="3">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td>Alveolar-arterial <br>
+                  oxygen gradient</td>
+                <td> <font size="2">&nbsp;&nbsp;=</font> </td>
+                <td> 
+                  <input type="text" size="6" name="resValue">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p>High gradients result from impaired diffusion or, more commonly, by 
+          ventilation-perfusion inequality of the &quot;shunting&quot; variety. 
+          A normal A-a gradient is less than 10 torr. The age (years) / 4 + 4 
+          is another conservative estimate of a normal gradient.</p>
+        <p>The calculations above assume 100% humidity at sea level and a respiratory 
+          quotient of 0.8, using the alveolar gas equation to determine PAO2:</p>
+        <p align="center">P<sub>A</sub>O<sub>2</sub> = ( F<sub>i</sub>O<sub>2</sub> 
+          * (760 - 47)) - (P<sub>a</sub>CO<sub>2</sub> / 0.8)</p>
+        <p align="center">A-a 
+                    gradient = P<sub>A</sub>O<sub>2</sub> - P<sub>a</sub>O<sub>2</sub></p>
+        <p align="left">See the <a href="./mhr_AGasEquation.html">Alveolar Gas Equation</a> 
+          calculator that allows manipulation of all the variables.</p>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->January 
+        7, 2000<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->December 
+        10, 2001<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

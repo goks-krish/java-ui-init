@@ -1,0 +1,479 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Calcium Equivalents</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+function CalcElem(obj) {
+   var vElem     = parseFloat(obj.Elemental.value);
+   if (!IsNum(vElem)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kElem     = 1;
+   DoConvert(vElem, kElem, obj);
+}
+
+function CalcMEq(obj) {
+   var vmEq      = parseFloat(obj.mEq.value);
+   if (!IsNum(vmEq)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kmEq      = 20.039;
+   DoConvert(vmEq, kmEq, obj);
+}
+
+function CalcMmol(obj) {
+   var vmmol      = parseFloat(obj.mmol.value);
+   if (!IsNum(vmmol)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kmmol      = 40.078;
+   DoConvert(vmmol, kmmol, obj);
+}
+
+function CalcCaCl(obj) {
+   var vCaCl      = parseFloat(obj.CaCl.value);
+   if (!IsNum(vCaCl)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kCaCl      = 272.53;
+   DoConvert(vCaCl, kCaCl, obj);
+}
+
+function CalcCaClVol(obj) {
+   var vCaClVol      = parseFloat(obj.CaClVol.value);
+   if (!IsNum(vCaClVol)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kCaClVol      = 27.253;
+   DoConvert(vCaClVol, kCaClVol, obj);
+}
+
+function CalcCaGlu(obj) {
+   var vCaGlu      = parseFloat(obj.CaGlu.value);
+   if (!IsNum(vCaGlu)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kCaGlu      = 92.981;
+   DoConvert(vCaGlu, kCaGlu, obj)
+}
+
+function CalcCaGluVol(obj) {
+   var vCaGluVol      = parseFloat(obj.CaGluVol.value);
+   if (!IsNum(vCaGluVol)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kCaGluVol      = 9.2981;
+   DoConvert(vCaGluVol, kCaGluVol, obj);
+}
+
+function CalcCaAcet(obj) {
+   var vCaAcet      = parseFloat(obj.CaAcet.value);
+   if (!IsNum(vCaAcet)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kCaAcet      = 253.37;
+   DoConvert(vCaAcet, kCaAcet, obj);
+}
+
+function CalcCaCarb(obj) {
+   var vCaCarb      = parseFloat(obj.CaCarb.value);
+   if (!IsNum(vCaCarb)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kCaCarb      = 399.18;
+   DoConvert(vCaCarb, kCaCarb, obj);
+}
+
+function CalcCaCitr(obj) {
+   var vCaCitr      = parseFloat(obj.CaCitr.value);
+   if (!IsNum(vCaCitr)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kCaCitr      = 210.53;
+   DoConvert(vCaCitr, kCaCitr, obj);
+}
+
+function CalcCaGlub(obj) {
+   var vCaGlub      = parseFloat(obj.CaGlub.value);
+   if (!IsNum(vCaGlub)) {
+      alert("Amount entered is invalid.");
+      return;
+   }
+   var kCaGlub      = 65.728;
+   DoConvert(vCaGlub, kCaGlub, obj);
+}
+
+// Reused Functions. (k equals mg Elemental Ca for every g of salt)
+
+function DoConvert(vAmount, k, obj, roundto) {
+
+   var vElem     = Math.round(vAmount /   1     * k *   10) /   10;
+   var vmEq      = Math.round(vAmount /  20.039 * k *  100) /  100;
+   var vmmol     = Math.round(vAmount /  40.078 * k *  100) /  100;
+   var vCaCl     = Math.round(vAmount / 272.53  * k * 1000) / 1000;
+   var vCaClVol  = Math.round(vAmount /  27.253 * k *  100) /  100;
+   var vCaGlu    = Math.round(vAmount /  92.981 * k * 1000) / 1000;
+   var vCaGluVol = Math.round(vAmount /   9.2981* k *  100) /  100;
+   var vCaAcet   = Math.round(vAmount / 253.37  * k * 1000) / 1000;
+   var vCaCarb   = Math.round(vAmount / 399.18  * k * 1000) / 1000;
+   var vCaCitr   = Math.round(vAmount / 210.53  * k * 1000) / 1000;
+   var vCaGlub   = Math.round(vAmount /  65.728 * k *  100) /  100;
+
+   // Copy values to object form
+   obj.Elemental.value= FixNum(vElem);
+   obj.mEq.value      = FixNum(vmEq);
+   obj.mmol.value     = FixNum(vmmol);
+   obj.CaCl.value     = FixNum(vCaCl);
+   obj.CaClVol.value  = FixNum(vCaClVol);
+   obj.CaGlu.value    = FixNum(vCaGlu);
+   obj.CaGluVol.value = FixNum(vCaGluVol);
+   obj.CaAcet.value   = FixNum(vCaAcet);
+   obj.CaCarb.value   = FixNum(vCaCarb);
+   obj.CaCitr.value   = FixNum(vCaCitr);
+   obj.CaGlub.value   = FixNum(vCaGlub);
+}
+
+function IsNum(str) {
+      for (var i = 0; i < str.length; i++) {
+         var chr = str.substring(i, i+1);
+         if ((chr < "0" || "9" < chr) && chr != ".")
+            return false;
+         }
+      if (eval(str)==0)
+         return false;
+      return true;
+}
+
+function FixNum(num) {
+//      if ((num < 1) && (num >= 0.1))
+//         num = "0" + num;
+      return num;
+}
+
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Calcium 
+                  Equivalents<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calcium can be measured by the amount of the calcium <b>salt</b> (mg 
+          of the cation <i>plus</i> the anion, or mL of a specified concentration) 
+          or the amount of elemental calcium in milligrams (mg), in milliequivalents 
+          (mEq), or in millimoles (mmol). (Because calcium has a valence of +2, 
+          the milliequivalents equals two times the number of millimoles.) Its 
+          varied dosing units and conversion factors are potential sources of 
+          medication errors.</p>
+        <p>Enter a value in a cell and click the &#147;Calculate&#148; button 
+          in the same row to determine all the equivalent forms. Be aware that 
+          there may be some rounding error with multiple conversions.</p>
+        <form name="formulaForm">
+          <div align="center"> 
+            <table
+                            border="0" cellpadding="0"
+                            cellspacing="1">
+              <tr> 
+                <td>Elemental Ca (mg)</td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="Elemental">
+                </td>
+                <td> 
+                  <input
+                                    type="button"
+                                    name="CalcFromElem"
+                                    value="Calculate"
+                                    onClick="CalcElem(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td>Elemental Ca (mEq) </td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="mEq">
+                </td>
+                <td> 
+                  <input
+                                    type="button"
+                                    name="CalcFromMEq"
+                                    value="Calculate"
+                                    onClick="CalcMEq(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td>Elemental Ca (mmol) </td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="mmol">
+                </td>
+                <td> 
+                  <input
+                                    type="button"
+                                    name="CalcFromMmol"
+                                    value="Calculate"
+                                    onClick="CalcMmol(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="3">&nbsp; </td>
+              </tr>
+              <tr> 
+                <td>CaChloride (g)</td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="CaCl">
+                </td>
+                <td> 
+                  <input
+                                    type="button"
+                                    name="CalcFromCl"
+                                    value="Calculate"
+                                    onClick="CalcCaCl(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td>CaChloride 10% (ml) </td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="CaClVol">
+                </td>
+                <td> 
+                  <input
+                                    type="button"
+                                    name="CalcFromClVol"
+                                    value="Calculate"
+                                    onClick="CalcCaClVol(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td>CaGluconate (g)</td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="CaGlu">
+                </td>
+                <td> 
+                  <input
+                                    type="button"
+                                    name="CalcFromGlu"
+                                    value="Calculate"
+                                    onClick="CalcCaGlu(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td>CaGluconate 10% (ml)&nbsp;</td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="CaGluVol">
+                </td>
+                <td> 
+                  <input
+                                    type="button"
+                                    name="CalcFromGluVol"
+                                    value="Calculate"
+                                    onClick="CalcCaGluVol(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td>CaAcetate (g) </td>
+                <td> 
+                  <input type="text" name="CaAcet" size="10">
+                </td>
+                <td> 
+                  <input
+                                    type="button"
+                                    name="CalcFromAcet"
+                                    value="Calculate"
+                                    onClick="CalcCaAcet(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td>CaCarbonate (g) </td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="CaCarb">
+                </td>
+                <td> 
+                  <input
+                                    type="button"
+                                    name="CalcFromCarb"
+                                    value="Calculate"
+                                    onClick="CalcCaCarb(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td>CaCitrate (g) </td>
+                <td> 
+                  <input type="text" name="CaCitr" size="10">
+                </td>
+                <td> 
+                  <input
+                                    type="button"
+                                    name="CalcFromCitr"
+                                    value="Calculate"
+                                    onClick="CalcCaCitr(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td>CaGlubionate (g) </td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="CaGlub">
+                </td>
+                <td> 
+                  <input
+                                    type="button"
+                                    name="CalcFromGlub"
+                                    value="Calculate"
+                                    onClick="CalcCaGlub(this.form)">
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="3">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td align="center"
+                                    colspan="3"> 
+                  <input
+                                    type="reset" name="Clear"
+                                    value="Clear">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+        <p>&nbsp;</p>
+        <table border="1" cellspacing="1"
+                        bordercolor="#000000" align="center" cellpadding="1" width="390">
+          <tr> 
+            <td align="center">&nbsp;</td>
+            <td align="center"
+                                valign="bottom"><b><i>Salt</i></b> </td>
+            <td align="center"
+                                valign="bottom" colspan="3"><b><i>Elemental Ca</i></b></td>
+          </tr>
+          <tr> 
+            <td valign="top" width="31%">Calcium Acetate </td>
+            <td align="center"
+                                valign="bottom" width="15%">1g</td>
+            <td align="right" valign="bottom"
+                                width="17%">12.6 mEq </td>
+            <td align="right" valign="top"
+                                width="13%">253 mg </td>
+            <td align="right" valign="top"
+                                width="18%">6.30 mmol </td>
+          </tr>
+          <tr> 
+            <td valign="top" width="31%">Calcium Carbonate </td>
+            <td align="center"
+                                valign="bottom" width="15%">1g</td>
+            <td align="right" valign="bottom"
+                                width="17%">19.9 mEq </td>
+            <td align="right" valign="top"
+                                width="13%">400 mg </td>
+            <td align="right" valign="top"
+                                width="18%">9.96 mmol </td>
+          </tr>
+          <tr> 
+            <td valign="top" width="31%">Calcium Citrate </td>
+            <td align="center"
+                                valign="bottom" width="15%">1g</td>
+            <td align="right" valign="bottom"
+                                width="17%">10.5 mEq </td>
+            <td align="right" valign="top"
+                                width="13%">211 mg </td>
+            <td align="right" valign="top"
+                                width="18%">5.26 mmol </td>
+          </tr>
+          <tr> 
+            <td valign="top" width="31%">Calcium Chloride</td>
+            <td align="center"
+                                valign="bottom" width="15%">1g</td>
+            <td align="right" valign="bottom"
+                                width="17%">13.6 mEq </td>
+            <td align="right" valign="top"
+                                width="13%">273 mg </td>
+            <td align="right" valign="top"
+                                width="18%">6.80 mmol </td>
+          </tr>
+          <tr> 
+            <td valign="top" width="31%">Calcium Glubionate </td>
+            <td align="center"
+                                valign="bottom" width="15%">1g</td>
+            <td align="right" valign="bottom"
+                                width="17%">3.29 mEq </td>
+            <td align="right" valign="top"
+                                width="13%">66 mg </td>
+            <td align="right" valign="top"
+                                width="18%">1.64 mmol </td>
+          </tr>
+          <tr> 
+            <td valign="top" width="31%">Calcium Gluceptate </td>
+            <td align="center"
+                                valign="bottom" width="15%">1g</td>
+            <td align="right" valign="bottom"
+                                width="17%">4.08 mEq </td>
+            <td align="right" valign="top"
+                                width="13%">82 mg </td>
+            <td align="right" valign="top"
+                                width="18%">2.04 mmol </td>
+          </tr>
+          <tr> 
+            <td valign="top" width="31%">Calcium Gluconate</td>
+            <td align="center"
+                                valign="bottom" width="15%">1g</td>
+            <td align="right" valign="bottom"
+                                width="17%">4.65 mEq </td>
+            <td align="right" valign="top"
+                                width="13%">93 mg </td>
+            <td align="right" valign="top"
+                                width="18%">2.32 mmol </td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->April 7, 2000<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->June 7, 2011<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0;">
+
+<title>Half Life</title>
+
+<style type="text/css">
+    body, html {
+        font-family: Arial, Verdana, Monaco, sans-serif;
+        font-size: 0.9em;
+        background-color: #e9e9ff;
+    }
+</style>
+</head>
+<body>
+<script language="JavaScript">
+        function calculateFormula (a,b,c) {
+                var result1= 0;
+                var result2= 0;
+                var peak=parseFloat(a);
+                var trough=parseFloat(b)
+                var interval=parseFloat(c)
+                var kelim=0;
+                var thalf=0;
+                kelim=(Math.log(peak) - Math.log(trough)) / interval
+                thalf=0.693/kelim
+                result1=Math.round(kelim * 1000) / 1000
+                result2=Math.round(thalf * 100) / 100
+                document.formulaForm.resValue1.value=result1;
+                document.formulaForm.resValue2.value=result2;
+        }
+</script>
+
+  <div id="bodyMaster"> 
+    <div id="bodySub"> <!-- Begin Left Column --> 
+      <div id="leftCol"> 
+      </div>
+      <div id="centerCol"> 
+        <h1><!-- #BeginEditable "Title" -->Half Life, Drug<!-- #EndEditable --></h1>
+        <!-- #BeginEditable "Body" --> 
+        <p>Calculate the half-life of a drug from two plasma levels separated 
+          by a time interval. </p>
+        <form name="formulaForm">
+          <div align="left"> 
+            <table border="0"
+                            cellpadding="0" cellspacing="1" align="center">
+              <tr> 
+                <td>Input Peak concentration</td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="peak">
+                  mcg/mL </td>
+              </tr>
+              <tr> 
+                <td>Input Trough concentration&nbsp; </td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="trough">
+                  mcg/mL </td>
+              </tr>
+              <tr> 
+                <td>Input Time interval </td>
+                <td> 
+                  <input
+                                    type="text" size="10"
+                                    name="interval">
+                  hrs </td>
+              </tr>
+              <tr> 
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td colspan="2"> 
+                  <div align="left"></div>
+                  <div align="center"> 
+                    <input type="button"
+                            name="Calculate" value="CALCULATE"
+ onClick="calculateFormula(document.formulaForm.peak.value,document.formulaForm.trough.value,document.formulaForm.interval.value)">
+                    <input type="reset"
+                            name="resetButton" value="CLEAR">
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td>
+                  <div align="right">k<sub>elim</sub> =&nbsp;</div>
+                </td>
+                <td> 
+                  <input type="text" size="10" name="resValue1">
+                </td>
+              </tr>
+              <tr> 
+                <td>
+                  <div align="right">t<sub>½</sub> =&nbsp; </div>
+                </td>
+                <td> 
+                  <input type="text" size="10" name="resValue2">
+                  hrs </td>
+              </tr>
+            </table>
+          </div>
+          <div align="left"> </div>
+        </form>
+        <p>&nbsp;</p>
+        <p align="center"><img src="./images/drop_shadow.gif" width="300" height="4"></p>
+        <p><i>Note:</i> The &quot;peak&quot; should be obtained after the drug 
+          has been fully distributed, and the &quot;trough&quot; obtained at some 
+          interval later. These levels need not be the &quot;true&quot; peak or 
+          trough, as long as they are separated in time. The longer the time interval 
+          between the levels, the better the estimate.</p>
+        <p>If the levels are drawn <b>around</b> a dose (trough, dose, peak) rather 
+          than <b>after</b> the same dose (dose, peak, trough), the calculations 
+          here would be invalid if steady-state conditions are not satisfied.</p>
+        <p>Also note that the time interval entered is not the same as the dosing 
+          interval.</p>
+        <p>The formulae used are:</p>
+        <div align="center"> 
+          <center>
+            <table
+                            border="0" cellspacing="1">
+              <tr> 
+                <td rowspan="3">k<sub>elim</sub> = </td>
+                <td>ln(C<sub>peak</sub>) - ln(C<sub>trough</sub>)</td>
+              </tr>
+              <tr> 
+                <td align="center"><img src="./images/filler.gif" width="150" height="1"></td>
+              </tr>
+              <tr> 
+                <td align="center">t<sub>interval</sub></td>
+              </tr>
+            </table>
+            <p>t<sub>½</sub> = 0.693 / k<sub>elim</sub> </p>
+            <p align="left">&nbsp;</p>
+          </center>
+        </div>
+        <!-- #EndEditable -->
+        <p> <i>Created:</i> <!-- #BeginEditable "CreateDate" -->January 7, 2000<!-- #EndEditable --><br>
+          <i>Revised:</i> <!-- #BeginEditable "ReviseDate" -->October 19, 2000.<!-- #EndEditable --></p>
+      </div>
+      <div id="rightCol"> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,19 @@
+(Tested with Windows 7)
+I. What this tool does:
+1. Creates the folder structure for new book with files. (You need need to add/replace with book specific XML, Images & XSLT to proceed).
+2. Creates two scripts(.BAT) which you can click to run the automation without having to type in the automation command.
+
+II. BEFORE START (ONE TIME SET-UP)
+1. Extract the zip and place it in a convenient location. (e.g: D:\Medhand\gitent-scm\NEW_BOOK_INIT_TOOL)
+2. Edit config.properties and replace the following with the data specific to your mahcine/account
+	a. automation.path=<path where the automation setup is present in your machine e.g:D:/Medhand/gitent-scm/drcompanion-toolset/Automation)
+	b. git.username=<your Git Username e.g:Maithra>
+2. Ensure you have JRE 6 Installed. (If the automation is already setup on your machine, then it is ready to run this tool)
+
+III. HOW TO RUN
+1. Before you run the tool create a empty book folder(e.g.WES) for the new book you intend to create
+2. Click on RUN.bat to launch the tool 
+3. Under "Target" click browse and select the folder you created in STEP-1.
+4. After previous step some of the fields gets populated. Edit these fields if necessary & fill in the empty fields. 
+5. Click on Create "New Book Requisites" button. 
+6. Once you see "COMPLETE" message in LOG section, you are done.

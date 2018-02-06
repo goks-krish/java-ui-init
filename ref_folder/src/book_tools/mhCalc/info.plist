@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>name</key>
+    <string>Calculators</string>
+    <key>description</key>
+    <string>Basic Calculators</string>
+    <key>version</key>
+    <string>1.0.0</string>
+    <key>producer</key>
+    <string>Cornell University</string>
+    <key>directoryName</key>
+    <string>mhCalc</string>
+    <key>infoURL</key>
+    <string>http://medhand.com/tools</string>
+</dict>
+</plist>
